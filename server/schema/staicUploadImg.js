@@ -10,6 +10,6 @@ var staicUploadImageUrl = new mongoose.Schema({
 	]
 });
 
-var bannerSchema = mongoose.model("imgUpload",staicUploadImageUrl);
+var bannerSchema = mongoose.model("imguploads",staicUploadImageUrl);
 
 module.exports = bannerSchema;

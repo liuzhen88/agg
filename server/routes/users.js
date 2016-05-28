@@ -21,7 +21,7 @@ router.post("/uploadSource",function(req, res){
 	var imgData = req.body.imgData;
 	var fileType = req.body.fileType;
 	var fileName = req.body.fileName;
-	upload.uploadSourceForImage(imgData,fileType,fileName).then(function(result){
+	upload.uploadSourceForImage(imgData,fileType,fileName,req).then(function(result){
 		res.send(result);
 	}).fail(function(err){
 		res.send(err);

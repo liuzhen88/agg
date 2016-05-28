@@ -1,6 +1,7 @@
 var config = {
 	serverUrl:"http://121.43.57.75:3000",
 	dbUrl:"mongodb://121.43.57.75/yimaihui",
+	uploadUrl:"http://121.43.57.75/agg/server/public/images/upload",
 	data:{
 		success:{
 			code:"200",

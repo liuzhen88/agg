@@ -1,8 +1,101 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-size: "微软雅黑";
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: url("../images/grass.jpg") no-repeat 50% 0;
+  font-size: 14px;
 }
 
 a {
   color: #00B7FF;
 }
+img {
+  border: 0;
+}
+.container {
+  width: 468px;
+  height: 468px;
+  margin: 100px auto;
+  background: url("../images/login_bg.png") no-repeat;
+}
+.container-top {
+  height: 200px;
+  width: 468px;
+}
+.container-main {
+  width: 400px;
+  height: 180px;
+  margin: 0 25px;
+}
+.container-main-content {
+  width: 290px;
+  height: 100px;
+  padding: 60px 55px 20px 55px;
+}
+
+.username{
+  width: 236px;
+  height: 37px;
+  margin: 4px 28px;
+  margin-top: 20px;
+}
+
+#username{
+  width: 170px;
+  height: 25px;
+  line-height: 25px;
+  color:#666;
+  margin-left: 10px;
+  border:solid #ccc 1px;
+  outline: none;
+  text-indent: 10px;
+}
+
+#password{
+  width: 170px;
+  height: 25px;
+  line-height: 25px;
+  color: #666;
+  margin-left: 10px;
+  border:solid #ccc 1px;
+  outline: none;
+  text-indent: 10px;
+}
+
+.password{
+  width: 236px;
+  height: 37px;
+  margin: 4px 28px;
+}
+
+.span{
+  display: inline-block;
+  width: 50px;
+  height: 37px;
+  color: #999;
+}
+
+#btn {
+  width: 330px;
+  height: 72px;
+  background: url("../images/enter.png") no-repeat;
+  border: 0;
+  display: block;
+  font-size: 18px;
+  color: #FFF;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  cursor: pointer;
+  line-height: 72px;
+  text-align: center;
+}
+.container-foot {
+  height: 80px;
+  width: 330px;
+  padding: 6px 68px 0 68px;
+}
+
+

@@ -1,5 +1,27 @@
-extends layout
+extends layoutCommon
 
 block content
-  h1= title
-  p Welcome to #{title}
+	div.container
+		div.container-left
+			div.bar-logo
+				img(src="#{data.logoUrl}")
+			.list-container
+				.list-container-null
+				- for(var i=0;i<data.list.length;i++)
+					.list #{data.list[i]}
+		div.container-right
+			.container-right-top
+				.container-right-title 易卖会后台管理系统
+				.container-admin-info
+					.this-position 您的当前位置: #{data.this_position}
+					.admin-actions
+						span.modfiy-password 修改密码
+						span.exit-login 退出登录
+			.container-right-body
+				block sub_content
+	div.footer
+	script(src="/javascripts/config.js")
+	script(src="//libs.cdnjs.net/zepto/1.1.3/zepto.min.js")
+	script(src="/javascripts/list_common.js")
+
+

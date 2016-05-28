@@ -1,0 +1,11 @@
+extends index
+
+block sub_content
+	div.addImageContainer
+		div.addImage 新增广告图
+		input#upload(type="file")
+	div.preview-container
+		.preview-title 效果预览图	:
+		.preview-img-container
+		.upload-file#btn 确认上传
+	script(src="/javascripts/upload.js")

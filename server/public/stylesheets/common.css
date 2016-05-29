@@ -197,3 +197,13 @@
 .baseData{
 	display: none;
 }
+.server-has-img{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	text-indent: 10px;
+	color: #999;
+	border-top: solid #dcdcdc 1px;
+	border-bottom: solid #dcdcdc 1px;
+	margin-top: 15px;
+}

@@ -77,22 +77,32 @@ function uploadSource(imgData, fileType, fileName, req, callback){
 function uploadSourceForImage(imgData, fileType, fileName, req){
 	var deferred = q.defer();
 	uploadSource(imgData, fileType, fileName, req).then(function(bannerArray){
-		console.log(bannerArray);
-		bannerModel.update({
+		bannerModel.findOne({
 			"type":"banner"
-		},{
-			$set:{
-				banner:bannerArray
-			}
-		},function(err){
+		},function(err,docs){
 			if(err){
-				console.log("update is error :" +err);
+				console.log("search banner data is error:"+err);
 				deferred.reject(err);
 			}
-			console.log("update success");
-			var context = config.data.success;
-			deferred.resolve(context);
-		})
+			if(docs.banner.length>0){
+				bannerArray = docs.banner.concat(bannerArray);	
+			}
+			bannerModel.update({
+				"type":"banner"
+			},{
+				$set:{
+					banner:bannerArray
+				}
+			},function(err){
+				if(err){
+					console.log("update is error :" +err);
+					deferred.reject(err);
+				}
+				console.log("update success");
+				var context = config.data.success;
+				deferred.resolve(context);
+			})
+		});
 	}).fail(function(err){
 		deferred.reject(err);
 	});

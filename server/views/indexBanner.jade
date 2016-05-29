@@ -9,4 +9,8 @@ block sub_content
 		.preview-img-container
 		.upload-file#btn 确认上传
 	div.server-has-img 线上banner区
+		- if(data.bannerImageData.banner.length>0)
+			- for(var i=0;i<data.bannerImageData.banner.length;i++)
+				div.banner-conatiner-data
+					img(src="#{data.bannerImageData.banner[i].bannerUrl}")
 	script(src="/javascripts/upload.js")

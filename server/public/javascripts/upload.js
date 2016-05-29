@@ -54,6 +54,11 @@ window.onload = function(){
 			}
 		});
 	}
+	$(".banner-data-url").each(function(index,value){
+		if($(this).width()>$(".container-right").width()){
+			$(this).width($(".container-right").width());
+		}
+	});
 }
 function del(obj){
 	var sendDataImage = gobal.sendDataImage;

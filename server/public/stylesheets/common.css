@@ -207,3 +207,7 @@
 	border-bottom: solid #dcdcdc 1px;
 	margin-top: 15px;
 }
+.imgs-container{
+	width: 100%;
+	overflow: hidden;
+}

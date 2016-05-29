@@ -36,7 +36,7 @@ function uploadSource(imgData, fileType, fileName, req, callback){
 	var fileName = JSON.parse(fileName);
 	
 	var path = config.path;
-
+	bannerArray = [];
 	imgData.forEach(function(value,i){
 		var base64Data = value.replace(/^data:image\/\w+;base64,/, "");
 		//开启Node缓冲区

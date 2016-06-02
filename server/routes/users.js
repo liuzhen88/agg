@@ -48,4 +48,20 @@ router.post("/add",function(req, res){
 	});
 });
 
+router.get("/exitLogin",function(req, res){
+	serviceForCheck.exitLogin(req,res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
+router.post("/modifyPassword",function(req, res){
+	serviceForCheck.modify(req,res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
 module.exports = router;

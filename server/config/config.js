@@ -18,6 +18,10 @@ var config = {
 		notFound:{
 			code:"404",
 			message:"get data is null"
+		},
+		notPass:{
+			code:"80001",
+			message:"原始密码错误"
 		}
 	},
 	path:"public/images/upload/",

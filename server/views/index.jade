@@ -13,15 +13,15 @@ block content
 			.container-right-top
 				.container-right-title 易卖会后台管理系统
 				.container-admin-info
-					.this-position 您的当前位置: #{data.this_position}
+					.this-position 您的当前位置: 
+						span.this-position-color #{data.this_position}
 					.admin-actions
 						span.modfiy-password 修改密码
 						span.exit-login 退出登录
 			.container-right-body
 				block sub_content
-	div.footer
 	script(src="/javascripts/config.js")
-	script(src="//libs.cdnjs.net/zepto/1.1.3/zepto.min.js")
+	script(src="/javascripts/zepto.min.js")
 	script(src="/javascripts/list_common.js")
 
 

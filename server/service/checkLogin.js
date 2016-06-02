@@ -1,4 +1,5 @@
 var q = require("q");
+var config = require("../config/config");
 var userSchemaModel = require("../schema/userSchema");
 
 function checkUserLogin(username, password, req, res){
@@ -39,6 +40,45 @@ function checkUserLogin(username, password, req, res){
 	return deferred.promise; 
 }
 
+function exitLogin(req, res){
+	var deferred = q.defer();
+	//console.log(req.session.user);
+	delete req.session.user;
+	var context = config.data.success;
+	deferred.resolve(context);
+	return deferred.promise;
+}
+
+function modify(req, res){
+	var deferred = q.defer();
+	var oldPassWord = req.body.oldPassWord;
+	if(req.session.user.password!=oldPassWord){
+		var context = config.data.notPass;
+		deferred.resolve(context);
+	}
+	var username = req.session.user.username;
+	var newPassWord = req.body.newPassWord;
+	userSchemaModel.update({
+		"username":username
+	},{
+		$set:{
+			"password":newPassWord
+		}
+	},function(err){
+		if(err){
+			console.log("modify is error :" +err);
+			deferred.reject(err);
+		}
+		var content = config.data.success;
+		delete req.session.user;
+		deferred.resolve(content);
+	});
+
+	return deferred.promise;
+}
+
 module.exports = {
-	checkUserLogin:checkUserLogin
+	checkUserLogin:checkUserLogin,
+	exitLogin:exitLogin,
+	modify:modify
 }

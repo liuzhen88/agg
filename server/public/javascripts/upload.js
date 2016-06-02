@@ -60,6 +60,7 @@ window.onload = function(){
 			$(this).width($(".container-right").width());
 		}
 	});
+	
 }
 function del(obj){
 	var sendDataImage = gobal.sendDataImage;

@@ -52,4 +52,11 @@ $(document).ready(function(){
 			});
 		}
 	});
+	document.onkeydown = keyevent;
+
+	function keyevent(){
+		if(event.keyCode == 13){
+			$("#btn").click();
+		}		
+	}
 });

@@ -205,7 +205,7 @@
 	color: #999;
 	border-top: solid #dcdcdc 1px;
 	border-bottom: solid #dcdcdc 1px;
-	margin-top: 15px;
+	margin-top: 75px;
 }
 .imgs-container{
 	width: 100%;
@@ -213,4 +213,35 @@
 }
 .banner-conatiner-data{
 	margin-top: 15px;
+}
+.form-control{
+	width: 500px;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+.this-position-color{
+	color: #ff0000;
+}
+.password{
+	width: 80%;
+	border:solid #dcdcdc 1px;
+	height: 30px;
+	line-height: 30px;
+	text-indent: 10px;
+	margin-left: 10px;
+	margin-bottom: 30px;
+}
+.new-password{
+	margin-left: 23px;
+}
+.confirm-modify-submit{
+	width: 250px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	background: #61B97F;
+	color: #fff;
+	margin: 0 auto;
+	margin-top: 30px;
+	cursor: pointer;
 }

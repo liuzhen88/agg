@@ -10,9 +10,17 @@ var pageRenderHelper = require("../service/pageRenderHelper");
 
 router.get("/indexBanner",function(req,res,next){
 	pageRenderHelper.checkSession(req, res, function(data){
+		data.this_position="首页广告图";
 		res.render('indexBanner', {data});
 	});
 })
+
+router.get("/modifyPassword",function(req,res,next){
+	pageRenderHelper.checkSession(req,res,function(data){
+		data.this_position = "修改密码";
+		res.render('modifyPassword',{data});
+	});
+});
 
 router.get('/staic/upload',function(req,res){
 	res.render('upload',{});

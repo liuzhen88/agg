@@ -21,4 +21,29 @@ $(document).ready(function(){
 				break;
 		}
 	});
+	$(".exit-login").click(function(){
+		exitLogin();
+	});
+
+	$(".modfiy-password").click(function(){
+		window.location.href="/modifyPassword";
+	});
+
+	function exitLogin(){
+		$.ajax({
+			url:serverUrl+"/users/exitLogin",
+			type:"get",
+			dataType:"json",
+			json:"callback",
+			success:function(data){
+				if(data.code==200){
+					alert("安全退出成功");
+					window.location.href="/login";
+				}
+			},
+			error:function(err){
+				console.log(err);
+			}
+		})
+	}
 });

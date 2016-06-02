@@ -2,6 +2,7 @@ var bannerModel = require("../schema/staicUploadImg");
 var helper = {};
 
 helper.checkSession = function(req , res, next){
+	console.log(req.session);
 	if(!req.session.user){
 		res.redirect("/login");
 		return;
@@ -9,7 +10,7 @@ helper.checkSession = function(req , res, next){
 	getBannerData(function(bannerData){
 		var data = {
 			logoUrl:"/images/logo.png",
-			this_position:"首页广告图",
+			this_position:"",
 			list:[
 				"首页广告图",
 				"商品展示",

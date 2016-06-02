@@ -95,7 +95,7 @@ window.onload = function(){
 		var state = confirm("确定要删除吗?");
 		if(state){
 			delBannerFile(dataId,src,function(){
-				$(".banner-data-url").eq(index).remove();
+				$(".lists-container").eq(index).remove();
 			});
 		}
 	});

@@ -94,7 +94,9 @@ window.onload = function(){
 		var src = $(".banner-data-url").eq(index).attr("src");
 		var state = confirm("确定要删除吗?");
 		if(state){
-			delBannerFile(dataId,src);
+			delBannerFile(dataId,src,function(){
+				$(".banner-data-url").eq(index).remove();
+			});
 		}
 	});
 
@@ -121,7 +123,7 @@ window.onload = function(){
 		});
 	}
 
-	function delBannerFile(dataId, src){
+	function delBannerFile(dataId, src ,cb){
 		$.ajax({
 			url:serverUrl+"/users/deleteBannerFile",
 			type:"post",
@@ -134,6 +136,7 @@ window.onload = function(){
 			success:function(data){
 				if(data.code==200){
 					alert("删除成功");
+					cb();
 				}
 			},
 			error:function(err){

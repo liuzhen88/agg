@@ -3,10 +3,12 @@ window.onload = function(){
 	gobal.sendDataImage = [];
 	gobal.sendFileName = [];
 	gobal.sendFileType = [];
-	// var h = $(".imgs-container").height();
-	// var hh = $(".container-right").height();
-	// $(".container-right").height(h+hh+30);
-	// $(".container-left").height(h+hh+30);
+	var doc_w = $(document).width();
+	var doc_h = $(window).height();
+	$(".loading").css({
+		"width":doc_w,
+		"height":doc_h
+	});
 	var upload = document.getElementById("upload");
 	upload.onchange = function(e){
 		var file = e.target.files[0];
@@ -40,6 +42,7 @@ window.onload = function(){
 		uploadSource(gobal.sendDataImage,gobal.sendFileName,gobal.sendFileType);
 	});	
 	function uploadSource(imgData,fileName,fileType){
+		$(".loading").show();
 		$.ajax({
 			url:serverUrl+"/users/uploadSource",
 			type:"post",
@@ -51,8 +54,8 @@ window.onload = function(){
 			dataType:"json",
 			json:"callback",
 			success:function(data){
+				$(".loading").hide();
 				alert(data.message);
-				console.log(data);
 			},
 			error:function(err){
 				console.log(err);

@@ -299,3 +299,18 @@
 .del{
 	background: #ff0000;
 }
+.loading{
+	display: none;
+	background: #000;
+	opacity: 0.7;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 100;
+}
+.loading-gif{
+	position: fixed;
+	z-index: 101;
+	left: 48%;
+	top: 48%;
+}

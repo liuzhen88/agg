@@ -49,7 +49,7 @@ function uploadSource(imgData, fileType, fileName, req, callback){
     	var bannerObj = {
     		bannerUrl:config.uploadUrl+"/"+lastFileName,
     		name:name,
-    		path:"",
+    		href:"",
     		operator:req.session.user.username
     	}
     	bannerArray.push(bannerObj);

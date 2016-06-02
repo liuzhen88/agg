@@ -5,7 +5,8 @@ var staicUploadImageUrl = new mongoose.Schema({
 		{
 			bannerUrl:String,
 			name:String,
-			operator:String
+			operator:String,
+			href:String
 		}
 	],
 	type:String

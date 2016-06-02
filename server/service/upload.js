@@ -1,6 +1,7 @@
 var config = require("../config/config");
 var q = require("q");
 var fs = require("fs");
+var _ = require("underscore");
 var bannerModel = require("../schema/staicUploadImg");
 var qiniu = require("qiniu");
 qiniu.conf.ACCESS_KEY = "";
@@ -48,6 +49,7 @@ function uploadSource(imgData, fileType, fileName, req, callback){
     	var bannerObj = {
     		bannerUrl:config.uploadUrl+"/"+lastFileName,
     		name:name,
+    		path:"",
     		operator:req.session.user.username
     	}
     	bannerArray.push(bannerObj);
@@ -109,7 +111,117 @@ function uploadSourceForImage(imgData, fileType, fileName, req){
 	return deferred.promise;
 }
 
+function updateBannerHref(req, res){
+	var deferred = q.defer();
+	var newHref = req.body.newHref;
+	var dataId = req.body.dataId;
+	getBannerDataService().then(function(result){
+		result.banner.forEach(function(value,index){
+			if(value._id == dataId){
+				updateHrefByDataId(index,newHref,result).then(function(data){
+					deferred.resolve(data);
+				}).fail(function(err){
+					deferred.reject(err);
+				});
+			}
+		});
+	}).fail(function(err){
+		deferred.reject(err);
+	});
+
+	return deferred.promise;
+}
+
+function getBannerDataService(){
+	var deferred = q.defer();
+	bannerModel.findOne({
+		"type":"banner"
+	},function(err,result){
+		if(err){
+			console.log("search is error :" +err);
+			deferred.reject(err);
+		}
+		deferred.resolve(result);
+	});
+
+	return deferred.promise;
+}
+
+function updateHrefByDataId(index, newHref, result){
+	var deferred = q.defer();
+	var bannerDataArray = result.banner;
+	bannerDataArray[index].href = newHref;
+	bannerModel.update({
+		"type":"banner"
+	},{
+		$set:{
+			banner:bannerDataArray
+		}
+	},function(err){
+		if(err){
+			console.log(err);
+			deferred.reject(err);
+		}
+		var context = config.data.success;
+		deferred.resolve(context);
+	});
+
+	return deferred.promise;
+}
+
+function deleteBannerFileByUrl(req, res){
+	var deferred = q.defer();
+	var dataId = req.body.dataId;
+	var path = req.body.path;
+	
+	getBannerDataService().then(function(result){
+		var bannerDataArray = result.banner;
+		bannerDataArray.forEach(function(value,index){
+			if(value._id == dataId){
+				deleteBannerDataByIndex(bannerDataArray,index).then(function(data){
+					fs.unlink(path,function(){
+						deferred.resolve(data);
+					});	
+				}).fail(function(err){	
+					deferred.reject(err);
+				});
+			}
+		});
+	}).fail(function(err){
+		console.log(err);
+		deferred.reject(err);
+	});
+
+
+	return deferred.promise;
+}
+
+function deleteBannerDataByIndex(bannerDataArray, index){
+	var deferred = q.defer();
+	bannerDataArray[index] = '';
+	bannerDataArray = _.compact(bannerDataArray);
+
+	bannerModel.update({
+		"type":"banner"
+	},{
+		$set:{
+			banner:bannerDataArray
+		}
+	},function(err){
+		if(err){
+			console.log(err);
+			deferred.reject(err);
+		}
+		var context = config.data.success;
+		deferred.resolve(context);
+	});
+
+	return deferred.promise;
+}
+
 module.exports = {
 	getToken:getToken,
-	uploadSourceForImage:uploadSourceForImage
+	uploadSourceForImage:uploadSourceForImage,
+	updateBannerHref:updateBannerHref,
+	deleteBannerFileByUrl:deleteBannerFileByUrl
 }

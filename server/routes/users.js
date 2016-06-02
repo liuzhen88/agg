@@ -64,4 +64,20 @@ router.post("/modifyPassword",function(req, res){
 	});
 });
 
+router.post("/updateBannerHref",function(req, res){
+	upload.updateBannerHref(req, res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
+router.post("/deleteBannerFile",function(req, res){
+	upload.deleteBannerFileByUrl(req, res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
 module.exports = router;

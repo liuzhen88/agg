@@ -9,19 +9,20 @@
 	width: 1200px;
 	margin: 0 auto;
 	margin-top: 10px;
+	border: solid #ccc 1px;
 }
 .container-left{
 	width: 240px;
-	min-height: 1000px;
-	border: solid #ccc 1px;
 	float: left;
 }
 .container-right{
 	width: 957px;
-	min-height: 1000px;
-	border: solid #ccc 1px;
 	border-left: none;
 	float: right;
+	border-left: solid #dcdcdc 1px; 
+}
+.clear-float{
+	clear: both;
 }
 .bar-logo{
 	width: 240px;
@@ -214,6 +215,10 @@
 .banner-conatiner-data{
 	margin-top: 15px;
 }
+.lists-container{
+	border-bottom: dashed #666 1px;
+	padding-bottom: 30px;
+}
 .form-control{
 	width: 500px;
 	margin: 0 auto;
@@ -244,4 +249,53 @@
 	margin: 0 auto;
 	margin-top: 30px;
 	cursor: pointer;
+}
+.img-href{
+	width: 50%;
+	height: 30px;
+	line-height: 30px;
+	text-indent: 10px;
+	border:solid #dcdcdc 1px;
+	margin-left: 10px;
+}
+.go-where{
+	padding: 0 15px;
+	height: 30px;
+	margin-top: 30px;
+}
+.go-where-left span{
+	color: #000;
+}
+.disable{
+	color: #999;
+	background: #eeeeee;
+	cursor: not-allowed;
+}
+.go-where-left{
+	width: 70%;
+	float: left;
+}
+.go-right-actions{
+	float: right;
+}
+.common-style{
+	width: 80px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	color: #fff;
+	border-radius: 4px;
+	display: inline-block;
+	margin-right: 10px;
+	text-indent: 0px;
+	cursor: pointer;
+}
+.edit{
+	background: #14ACFC;
+}
+.save{
+	background: #55AE76;
+}
+.del{
+	background: #ff0000;
 }

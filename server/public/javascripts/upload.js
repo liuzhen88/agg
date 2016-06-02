@@ -18,6 +18,7 @@ window.onload = function(){
 		reader.onload = function(e){
 			// var result = document.getElementById("result");
 			var source = this.result;
+			console.log(source);
 			gobal.sendDataImage.push(source);
 			// result.setAttribute("src",source);
 			var imgTag = "<div class='previewListContainer'>"

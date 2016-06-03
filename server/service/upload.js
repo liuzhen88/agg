@@ -30,12 +30,13 @@ function getToken(req, res){
 	return deferred.promise;
 }
 
-function uploadSource(imgData, fileType, fileName, req, callback){
+function uploadSource(imgData, fileType, fileName, Href, req, callback){
 	var deferred = q.defer();
 	var imgData = JSON.parse(imgData);
 	var fileType = JSON.parse(fileType);
 	var fileName = JSON.parse(fileName);
-	
+	var Href = JSON.parse(Href);
+
 	var path = config.path;
 	bannerArray = [];
 	imgData.forEach(function(value,i){
@@ -45,11 +46,12 @@ function uploadSource(imgData, fileType, fileName, req, callback){
 		var name = fileName[i];
 		var lastFileName = new Date().getTime()+"."+fileType[i];
 		var newFilePath = config.path+ lastFileName;
+		var href = Href[i];
 		//写入图片成功之后应该保存链接到Mongodb之中
     	var bannerObj = {
     		bannerUrl:config.uploadUrl+"/"+lastFileName,
     		name:name,
-    		href:"",
+    		href:href,
     		operator:req.session.user.username
     	}
     	bannerArray.push(bannerObj);
@@ -76,9 +78,9 @@ function uploadSource(imgData, fileType, fileName, req, callback){
 	return deferred.promise;
 }
 
-function uploadSourceForImage(imgData, fileType, fileName, req){
+function uploadSourceForImage(imgData, fileType, fileName, Href, req){
 	var deferred = q.defer();
-	uploadSource(imgData, fileType, fileName, req).then(function(bannerArray){
+	uploadSource(imgData, fileType, fileName, Href, req).then(function(bannerArray){
 		bannerModel.findOne({
 			"type":"banner"
 		},function(err,docs){

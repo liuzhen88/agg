@@ -3,6 +3,7 @@ window.onload = function(){
 	gobal.sendDataImage = [];
 	gobal.sendFileName = [];
 	gobal.sendFileType = [];
+	gobal.sendFileHref = [];
 	var doc_w = $(document).width();
 	var doc_h = $(window).height();
 	$(".loading").css({
@@ -31,6 +32,10 @@ window.onload = function(){
 						+	"<img src="+source+" class='previewList'/>"
 						+	"<div class='delete' onclick='del(this)'>删除"
 						+ 	"</div>"
+						+	"<div class='add-href-container'>"
+						+		"<span>跳转链接 :</span>"
+						+		"<input type='text' class='href-data' placeholder='请输入正确的url地址'>"
+						+	"</div>"
 						+"</div>";
 						
 			$(".preview-img-container").append(imgTag);
@@ -39,9 +44,13 @@ window.onload = function(){
 		}
 	}
 	$("#btn").click(function(){
-		uploadSource(gobal.sendDataImage,gobal.sendFileName,gobal.sendFileType);
+		$(".href-data").each(function(index,value){
+			var hrefData = $(this).val();
+			gobal.sendFileHref.push(hrefData);
+		});
+		uploadSource(gobal.sendDataImage,gobal.sendFileName,gobal.sendFileType,gobal.sendFileHref);
 	});	
-	function uploadSource(imgData,fileName,fileType){
+	function uploadSource(imgData,fileName,fileType,Href){
 		$(".loading").show();
 		$.ajax({
 			url:serverUrl+"/users/uploadSource",
@@ -49,7 +58,8 @@ window.onload = function(){
 			data:{
 				imgData:JSON.stringify(imgData),
 				fileType:JSON.stringify(fileType),
-				fileName:JSON.stringify(fileName)
+				fileName:JSON.stringify(fileName),
+				Href:JSON.stringify(Href)
 			},
 			dataType:"json",
 			json:"callback",

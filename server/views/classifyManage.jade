@@ -1,0 +1,20 @@
+extends index
+
+block sub_content
+	.class-manage-container
+		.add-new-class 新增分类
+	.class-actions-title-container
+		.class-xuhao 序号
+		.class-name 分类名称
+		.class-actions 操作
+	- for(var i=0;i<data.classLists.length;i++)
+		.class-lists-details(data-class-id="#{data.classLists[i].class_id}")
+			.class-lists-xuhao 
+				span.class-lists-xuhao-span.disable #{data.classLists[i].serial_number}
+			.class-lists-name
+				input.class-lists-value.disable(type="text" value="#{data.classLists[i].className}" readonly="readonly")
+			.class-lists-actions 
+				span.class-edit 编辑
+				span.class-del 删除
+
+	script(src="/javascripts/class_manage.js")

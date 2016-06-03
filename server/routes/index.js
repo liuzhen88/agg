@@ -22,6 +22,36 @@ router.get("/modifyPassword",function(req,res,next){
 	});
 });
 
+router.get("/showGoods",function(req,res,next){
+	pageRenderHelper.checkSessionForShowGoods(req,res,function(data){
+		data.this_position = "商品展示";
+		res.render('showGoods',{data});
+	});
+});
+
+
+
+router.get("/classifyManage",function(req, res, next){
+	pageRenderHelper.checkSessionForClassManage(req,res,function(data){
+		data.this_position = "分类管理";
+		res.render('classifyManage',{data});
+	});
+});
+
+router.get("/addNewClass",function(req, res, next){
+	pageRenderHelper.checkSessionForClasses(req,res,function(data){
+		data.this_position = "分类管理--新增分类";
+		res.render('addNewClass',{data});
+	});
+});
+
+router.get("/editClass",function(req, res, next){
+	pageRenderHelper.checkSessionForClasses(req, res, function(data){
+		data.this_position = "分类管理--编辑分类";
+		res.render('editClass',{data});
+	});
+});
+
 router.get('/staic/upload',function(req,res){
 	res.render('upload',{});
 });

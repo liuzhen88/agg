@@ -3,6 +3,7 @@ var router = express.Router();
 var upload = require("../service/upload");
 var service = require("../service/add");
 var serviceForCheck = require("../service/checkLogin");
+var classManage = require("../service/classManage");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -75,6 +76,22 @@ router.post("/updateBannerHref",function(req, res){
 
 router.post("/deleteBannerFile",function(req, res){
 	upload.deleteBannerFileByUrl(req, res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
+router.post("/addNewClass",function(req, res){
+	classManage.addNewClassByName(req, res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
+router.post("/editClass",function(req, res){
+	classManage.editClassById(req, res).then(function(data){
 		res.send(data);
 	}).fail(function(err){
 		res.send(err);

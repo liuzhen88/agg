@@ -1,0 +1,13 @@
+extends index
+
+block sub_content
+	div.actions-container
+		.add-new-goods 新增商品
+	.goods-shop-container
+		.goods-shop-number 序号
+		.goods-shop-content-title 商品内容
+	.goods-lists-container
+		.goods-lists-xuhao
+			input.xuhao.disable(type="text" value="1" readonly="readonly")
+		.goods-details-container
+	script(src="/javascripts/show_goods.js")

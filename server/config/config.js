@@ -22,6 +22,14 @@ var config = {
 		notPass:{
 			code:"80001",
 			message:"原始密码错误"
+		},
+		hasExit:{
+			code:"80001",
+			message:"您添加的分类已存在,请重新添加"
+		},
+		notClassId:{
+			code:"80001",
+			message:"更新失败,服务器繁忙"
 		}
 	},
 	path:"public/images/upload/",

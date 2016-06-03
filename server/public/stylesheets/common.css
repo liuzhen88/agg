@@ -13,10 +13,12 @@
 }
 .container-left{
 	width: 240px;
+	min-height: 1000px;
 	float: left;
 }
 .container-right{
 	width: 957px;
+	min-height: 1000px;
 	border-left: none;
 	float: right;
 	border-left: solid #dcdcdc 1px; 
@@ -108,12 +110,12 @@
 .has-select{
 	color: red;
 }
-.addImageContainer{
+.addImageContainer,.actions-container,.class-manage-container{
 	width: 100%;
 	height: 25px;
 	position: relative;
 }
-.addImage{
+.addImage,.add-new-goods,.add-new-class{
 	position: absolute;
 	right: 10px;
 	top: 0;
@@ -330,4 +332,154 @@
 	line-height: 30px;
 	text-indent: 10px;
 	margin-left: 15px;
+}
+.goods-shop-container,.class-actions-title-container{
+	width: 100%;
+	height: 40px;
+	background: #55AE76;
+	color: #fff;
+	margin-top: 75px;
+}
+.goods-shop-number,.class-xuhao{
+	float: left;
+	width: 15%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+.class-name{
+	float: left;
+	width: 60%;
+	height: 40px;
+	line-height: 40px;
+	text-align: left;
+	margin-left: 5%;
+}
+.class-actions{
+	float: left;
+	width: 20%;
+	height: 40px;
+	line-height: 40px;
+	text-align: left;
+}
+.goods-shop-content-title{
+	float: right;
+	width: 80%;
+	height: 40px;
+	line-height: 40px;
+	text-align: left;
+}
+.goods-lists-container{
+	width: 100%;
+	height: 170px;
+	padding-bottom: 20px;
+	border-bottom: dashed #666 1px;
+}
+.goods-lists-xuhao{
+	float: left;
+	width: 15%;
+	height: 40px;
+}
+.xuhao{
+	width: 50%;
+	height: 30px;
+	border:solid #dcdcdc 1px;
+	margin-left: 25%;
+	text-align: center;
+	margin-top: 10px;
+	border-radius: 30px;
+	outline: none;
+}
+.goods-details-container{
+	width: 80%;
+	float: right;
+	margin-right: 10px;
+	margin-top: 10px;
+	height: 150px;
+	border: solid #dcdcdc 1px;
+}
+.class-lists-xuhao{
+	width: 15%;
+	height: 60px;
+	float: left;
+	text-align: center;
+}
+.class-lists-xuhao-span{
+	display: inline-block;
+	width: 40%;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	border:solid #dcdcdc 1px;
+	border-radius: 10px;
+	margin-top: 15px;
+}
+.class-lists-name{
+	width: 55%;
+	height: 60px;
+	line-height: 60px;
+	float: left;
+}
+.class-lists-actions{
+	width: 25%;
+	height: 60px;
+	float: left;
+}
+.class-lists-details{
+	width: 100%;
+	height: 60px;
+	border-bottom:solid #dcdcdc 1px;
+}
+.class-lists-value{
+	width: 70%;
+	height: 30px;
+	border:solid #dcdcdc 1px;
+	text-indent: 15px;
+	color: #999;
+}
+.class-edit{
+	display: inline-block;
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: #14ACFC;
+	color: #fff;
+	margin-top: 15px;
+	margin-right: 20px;
+	cursor: pointer;
+}
+.class-del{
+	display: inline-block;
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: #ff0000;
+	color: #fff;
+	margin-top: 15px;
+	cursor: pointer;
+}
+.add-new-class-container{
+	width: 600px;
+	margin: 20px auto;
+}
+.add-new-class-input{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	text-indent: 10px;
+	color: #999;
+	border: solid #dcdcdc 1px;
+}
+.submit-new-class{
+	width: 50%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	color: #fff;
+	background: #14ACFC;
+	margin: 0 auto;
+	margin-top: 30px;
+	cursor: pointer;
 }

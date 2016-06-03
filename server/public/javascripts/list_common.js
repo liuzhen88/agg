@@ -29,6 +29,13 @@ $(document).ready(function(){
 		window.location.href="/modifyPassword";
 	});
 
+	$(".add-new-class").click(function(){
+		if(localStorage.getItem("class")){
+			localStorage.removeItem("class");
+		}
+		window.location.href="/addNewClass";
+	});
+
 	function exitLogin(){
 		$.ajax({
 			url:serverUrl+"/users/exitLogin",

@@ -3,6 +3,12 @@ window.onload = function(){
 	Gobal.announce = [];
 	Gobal.fileType = [];
 	Gobal.fileName = [];
+	var doc_w = $(document).width();
+	var doc_h = $(window).height();
+	$(".loading").css({
+		"width":doc_w,
+		"height":doc_h
+	});
 	$(".list").removeClass("has-select");
 	$(".list").eq(2).addClass("has-select");
 	$(".add-input-img").change(function(e){
@@ -26,8 +32,6 @@ window.onload = function(){
 						+"</div>";
 			$(".add-new-announce-img-container").append(imgTag);
 			setImgAttr();
-
-			console.log(Gobal.announce);
 		}
 	});
 
@@ -35,9 +39,12 @@ window.onload = function(){
 		var announceName = $(".add_new_announce-name").val();
 		if(!announceName){
 			alert("公告标题不能为空");
+		}else if(Gobal.announce.length==0){
+			alert("请添加图片后再上传");
 		}else{
 			var state = confirm("确定要上传吗?");
 			if(state){
+				$(".loading").show();
 				$.ajax({
 					url:serverUrl+"/users/saveNewAnnounce",
 					type:"post",
@@ -51,6 +58,7 @@ window.onload = function(){
 					json:"callback",
 					success:function(data){
 						if(data.code==200){
+							$(".loading").hide();
 							alert(data.message);
 						}
 					},

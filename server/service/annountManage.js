@@ -39,7 +39,11 @@ function saveNewAnnounceImage(req, res){
 			    	content.message = err;
 			      	deferred.reject(content);
 		    	} 	
-		    	deferred.resolve(noticeArray,announceName);
+		    	var context = {
+		    		data:noticeArray,
+		    		announceName:announceName
+		    	}
+		    	deferred.resolve(context);
 		    });
 		    
 		});
@@ -50,7 +54,7 @@ function saveNewAnnounceImage(req, res){
 
 function saveNewAnnounce(req, res){
 	var deferred = q.defer();
-	saveNewAnnounceImage(req, res).then(function(data,announceName){
+	saveNewAnnounceImage(req, res).then(function(contextData){
 		searchNoticeDB().then(function(docs){
 			var index = 1;
 			if(docs.length>0){
@@ -58,8 +62,8 @@ function saveNewAnnounce(req, res){
 			}
 			var noticeModelData = new noticeSchemaModel({
 				serial_number:index,
-				noticeName:announceName,
-				noticeImage:data,
+				noticeName:contextData.announceName,
+				noticeImage:contextData.data,
 				notice_id:new Date().getTime()
 			});
 			noticeModelData.save(function(err){

@@ -7,13 +7,15 @@ block sub_content
 		.class-xuhao 序号
 		.class-name 公告名称
 		.class-actions 操作
-	.announce-lists-details
-		.announce-lists-xuhao 
-			span.announce-lists-xuhao-span.disable 1
-		.announce-lists-name
-			input.announce-lists-value.disable(type="text" value="" readonly="readonly")
-		.announce-lists-actions 
-			span.announce-edit 编辑
-			span.announce-del 删除
+	- if(data.noticeList.length>0)
+		- for(var i=0;i<data.noticeList.length;i++)
+			.announce-lists-details
+				.announce-lists-xuhao 
+					span.announce-lists-xuhao-span.disable #{data.noticeList[i].serial_number}
+				.announce-lists-name
+					input.announce-lists-value.disable(type="text" value="" readonly="readonly")
+				.announce-lists-actions 
+					span.announce-edit 编辑
+					span.announce-del 删除
 
 	script(src="/javascripts/announce_manage.js")

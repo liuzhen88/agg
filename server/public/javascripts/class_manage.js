@@ -16,12 +16,31 @@ window.onload = function(){
 
 	$(".class-del").click(function(){
 		var state = confirm("确定要删除吗?");
+		var index = $(".class-del").index(this);
+		var class_id = $(".class-lists-details").eq(index).attr("data-class-id");
 		if(state){
-			deleteClass();
+			deleteClass(class_id,index);
 		}
 	});
 
-	function deleteClass(){
-
+	function deleteClass(classId,index){
+		$.ajax({
+			url:serverUrl+"/users/deleteClass",
+			type:"post",
+			dataType:"json",
+			data:{
+				class_id:classId
+			},
+			json:"callback",
+			success:function(data){
+				if(data.code==200){
+					alert("删除成功");
+					$(".class-lists-details").eq(index).remove();
+				}
+			},
+			error:function(err){
+				console.log(err);
+			}
+		});
 	}
 }

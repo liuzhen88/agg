@@ -88,7 +88,26 @@ function editClassById(req, res){
 	return deferred.promise;
 }
 
+function deleteClassByClassId(req, res){
+	var deferred = q.defer();
+	var class_id = req.body.class_id;
+
+	classModel.remove({
+		class_id:class_id
+	},function(err){
+		if(err){
+			console.log(err);
+			deferred.reject(err);
+		}
+		var context = config.data.success;
+		deferred.resolve(context);
+	});
+
+	return deferred.promise;
+}
+
 module.exports = {
 	addNewClassByName:addNewClassByName,
-	editClassById:editClassById
+	editClassById:editClassById,
+	deleteClassByClassId:deleteClassByClassId
 }

@@ -1,0 +1,19 @@
+extends index
+
+block sub_content
+	.announce-manag-container
+		.add-new-announce 新增公告
+	.class-actions-title-container
+		.class-xuhao 序号
+		.class-name 公告名称
+		.class-actions 操作
+	.announce-lists-details
+		.announce-lists-xuhao 
+			span.announce-lists-xuhao-span.disable 1
+		.announce-lists-name
+			input.announce-lists-value.disable(type="text" value="" readonly="readonly")
+		.announce-lists-actions 
+			span.announce-edit 编辑
+			span.announce-del 删除
+
+	script(src="/javascripts/announce_manage.js")

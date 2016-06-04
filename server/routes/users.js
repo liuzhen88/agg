@@ -4,6 +4,8 @@ var upload = require("../service/upload");
 var service = require("../service/add");
 var serviceForCheck = require("../service/checkLogin");
 var classManage = require("../service/classManage");
+var annountManage = require("../service/annountManage");
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -92,6 +94,22 @@ router.post("/addNewClass",function(req, res){
 
 router.post("/editClass",function(req, res){
 	classManage.editClassById(req, res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
+router.post("/deleteClass",function(req, res){
+	classManage.deleteClassByClassId(req, res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
+router.post("/saveNewAnnounce",function(req, res){
+	annountManage.saveNewAnnounce(req, res).then(function(data){
 		res.send(data);
 	}).fail(function(err){
 		res.send(err);

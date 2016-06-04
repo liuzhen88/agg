@@ -15,7 +15,7 @@ helper.checkSession = function(req , res, next){
 			list:[
 				"首页广告图",
 				"商品展示",
-				"公告展示",
+				"公告管理",
 				"分类管理",
 				"专题管理"
 			],
@@ -37,7 +37,7 @@ helper.checkSessionForShowGoods = function(req , res, next){
 		list:[
 			"首页广告图",
 			"商品展示",
-			"公告展示",
+			"公告管理",
 			"分类管理",
 			"专题管理"
 		]
@@ -57,7 +57,7 @@ helper.checkSessionForClassManage = function(req, res, next){
 			list:[
 				"首页广告图",
 				"商品展示",
-				"公告展示",
+				"公告管理",
 				"分类管理",
 				"专题管理"
 			],
@@ -78,7 +78,26 @@ helper.checkSessionForClasses = function(req, res, next){
 		list:[
 			"首页广告图",
 			"商品展示",
-			"公告展示",
+			"公告管理",
+			"分类管理",
+			"专题管理"
+		]
+	};
+	next(data);
+}
+
+helper.checkSessionForAnnounce = function(req, res, next){
+	if(!req.session.user){
+		res.redirect("/login");
+		return;
+	}
+	var data = {
+		logoUrl:"/images/logo.png",
+		this_position:"",
+		list:[
+			"首页广告图",
+			"商品展示",
+			"公告管理",
 			"分类管理",
 			"专题管理"
 		]

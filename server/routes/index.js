@@ -52,6 +52,20 @@ router.get("/editClass",function(req, res, next){
 	});
 });
 
+router.get("/announceManage",function(req, res, next){
+	pageRenderHelper.checkSessionForAnnounce(req, res, function(data){
+		data.this_position = "公告管理";
+		res.render("announceManage",{data});
+	});
+});
+
+router.get("/addNewAnnounce",function(req, res, next){
+	pageRenderHelper.checkSessionForAnnounce(req, res, function(data){
+		data.this_position = "公告管理--新增公告";
+		res.render("addNewAnnounce",{data});
+	});
+});
+
 router.get('/staic/upload',function(req,res){
 	res.render('upload',{});
 });

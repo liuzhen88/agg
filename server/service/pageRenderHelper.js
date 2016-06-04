@@ -110,6 +110,28 @@ helper.checkSessionForAnnounce = function(req, res, next){
 	
 }
 
+helper.checkSessionForEditNotice = function(req, res, notice_id, next){
+	if(!req.session.user){
+		res.redirect("/login");
+		return;
+	}
+	getNoticeDataById(notice_id,function(docs){
+		var data = {
+			logoUrl:"/images/logo.png",
+			this_position:"",
+			list:[
+				"首页广告图",
+				"商品展示",
+				"公告管理",
+				"分类管理",
+				"专题管理"
+			],
+			thatNoticeData:docs
+		};
+		next(data);
+	});
+}
+
 function getBannerData(cb){
 	bannerModel.findOne({
 		"type":"banner"
@@ -134,6 +156,18 @@ function getClassData(cb){
 
 function getNoticeData(cb){
 	noticeModel.find(function(err,docs){
+		if(err){
+			console.log(err);
+			return;
+		}
+		cb(docs);
+	});
+}
+
+function getNoticeDataById(notice_id, cb){
+	noticeModel.findOne({
+		"_id":notice_id
+	},function(err,docs){
 		if(err){
 			console.log(err);
 			return;

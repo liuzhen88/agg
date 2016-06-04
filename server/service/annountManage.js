@@ -97,6 +97,11 @@ function searchNoticeDB(){
 	return deferred.promise;
 }
 
+function delSingleImage(req, res){
+
+}
+
 module.exports = {
-	saveNewAnnounce:saveNewAnnounce
+	saveNewAnnounce:saveNewAnnounce,
+	delSingleImage:delSingleImage
 }

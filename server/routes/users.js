@@ -116,4 +116,8 @@ router.post("/saveNewAnnounce",function(req, res){
 	});
 });
 
+router.post("/delSingleImage",function(req, res){
+
+});
+
 module.exports = router;

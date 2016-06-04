@@ -1,0 +1,21 @@
+extends index
+
+block sub_content
+	.add-new-announce-container
+		.add-new-announce-name-container
+			span 公告名称 :
+			input.add_new_announce-name(type='text' placeholder="请输入公告标题" value="#{data.thatNoticeData.noticeName}")
+		.edit-new-announce-img-container
+			- if(data.thatNoticeData)
+				- for(var i=0;i<data.thatNoticeData.noticeImage.length;i++)
+					.previewAnnounce
+						img.previewAnnounceList(src="#{data.thatNoticeData.noticeImage[i].noticeImageUrl}")
+						.deleteAnnounceForEdit(data-del-id="#{data.thatNoticeData.noticeImage[i]._id}") 删除
+		.add-announce-btn
+			.add-announce-img-btn 添加图片
+			input.add-input-img(type="file")
+			.add-announce-submit 提交
+	div.loading
+		div.loading-gif
+			img(src="/images/load.gif")
+	script(src="/javascripts/edit_notice.js")

@@ -4,4 +4,9 @@ window.onload = function(){
 	$(".add-new-announce").click(function(){
 		window.location.href = "/addNewAnnounce";
 	});
+	$(".announce-edit").click(function(){
+		var index = $(".announce-edit").index(this);
+		var noticeId = $(".announce-lists-details").eq(index).attr("data-id");
+		window.location.href="/editNotice?noticeId="+noticeId;
+	});
 }

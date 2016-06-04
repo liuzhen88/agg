@@ -9,11 +9,11 @@ block sub_content
 		.class-actions 操作
 	- if(data.noticeList.length>0)
 		- for(var i=0;i<data.noticeList.length;i++)
-			.announce-lists-details
+			.announce-lists-details(data-id="#{data.noticeList[i]._id}")
 				.announce-lists-xuhao 
 					span.announce-lists-xuhao-span.disable #{data.noticeList[i].serial_number}
 				.announce-lists-name
-					input.announce-lists-value.disable(type="text" value="" readonly="readonly")
+					input.announce-lists-value.disable(type="text" value="#{data.noticeList[i].noticeName}" readonly="readonly")
 				.announce-lists-actions 
 					span.announce-edit 编辑
 					span.announce-del 删除

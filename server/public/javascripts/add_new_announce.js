@@ -60,6 +60,7 @@ window.onload = function(){
 						if(data.code==200){
 							$(".loading").hide();
 							alert(data.message);
+							window.location.href="/announceManage";
 						}
 					},
 					error:function(err){

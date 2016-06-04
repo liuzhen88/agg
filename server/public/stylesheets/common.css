@@ -181,7 +181,7 @@
 	margin-top: 50px;
 	display: none;
 }
-.delete,.deleteAnnounce{
+.delete,.deleteAnnounce,.deleteAnnounceForEdit{
 	position: absolute;
 	right: 0px;
 	top: 0px;
@@ -501,7 +501,7 @@
 	text-indent: 10px;
 	margin-left: 10px;
 }
-.add-new-announce-img-container{
+.add-new-announce-img-container,.edit-new-announce-img-container{
 	width: 100%;
 	text-align: center;
 	margin: 20px 0px;

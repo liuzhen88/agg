@@ -66,6 +66,14 @@ router.get("/addNewAnnounce",function(req, res, next){
 	});
 });
 
+router.get("/editNotice",function(req, res, next){
+	var notice_id = req.query.noticeId;
+	pageRenderHelper.checkSessionForEditNotice(req, res, notice_id, function(data){
+		data.this_position = "公告管理--编辑公告";
+		res.render("editNotice",{data});
+	});
+});
+
 router.get('/staic/upload',function(req,res){
 	res.render('upload',{});
 });

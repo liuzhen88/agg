@@ -110,10 +110,6 @@ function delSingleImage(req, res){
 		var noticeImageArray = data.noticeImage;
 		noticeImageArray.forEach(function(value,index){
 			if(value._id == noticeImageListId){
-				console.log("=================");
-				console.log(value._id);
-				console.log(value.noticeImageUrl);
-				console.log("==================");
 				var imageUrl = value.noticeImageUrl;
 				//先删除源文件  删除buffer缓冲
 				deleteImageSelf(imageUrl).then(function(data){
@@ -152,6 +148,7 @@ function getAnnounceSingleDataById(noticeObjectId, noticeImageListId){
 }
 
 function deleteImageSelf(imageUrl){
+	console.log("===============================");
 	var deferred = q.defer();
 	console.log(imageUrl);
 	fs.unlink(imageUrl,function(){

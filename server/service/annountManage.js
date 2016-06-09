@@ -150,7 +150,11 @@ function getAnnounceSingleDataById(noticeObjectId, noticeImageListId){
 function deleteImageSelf(imageUrl){
 	var deferred = q.defer();
 	console.log(imageUrl);
-	fs.unlink(imageUrl,function(){
+	fs.unlink(imageUrl,function(err){
+		if(err){
+			console.log("delete is error :" +error);
+			deferred.reject(err);
+		}
 		console.log("delete images file success");
 		deferred.resolve("delete success");
 	});

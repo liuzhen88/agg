@@ -141,6 +141,9 @@ function getAnnounceSingleDataById(noticeObjectId, noticeImageListId){
 			console.log("getAnnounceSingleData is error:" +err);
 			deferred.reject(err);
 		}
+		console.log("==============");
+		console.log(docs);
+		console.log("=================");
 		deferred.resolve(docs);
 	});
 

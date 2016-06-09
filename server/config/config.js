@@ -31,6 +31,10 @@ var config = {
 		notClassId:{
 			code:"80001",
 			message:"更新失败,服务器繁忙"
+		},
+		notFindDeleteObj:{
+			code:"80001",
+			message:"删除失败,无此记录"
 		}
 	},
 	path:"public/images/upload/",

@@ -1,5 +1,6 @@
 var q = require("q");
 var fs = require("fs");
+var _ = require("underscore");
 var config = require("../config/config");
 var noticeSchemaModel = require("../schema/announceSchema")
 
@@ -98,7 +99,81 @@ function searchNoticeDB(){
 }
 
 function delSingleImage(req, res){
+	var deferred = q.defer();
+	var noticeObjectId = req.body.noticeObjectId;
+	var noticeImageListId = req.body.noticeImageListId;
+	getAnnounceSingleDataById(noticeObjectId,noticeImageListId).then(function(data){
+		if(!data){
+			var content = config.data.notFindDeleteObj;
+			deferred.resolve(content);
+		}
+		var noticeImageArray = data.noticeImage;
+		noticeImageArray.forEach(function(value,index){
+			if(value._id == noticeImageListId){
+				var imageUrl = value.noticeImageUrl;
+				//先删除源文件  删除buffer缓冲
+				deleteImageSelf(imageUrl).then(function(data){
+					noticeImageArray[index] = '';
+					noticeImageArray = _.compact(noticeImageArray);
+					//更新相应的db data
+					updateNoticeSingleData(noticeObjectId,noticeImageArray).then(function(data){
+						deferred.resolve(data);
+					}).fail(function(err){
+						deferred.reject(err);
+					});
+				}).fail(function(err){
+					deferred.reject(err);
+				});
+			}
+		});
+	}).fail(function(err){
+		deferred.reject(err);
+	});
+	return deferred.promise;
+}
 
+function getAnnounceSingleDataById(noticeObjectId, noticeImageListId){
+	var deferred = q.defer();
+	noticeSchemaModel.findOne({
+		"_id":noticeObjectId
+	},function(err,docs){
+		if(err){
+			console.log("getAnnounceSingleData is error:" +err);
+			deferred.reject(err);
+		}
+		deferred.resolve(docs);
+	});
+
+	return deferred.promise;
+}
+
+function deleteImageSelf(imageUrl){
+	var deferred = q.defer();
+	fs.unlink(imageUrl,function(){
+		deferred.resolve("delete success");
+	});
+
+	return deferred.promise;
+}
+
+function updateNoticeSingleData(noticeObjectId, noticeImageArray){
+	var deferred = q.defer();
+	noticeSchemaModel.uptate({
+		"_id":noticeObjectId
+	},{
+		$set:{
+			noticeImage:noticeImageArray
+		}
+	},function(err){
+		if(err){
+			console.log("update notice single data is error :" +err);
+			deferred.reject(err);
+		}
+		var context = config.data.success;
+		deferred.resolve(context);
+	});
+
+	return deferred.promise;
 }
 
 module.exports = {

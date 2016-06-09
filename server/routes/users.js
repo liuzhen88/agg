@@ -117,7 +117,11 @@ router.post("/saveNewAnnounce",function(req, res){
 });
 
 router.post("/delSingleImage",function(req, res){
-
+	annountManage.delSingleImage(req, res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
 });
 
 module.exports = router;

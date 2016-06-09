@@ -1,6 +1,8 @@
 window.onload = function(){
 	$(".list").removeClass("has-select");
 	$(".list").eq(2).addClass("has-select");
+	var doc_w = $(document).width();
+	var doc_h = $(window).height();
 	$(".loading").css({
 		"width":doc_w,
 		"height":doc_h
@@ -50,6 +52,9 @@ window.onload = function(){
 					$(".loading").hide();
 					alert("删除成功");
 					cb();
+				}else{
+					$(".loading").hide();
+					alert("删除失败，无此记录");
 				}
 			},
 			error:function(err){

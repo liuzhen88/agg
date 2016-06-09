@@ -152,7 +152,7 @@ function deleteImageSelf(imageUrl){
 	console.log(imageUrl);
 	fs.unlink(imageUrl,function(err){
 		if(err){
-			console.log("delete is error :" +error);
+			console.log("delete is error :" +JSON.stringify(err));
 			deferred.reject(err);
 		}
 		console.log("delete images file success");

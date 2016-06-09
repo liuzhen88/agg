@@ -111,7 +111,8 @@ function delSingleImage(req, res){
 		noticeImageArray.forEach(function(value,index){
 			if(value._id == noticeImageListId){
 				console.log("=================");
-				console.log(index);
+				console.log(imageUrl);
+				console.log(value.noticeImageUrl);
 				console.log("==================");
 				var imageUrl = value.noticeImageUrl;
 				//先删除源文件  删除buffer缓冲

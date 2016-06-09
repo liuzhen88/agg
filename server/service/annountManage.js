@@ -111,7 +111,7 @@ function delSingleImage(req, res){
 		noticeImageArray.forEach(function(value,index){
 			if(value._id == noticeImageListId){
 				console.log("=================");
-				console.log(imageUrl);
+				console.log(value._id);
 				console.log(value.noticeImageUrl);
 				console.log("==================");
 				var imageUrl = value.noticeImageUrl;

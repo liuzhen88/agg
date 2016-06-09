@@ -141,9 +141,6 @@ function getAnnounceSingleDataById(noticeObjectId, noticeImageListId){
 			console.log("getAnnounceSingleData is error:" +err);
 			deferred.reject(err);
 		}
-		console.log("==============");
-		console.log(docs);
-		console.log("=================");
 		deferred.resolve(docs);
 	});
 
@@ -152,6 +149,7 @@ function getAnnounceSingleDataById(noticeObjectId, noticeImageListId){
 
 function deleteImageSelf(imageUrl){
 	var deferred = q.defer();
+	console.log(imageUrl);
 	fs.unlink(imageUrl,function(){
 		deferred.resolve("delete success");
 	});

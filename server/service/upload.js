@@ -181,9 +181,6 @@ function deleteBannerFileByUrl(req, res){
 		bannerDataArray.forEach(function(value,index){
 			if(value._id == dataId){
 				deleteBannerDataByIndex(bannerDataArray,index).then(function(data){
-					console.log("====================");
-					console.log(path);
-					console.log("====================");
 					fs.unlink(path,function(){
 						deferred.resolve(data);
 					});	

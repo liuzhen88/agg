@@ -186,7 +186,63 @@ function updateNoticeSingleData(noticeObjectId, noticeImageArray){
 	return deferred.promise;
 }
 
+//删除所有详细信息
+function deleteDetailsById(id){
+	var deferred = q.defer();
+	noticeSchemaModel.findOne({
+		"_id":id
+	},function(err,docs){
+		if(err){
+			console.log(err);
+			deferred.reject(err);
+			return;
+		}
+		if(!docs){
+			console.log("no match data");
+			var context = config.data.notFound;
+			deferred.resolve(context);
+			return;
+		}
+		var imagesData = docs.noticeImage;
+		deleteAllImageByFs(imagesData).then(function(data){
+			noticeSchemaModel.remove({
+				"_id":id
+			},function(err){
+				if(err){
+					console.log(err);
+					deferred.reject(err);
+				}
+				var content = config.data.success;
+				deferred.resolve(content);
+			});
+		}).fail(function(err){
+			deferred.reject(err);
+		});
+	});
+
+	return deferred.promise;
+}
+
+function deleteAllImageByFs(imagesData){
+	var deferred = q.defer();
+	imagesData.forEach(function(value,index){
+		var lastFileName = value.lastFileName;
+		var path = "./public/images/annount/"+lastFileName;
+		fs.unlink(path,function(err){
+			if(err){
+				console.log("delete is error : " +err);
+				deferred.reject(err);
+				return;
+			}
+			deferred.resolve("success");
+		});
+	});
+
+	return deferred.promise;
+}
+
 module.exports = {
 	saveNewAnnounce:saveNewAnnounce,
-	delSingleImage:delSingleImage
+	delSingleImage:delSingleImage,
+	deleteDetailsById:deleteDetailsById
 }

@@ -124,4 +124,13 @@ router.post("/delSingleImage",function(req, res){
 	});
 });
 
+app.get("/deleteAnnounceDetails",function(req, res){
+	var id = req.query.id;
+	annountManage.deleteDetailsById(id).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
 module.exports = router;

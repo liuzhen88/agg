@@ -112,8 +112,9 @@ function delSingleImage(req, res){
 		noticeImageArray.forEach(function(value,index){
 			if(value._id == noticeImageListId){
 				var imageUrl = value.noticeImageUrl;
+				var lastFileName = value.lastFileName;
 				//先删除源文件  删除buffer缓冲
-				deleteImageSelf(imageUrl).then(function(data){	 
+				deleteImageSelf(imageUrl,lastFileName).then(function(data){	 
 					noticeImageArray[index] = '';
 					noticeImageArray = _.compact(noticeImageArray);
 					//更新相应的db data
@@ -149,9 +150,9 @@ function getAnnounceSingleDataById(noticeObjectId, noticeImageListId){
 	return deferred.promise;
 }
 
-function deleteImageSelf(imageUrl){
+function deleteImageSelf(imageUrl, lastFileName){
 	var deferred = q.defer();
-	var path = imageUrl; 	 
+	var path = "./public/images/annount/"+lastFileName; 	 
 	fs.unlink(path,function(err){
 		if(err){
 			console.log("delete is error :" +JSON.stringify(err));

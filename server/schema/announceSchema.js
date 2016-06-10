@@ -7,7 +7,8 @@ var announceSchema = new mongoose.Schema({
 		{
 			noticeImageUrl:String,	//公告图片url
 			name:String,	//原本图片名字
-			operator:String		//上传者
+			operator:String,		//上传者
+			lastFileName:String		//存储名字
 
 		}	
 	],

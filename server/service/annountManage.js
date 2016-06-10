@@ -288,6 +288,8 @@ function updateNoticeById(req, res){
 	}).fail(function(err){
 		res.send(err);
 	});
+
+	return deferred.promise;
 }
 
 

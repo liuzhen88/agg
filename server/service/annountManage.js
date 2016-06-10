@@ -149,11 +149,12 @@ function getAnnounceSingleDataById(noticeObjectId, noticeImageListId){
 
 function deleteImageSelf(imageUrl){
 	var deferred = q.defer();
+	var path = "../public/images/annount/1465049056523_0.jpg";
 	console.log("===========================");
 	console.log(typeof(imageUrl));
 	console.log(imageUrl);
 	console.log("=============================");
-	fs.unlink(imageUrl,function(err){
+	fs.unlink(path,function(err){
 		if(err){
 			console.log("delete is error :" +JSON.stringify(err));
 			deferred.reject(err);

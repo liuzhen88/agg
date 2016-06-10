@@ -113,20 +113,26 @@ function delSingleImage(req, res){
 				var imageUrl = value.noticeImageUrl;
 				//先删除源文件  删除buffer缓冲
 				// deleteImageSelf(imageUrl).then(function(data){
-					fs.unlink(imageUrl,function(err){
-						if(err){
-							console.log(JSON.stringify(err));
-							deferred.reject(err);
-						}
-						noticeImageArray[index] = '';
-						noticeImageArray = _.compact(noticeImageArray);
-						//更新相应的db data
-						updateNoticeSingleData(noticeObjectId,noticeImageArray).then(function(data){
+					 
+						 
+					noticeImageArray[index] = '';
+					noticeImageArray = _.compact(noticeImageArray);
+					//更新相应的db data
+					updateNoticeSingleData(noticeObjectId,noticeImageArray).then(function(data){
+						fs.unlink(imageUrl,function(err){
+							if(err){
+								console.log(JSON.stringify(err));
+								deferred.reject(err);
+								return;
+							}
+							console.log("删除成功");
 							deferred.resolve(data);
-						}).fail(function(err){
-							deferred.reject(err);
 						});
+						
+					}).fail(function(err){
+						deferred.reject(err);
 					});
+					 
 				// }).fail(function(err){
 				// 	deferred.reject(err);
 				// });

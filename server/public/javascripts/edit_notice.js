@@ -11,10 +11,11 @@ window.onload = function(){
 	
 	$(".deleteAnnounceForEdit").click(function(){
 		var self = this;
+		var index = $(".deleteAnnounceForEdit").index(this);
 		var noticeObjectId = request("noticeId");
 		var noticeImageListId = $(this).attr("data-del-id");
 		delThisImage(noticeObjectId,noticeImageListId,function(){
-			$(self).remove();
+			$(".previewAnnounce").eq(index).remove();
 		});
 	});
 

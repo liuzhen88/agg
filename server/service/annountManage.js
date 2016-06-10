@@ -112,18 +112,24 @@ function delSingleImage(req, res){
 			if(value._id == noticeImageListId){
 				var imageUrl = value.noticeImageUrl;
 				//先删除源文件  删除buffer缓冲
-				deleteImageSelf(imageUrl).then(function(data){
-					noticeImageArray[index] = '';
-					noticeImageArray = _.compact(noticeImageArray);
-					//更新相应的db data
-					updateNoticeSingleData(noticeObjectId,noticeImageArray).then(function(data){
-						deferred.resolve(data);
-					}).fail(function(err){
-						deferred.reject(err);
+				// deleteImageSelf(imageUrl).then(function(data){
+					fs.unlink(imageUrl,function(err){
+						if(err){
+							console.log(JSON.stringify(err));
+							deferred.reject(err);
+						}
+						noticeImageArray[index] = '';
+						noticeImageArray = _.compact(noticeImageArray);
+						//更新相应的db data
+						updateNoticeSingleData(noticeObjectId,noticeImageArray).then(function(data){
+							deferred.resolve(data);
+						}).fail(function(err){
+							deferred.reject(err);
+						});
 					});
-				}).fail(function(err){
-					deferred.reject(err);
-				});
+				// }).fail(function(err){
+				// 	deferred.reject(err);
+				// });
 			}
 		});
 	}).fail(function(err){
@@ -147,20 +153,20 @@ function getAnnounceSingleDataById(noticeObjectId, noticeImageListId){
 	return deferred.promise;
 }
 
-function deleteImageSelf(imageUrl){
-	var deferred = q.defer();
-	var path = imageUrl; 	 
-	fs.unlink(path,function(err){
-		if(err){
-			console.log("delete is error :" +JSON.stringify(err));
-			deferred.reject(err);
-		}
-		console.log("delete images file success");
-		deferred.resolve("delete success");
-	});
+// function deleteImageSelf(imageUrl){
+// 	var deferred = q.defer();
+// 	var path = imageUrl; 	 
+// 	fs.unlink(path,function(err){
+// 		if(err){
+// 			console.log("delete is error :" +JSON.stringify(err));
+// 			deferred.reject(err);
+// 		}
+// 		console.log("delete images file success");
+// 		deferred.resolve("delete success");
+// 	});
 
-	return deferred.promise;
-}
+// 	return deferred.promise;
+// }
 
 function updateNoticeSingleData(noticeObjectId, noticeImageArray){
 	var deferred = q.defer();

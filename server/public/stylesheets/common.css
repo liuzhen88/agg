@@ -554,3 +554,10 @@
 	border: dashed #dcdcdc 1px;
 	margin-bottom: 15px;
 }
+.no-data{
+	width:100%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 16px;
+}

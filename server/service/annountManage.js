@@ -112,21 +112,18 @@ function delSingleImage(req, res){
 			if(value._id == noticeImageListId){
 				var imageUrl = value.noticeImageUrl;
 				//先删除源文件  删除buffer缓冲
-				
+				deleteImageSelf(imageUrl).then(function(data){
 					noticeImageArray[index] = '';
 					noticeImageArray = _.compact(noticeImageArray);
 					//更新相应的db data
 					updateNoticeSingleData(noticeObjectId,noticeImageArray).then(function(data){
-						deleteImageSelf(imageUrl).then(function(data){
-							deferred.resolve(data);
-						}).fail(function(err){
-							deferred.reject(err);
-						});
-						
+						deferred.resolve(data);
 					}).fail(function(err){
 						deferred.reject(err);
 					});
-				
+				}).fail(function(err){
+					deferred.reject(err);
+				});
 			}
 		});
 	}).fail(function(err){
@@ -157,11 +154,9 @@ function deleteImageSelf(imageUrl){
 		if(err){
 			console.log("delete is error :" +JSON.stringify(err));
 			deferred.reject(err);
-			return;
 		}
 		console.log("delete images file success");
-		var context = config.data.success;
-		deferred.resolve(context);
+		deferred.resolve("delete success");
 	});
 
 	return deferred.promise;
@@ -180,8 +175,8 @@ function updateNoticeSingleData(noticeObjectId, noticeImageArray){
 			console.log("update notice single data is error :" +err);
 			deferred.reject(err);
 		}
-		
-		deferred.resolve("success");
+		var context = config.data.success;
+		deferred.resolve(context);
 	});
 
 	return deferred.promise;

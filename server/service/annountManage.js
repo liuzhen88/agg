@@ -154,6 +154,7 @@ function deleteImageSelf(imageUrl){
 		if(err){
 			console.log("delete is error :" +JSON.stringify(err));
 			deferred.reject(err);
+			return;
 		}
 		console.log("delete images file success");
 		deferred.resolve("delete success");

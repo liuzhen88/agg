@@ -267,7 +267,7 @@ function updateNoticeById(req, res){
 				deferred.resolve(context);
 			}else{
 				var noticeImage = docs.noticeImage;
-				var newArray = noticeImage.concat(data);
+				var newArray = noticeImage.concat(data.data);
 				noticeSchemaModel.update({
 					"_id":id
 				},{

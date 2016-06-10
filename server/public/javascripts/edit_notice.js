@@ -58,7 +58,7 @@ window.onload = function(){
 		}else{
 			var id = request("noticeId");
 			uploadNewFileImage(id,sendDataImage,sendFileName,sendFileType,function(){
-
+				window.location.href="/announceManage";
 			});
 		}
 	});

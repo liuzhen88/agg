@@ -268,6 +268,10 @@ function updateNoticeById(req, res){
 			}else{
 				var noticeImage = docs.noticeImage;
 				var newArray = noticeImage.concat(data.data);
+				console.log("data.data is " + data.data);
+				console.log("=================");
+				console.log(newArray);
+				console.log("======================");
 				noticeSchemaModel.update({
 					"_id":id
 				},{

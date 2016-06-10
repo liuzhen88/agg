@@ -170,7 +170,7 @@ function getAnnounceSingleDataById(noticeObjectId, noticeImageListId){
 
 function updateNoticeSingleData(noticeObjectId, noticeImageArray){
 	var deferred = q.defer();
-	noticeSchemaModel.uptate({
+	noticeSchemaModel.update({
 		"_id":noticeObjectId
 	},{
 		$set:{

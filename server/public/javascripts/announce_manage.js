@@ -11,11 +11,14 @@ window.onload = function(){
 	});
 
 	$(".announce-del").click(function(){
-		var index = $(".announce-del").index(this);
-		var _id = $(".announce-lists-details").eq(index).attr("data-id");
-		deleteAnnounceAllData(_id,function(){
-			$(".announce-lists-details").eq(index).remove();
-		});
+		var state = confirm("确定要删除吗?");
+		if(state){
+			var index = $(".announce-del").index(this);
+			var _id = $(".announce-lists-details").eq(index).attr("data-id");
+			deleteAnnounceAllData(_id,function(){
+				$(".announce-lists-details").eq(index).remove();
+			});	
+		}
 	});
 
 

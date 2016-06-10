@@ -241,8 +241,20 @@ function deleteAllImageByFs(imagesData){
 	return deferred.promise;
 }
 
+//更新公告管理编辑的上传
+function updateNoticeById(req, res){
+	var deferred = q.defer();
+	saveNewAnnounceImage(req, res).then(function(data){
+		console.log(JSON.stringify(data));
+	}).fail(function(err){
+		res.send(err);
+	});
+}
+
+
 module.exports = {
 	saveNewAnnounce:saveNewAnnounce,
 	delSingleImage:delSingleImage,
-	deleteDetailsById:deleteDetailsById
+	deleteDetailsById:deleteDetailsById,
+	updateNoticeById:updateNoticeById
 }

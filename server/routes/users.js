@@ -133,4 +133,13 @@ router.get("/deleteAnnounceDetails",function(req, res){
 	});
 });
 
+//公告管理编辑
+router.post("/uploadNewFileForNotice",function(req, res){
+	annountManage.updateNoticeById(req, res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
 module.exports = router;

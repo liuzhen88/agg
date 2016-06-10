@@ -1,4 +1,8 @@
+var AGG = {};
 window.onload = function(){
+	AGG.sendDataImage = [];
+	AGG.sendFileName = [];
+	AGG.sendFileType = [];
 	$(".list").removeClass("has-select");
 	$(".list").eq(2).addClass("has-select");
 	var doc_w = $(document).width();
@@ -7,6 +11,32 @@ window.onload = function(){
 		"width":doc_w,
 		"height":doc_h
 	});
+
+	$(".add-input-img").change(function(e){
+		var file = e.target.files[0];
+		var fileName = file.name;
+		AGG.sendFileName.push(fileName);
+		var fileType = file.type.split("/")[1];
+		if(fileType=="jpeg"){
+			fileType = "jpg";
+		}
+		AGG.sendFileType.push(fileType);
+		var reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = function(e){
+			var source = this.result;
+			AGG.sendDataImage.push(source);
+			var imgTag = "<div class='previewListContainer'>"
+						+	"<img src="+source+" class='previewList'/>"
+						+	"<div class='delete' onclick='del(this)'>删除"
+						+ 	"</div>"
+						+"</div>";
+			$(".edit-new-announce-img-container").append(imgTag);
+			setImgAttr();
+			//console.log(AGG.sendDataImage);
+		}
+	});
+
 	setImgAttr();
 	
 	$(".deleteAnnounceForEdit").click(function(){
@@ -19,7 +49,45 @@ window.onload = function(){
 		});
 	});
 
+	$(".add-announce-submit").click(function(){
+		var sendDataImage = AGG.sendDataImage;
+		var sendFileName = AGG.sendFileName;
+		var sendFileType = AGG.sendFileType;
+		if(sendDataImage.length == 0){
+			alert("您暂未添加新图片");
+		}else{
+			var id = request("noticeId");
+			uploadNewFileImage(id,sendDataImage,sendFileName,sendFileType,function(){
 
+			});
+		}
+	});
+
+	function uploadNewFileImage(id, sendDataImage, sendFileName, sendFileType, cb){
+		$.ajax({
+			url:serverUrl+"/users/uploadNewFileForNotice",
+			type:"post",
+			dataType:"json",
+			data:{
+				announce:JSON.stringify(sendDataImage),
+				fileName:JSON.stringify(sendFileName),
+				fileType:JSON.stringify(sendFileType),
+				id:id
+			},
+			json:"callback",
+			success:function(data){
+				if(data.code==200){
+					alert("提交成功");
+					cb();
+				}else{
+					alert("服务器繁忙,请稍后再试");
+				}
+			},
+			error:function(err){
+				console.log(err);
+			}
+		})
+	}
 
 	function request(paras) {
 	    var url = location.href;
@@ -74,13 +142,15 @@ window.onload = function(){
 }
 
 function del(obj){
-	var sendDataImage = Gobal.announce;
-	var fileName = Gobal.fileName;
-	var fileType = Gobal.fileType;
-	var index = $(".deleteAnnounce").index(obj);
-	$(".previewAnnounce").eq(index).remove();
+	var sendDataImage = AGG.sendDataImage;
+	var fileName = AGG.sendFileName;
+	var fileType = AGG.sendFileType;
+	var index = $(".delete").index(obj);
+	$(".previewListContainer").eq(index).remove();
 	sendDataImage.splice(index,1);
 	fileName.splice(index,1);
 	fileType.splice(index,1);
-	console.log(Gobal.announce);
+ 	//console.log(AGG.sendDataImage);
 }
+
+ 

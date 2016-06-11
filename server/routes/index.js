@@ -74,6 +74,20 @@ router.get("/editNotice",function(req, res, next){
 	});
 });
 
+router.get("/specialManage", function(req, res, next){
+	pageRenderHelper.checkSessionForSpecialManage(req, res , function(data){
+		data.this_position = "专题管理";
+		res.render("specialManage",{data});
+	});
+});
+
+router.get("/addSpecialClass",function(req, res, next){
+	pageRenderHelper.checkSessionForSpecialManage(req, res , function(data){
+		data.this_position = "专题管理--新增专题";
+		res.render("addSpecialClass",{data});
+	});
+});
+
 router.get('/staic/upload',function(req,res){
 	res.render('upload',{});
 });

@@ -1,0 +1,13 @@
+extends index
+
+block sub_content
+	.add-new-announce-container
+		.add-new-announce-name-container
+			span 专题名称
+			input.add_special-class-name(type="text" placeholder="请输入专题名称")
+		.add-new-announce-img-container
+			.add_special-class-btn
+				.add-announce-img-btn 添加图片
+				input.add-input-img(type="file")
+				.add-announce-submit 提交
+	script(src="/javascripts/add_special_class.js")

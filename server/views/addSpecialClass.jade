@@ -6,8 +6,19 @@ block sub_content
 			span 专题名称
 			input.add_special-class-name(type="text" placeholder="请输入专题名称")
 		.add-new-announce-img-container
-			.add_special-class-btn
-				.add-announce-img-btn 添加图片
-				input.add-input-img(type="file")
-				.add-announce-submit 提交
+		.add_special-class-btn
+			.add-announce-img-btn-special 添加图片
+			input.add-input-img-special(type="file")
+			//- .add-announce-submit 提交
+	.null 添加分类
+	.add-new-announce-container
+		.new-classes-container
+		.add-new-classes 添加
+	.null 已有分类	(	可以不做修改	)
+	.ul
+		.li.zt-name	我是专题分类1
+		.li 
+			span 删除
+	.none-div
+	.submit-data 保存并提交
 	script(src="/javascripts/add_special_class.js")

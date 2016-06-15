@@ -4,25 +4,53 @@
 	font-family: "微软雅黑";
 	font-size: 14px;
 }
-
+body{
+	background: #f7f8fa;
+}
+.title{
+	width: 100%;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	background: #fff;
+	font-size: 18px;
+	color: #666;
+}
 .container{
 	width: 1200px;
 	margin: 0 auto;
 	margin-top: 10px;
-	border: solid #ccc 1px;
+	border: solid #e7e7e7 1px;
+	margin-top: 30px;
+	position: relative;
+	  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+	  transition: box-shadow 0.2s;
+	  -webkit-transition: box-shadow 0.2s;
 }
 .container-left{
 	width: 240px;
 	min-height: 1000px;
 	float: left;
+	background: #fff;
 }
 .container-right{
 	width: 957px;
 	min-height: 1000px;
 	border-left: none;
 	float: right;
-	border-left: solid #dcdcdc 1px; 
+	border-left: solid #e9eeef 1px; 
 	padding-bottom: 30px;
+	background: #fff;
+}
+.bg-box{
+	position: absolute;
+	left: 0;
+	top: 60px;
+	width: 100%;
+	height: 220px;
+	z-index: -1;
+	background: #f7f8fa;
+	background-image: url("http://cache.qixin.com/images/bg_page.png");
 }
 .clear-float{
 	clear: both;
@@ -40,7 +68,7 @@
 }
 .container-right-top{
 	width: 100%;
-	height: 140px;
+	height: 75px;
 }
 .container-right-title{
 	width: 100%;
@@ -51,20 +79,20 @@
 }
 .container-admin-info{
 	width: 100%;
-	height: 40px;
-	border-top: solid #dcdcdc 1px;
-	border-bottom: solid #dcdcdc 1px;
+	height: 50px;
+	border-top: solid #e9eeef 1px;
+	border-bottom: solid #e9eeef 1px;
 }
 .this-position{
 	float: left;
-	height: 40px;
-	line-height: 40px;
+	height: 50px;
+	line-height: 50px;
 	color: #999;
 	padding-left: 10px;
 }
 .admin-actions{
 	float: right;
-	height: 40px;
+	height: 50px;
 }
 .modfiy-password{
 	display: inline-block;
@@ -72,9 +100,9 @@
 	height: 25px;
 	line-height: 25px;
 	text-align: center;
-	border:solid #dcdcdc 1px;
+	border:solid #e9eeef 1px;
 	border-radius: 4px;
-	margin-top: 7px;
+	margin-top: 12px;
 	margin-right: 10px;
 	cursor: pointer;
 	background:#14ACFC;
@@ -86,9 +114,9 @@
 	height: 25px;
 	line-height: 25px;
 	text-align: center;
-	border:solid #dcdcdc 1px;
+	border:solid #e9eeef 1px;
 	border-radius: 4px;
-	margin-top: 7px;
+	margin-top: 12px;
 	margin-right: 10px;
 	cursor: pointer;
 	background:#14ACFC;
@@ -97,15 +125,21 @@
 .list-container-null{
 	width: 100%;
 	height: 20px;
-	border-bottom: solid #dcdcdc 1px;
+	border-bottom: solid #e9eeef 1px;
 }
 .list{
 	width: 100%;
 	height: 40px;
 	line-height: 40px;
 	text-align: center;
-	border-bottom:solid #dcdcdc 1px;
+	border-bottom:solid #e9eeef 1px;
 	cursor: pointer;
+}
+.list:hover{
+	 position: relative;
+	  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+	  transition: box-shadow 0.2s;
+	  -webkit-transition: box-shadow 0.2s;
 }
 .has-select{
 	color: red;
@@ -148,8 +182,8 @@
 	height: 40px;
 	line-height: 40px;
 	text-indent: 10px;
-	border-top: solid #dcdcdc 1px;
-	border-bottom: solid #dcdcdc 1px;
+	border-top: solid #e9eeef 1px;
+	border-bottom: solid #e9eeef 1px;
 	/*color: #999;*/
 	color: #fff;
 	background-color: #55AE76;
@@ -209,12 +243,11 @@
 	height: 40px;
 	line-height: 40px;
 	text-indent: 10px;
-	/*color: #999;*/
-	color: #fff;
-	border-top: solid #dcdcdc 1px;
-	border-bottom: solid #dcdcdc 1px;
-	margin-top: 75px;
-	background: #55AE76;
+	color: #8a8a8c;
+	border-top: solid #e9eeef 1px;
+	border-bottom: solid #e9eeef 1px;
+	margin-top: 35px;
+	background: #fcfcfd;
 }
 .imgs-container{
 	width: 100%;
@@ -237,7 +270,7 @@
 }
 .password{
 	width: 80%;
-	border:solid #dcdcdc 1px;
+	border:solid #e9eeef 1px;
 	height: 30px;
 	line-height: 30px;
 	text-indent: 10px;
@@ -263,7 +296,7 @@
 	height: 30px;
 	line-height: 30px;
 	text-indent: 10px;
-	border:solid #dcdcdc 1px;
+	border:solid #e9eeef 1px;
 	margin-left: 10px;
 }
 .go-where{
@@ -384,7 +417,7 @@
 .xuhao{
 	width: 50%;
 	height: 30px;
-	border:solid #dcdcdc 1px;
+	border:solid #e9eeef 1px;
 	margin-left: 25%;
 	text-align: center;
 	margin-top: 10px;
@@ -397,7 +430,7 @@
 	margin-right: 10px;
 	margin-top: 10px;
 	height: 150px;
-	border: solid #dcdcdc 1px;
+	border: solid #e9eeef 1px;
 }
 .class-lists-xuhao,.announce-lists-xuhao{
 	width: 15%;
@@ -411,7 +444,7 @@
 	height: 25px;
 	line-height: 25px;
 	text-align: center;
-	border:solid #dcdcdc 1px;
+	border:solid #e9eeef 1px;
 	border-radius: 10px;
 	margin-top: 15px;
 }
@@ -429,12 +462,12 @@
 .class-lists-details,.announce-lists-details,.special-class-lists-details{
 	width: 100%;
 	height: 60px;
-	border-bottom:solid #dcdcdc 1px;
+	border-bottom:solid #e9eeef 1px;
 }
 .class-lists-value,.announce-lists-value{
 	width: 70%;
 	height: 30px;
-	border:solid #dcdcdc 1px;
+	border:solid #e9eeef 1px;
 	text-indent: 15px;
 	color: #999;
 }
@@ -471,7 +504,7 @@
 	line-height: 30px;
 	text-indent: 10px;
 	color: #999;
-	border: solid #dcdcdc 1px;
+	border: solid #e9eeef 1px;
 }
 .submit-new-class{
 	width: 50%;
@@ -496,7 +529,7 @@
 .add_new_announce-name,.add_special-class-name,.new-classes-input{
 	width: 600px;
 	height: 30px;
-	border: solid #dcdcdc 1px;
+	border: solid #e9eeef 1px;
 	line-height: 30px;
 	text-indent: 10px;
 	margin-left: 10px;
@@ -574,7 +607,7 @@
 }
 .previewAnnounce{
 	position: relative;
-	border: dashed #dcdcdc 1px;
+	border: dashed #e9eeef 1px;
 	margin-bottom: 15px;
 }
 .no-data{
@@ -627,7 +660,7 @@
 .special-class-name-input{
 	width: 90%;
 	height: 30px;
-	border:solid #dcdcdc 1px;
+	border:solid #e9eeef 1px;
 	text-indent: 15px;
 	color: #999;
 	background: #eeeeee;
@@ -645,7 +678,7 @@
 	height: 30px;
 	color: #999;
 	background: #eeeeee;
-	border:solid #dcdcdc 1px;
+	border:solid #e9eeef 1px;
 }
 .special-actions-container{
 	width: 30%;
@@ -688,10 +721,14 @@
 	height: 40px;
 	margin-top: 40px;
 	margin-bottom: 40px;
-	background: #55AE76;
-	color: #fff;
+	/*background: #55AE76;
+	color: #fff;*/
 	line-height: 40px;
 	text-indent: 15px;
+	border-top:solid #dcdcdc 1px;
+	border-bottom:solid #dcdcdc 1px;
+	background: #FCFCFD;
+	color: #000;
 }
 .subdiv{
 	margin-bottom: 20px;
@@ -700,7 +737,7 @@
 	width: 100%;
 	height: 40px;
 	list-style: none;
-	border-top: solid #dcdcdc 1px;
+	border-top: solid #e9eeef 1px;
 }
 .li{
 	width: 49%;
@@ -711,7 +748,7 @@
 	float: left;
 }
 .zt-name{
-	border-right: solid #dcdcdc 1px;
+	border-right: solid #e9eeef 1px;
 }
 .li span{
 	display: inline-block;
@@ -726,7 +763,7 @@
 .none-div{
 	width: 100%;
 	height: 40px;
-	border-top: solid #dcdcdc 1px; 
+	border-top: solid #e9eeef 1px; 
 }
 .submit-data{
 	width: 150px;

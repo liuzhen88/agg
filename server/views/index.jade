@@ -1,6 +1,8 @@
 extends layoutCommon
 
 block content
+	div.bg-box
+	div.title 易卖会后台管理系统
 	div.container
 		div.container-left
 			div.bar-logo
@@ -11,7 +13,7 @@ block content
 					.list #{data.list[i]}
 		div.container-right
 			.container-right-top
-				.container-right-title 易卖会后台管理系统
+				//- .container-right-title 易卖会后台管理系统
 				.container-admin-info
 					.this-position 您的当前位置: 
 						span.this-position-color #{data.this_position}

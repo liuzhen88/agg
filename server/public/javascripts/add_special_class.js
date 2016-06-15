@@ -1,5 +1,6 @@
 var Gobal = {};
 window.onload = function(){
+	var classArray = [];
 	Gobal.announce = [];
 	Gobal.fileType = [];
 	Gobal.fileName = [];
@@ -44,6 +45,55 @@ window.onload = function(){
 					+	"<input type='text' class='new-classes-input' placeholder='请输入新增专题分类名'/>"
 					+"</div>";
 		$(".new-classes-container").append(subdiv);
+	});
+
+	//提交
+	$(".submit-data").click(function(){
+		var state = confirm("确定要提交吗?");
+		if(state){
+			$(".new-classes-input").each(function(index,value){
+				var text = $(this).val();
+				classArray.push(text);
+			});
+			var specialName = $(".add_special-class-name").val();
+			
+			if(!specialName){
+				alert("专题名称不能为空");
+				return;
+			}
+			if(Gobal.announce.length == 0){
+				alert("请上传专题图片");
+				return;
+			}
+			if(classArray.length == 0){
+				alert("请添加分类名称");
+				return;
+			}
+			//上传
+			$.ajax({
+				url:serverUrl+"/users/addSpecial",
+				type:"post",
+				dataType:"json",
+				data:{
+					specialName:specialName,
+					announce:JSON.stringify(Gobal.announce),
+					fileType:JSON.stringify(Gobal.fileType),
+					fileName:JSON.stringify(Gobal.fileName),
+					classArray:JSON.stringify(classArray)
+				},
+				json:"callback",
+				success:function(data){
+					if(data.code == 200){
+						classArray = [];
+						alert("提交成功");
+						window.location.href="/specialManage";
+					}
+				},
+				error:function(err){
+					console.log(err);
+				}
+			});
+		}
 	});
 
 	function setImgAttr(){

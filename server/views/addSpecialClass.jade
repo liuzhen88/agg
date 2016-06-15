@@ -1,6 +1,7 @@
 extends index
 
 block sub_content
+	.null 一. 添加专题名称
 	.add-new-announce-container
 		.add-new-announce-name-container
 			span 专题名称
@@ -10,15 +11,20 @@ block sub_content
 			.add-announce-img-btn-special 添加图片
 			input.add-input-img-special(type="file")
 			//- .add-announce-submit 提交
-	.null 添加分类
+	.null 二. 添加分类名称
 	.add-new-announce-container
 		.new-classes-container
-		.add-new-classes 添加
-	.null 已有分类	(	可以不做修改	)
-	.ul
-		.li.zt-name	我是专题分类1
-		.li 
-			span 删除
-	.none-div
+		.add-new-classes 添加分类
+	.null 三. 已有分类	(	可以不做修改	)
+	- if(data.specialData.length>0)
+		.ul
+			.li.zt-name	我是专题分类1
+			.li 
+				span 删除
+		.none-div
+	- else
+		.no-data 暂无分类
+	
+	.null 四. 确认提交
 	.submit-data 保存并提交
 	script(src="/javascripts/add_special_class.js")

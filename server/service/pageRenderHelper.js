@@ -1,6 +1,7 @@
 var bannerModel = require("../schema/staicUploadImg");
 var classModel = require("../schema/class");
 var noticeModel = require("../schema/announceSchema");
+var specialModel = require("../schema/specialManageSchema");
 var helper = {};
 
 helper.checkSession = function(req , res, next){
@@ -137,18 +138,52 @@ helper.checkSessionForSpecialManage = function(req, res , next){
 		res.redirect("/login");
 		return;
 	}
-	var data = {
-		logoUrl:"/images/logo.png",
-		this_position:"",
-		list:[
-			"首页广告图",
-			"商品展示",
-			"公告管理",
-			"分类管理",
-			"专题管理"
-		]
-	};
-	next(data);
+	getSpecialModel(function(docs){
+		var data = {
+			logoUrl:"/images/logo.png",
+			this_position:"",
+			list:[
+				"首页广告图",
+				"商品展示",
+				"公告管理",
+				"分类管理",
+				"专题管理"
+			],
+			specialData:docs
+		};
+		next(data);
+	});
+	
+}
+
+helper.checkSessionForSpecialEdit = function(req, res, next){
+	if(!req.session.user){
+		res.redirect("/login");
+		return;
+	}
+	var id = req.query.id;
+	specialModel.findOne({
+		"_id":id
+	},function(err,docs){
+		if(err){
+			console.log(err);
+			return
+		}
+		var data = {
+			logoUrl:"/images/logo.png",
+			this_position:"",
+			list:[
+				"首页广告图",
+				"商品展示",
+				"公告管理",
+				"分类管理",
+				"专题管理"
+			],
+			specialList:docs
+		};
+		next(data);
+
+	});
 }
 
 function getBannerData(cb){
@@ -187,6 +222,17 @@ function getNoticeDataById(notice_id, cb){
 	noticeModel.findOne({
 		"_id":notice_id
 	},function(err,docs){
+		if(err){
+			console.log(err);
+			return;
+		}
+		cb(docs);
+	});
+}
+
+//get special data
+function getSpecialModel(cb){
+	specialModel.find(function(err,docs){
 		if(err){
 			console.log(err);
 			return;

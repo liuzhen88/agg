@@ -3,23 +3,27 @@ extends index
 block sub_content
 	.class-manage-container
 		.add-new-special#addNewSpecial 新增专题
-		.add-new-special-class 新增专题分类
+		//- .add-new-special-class 新增专题分类
 	.class-actions-title-container
 		.class-xuhao 排序
 		.special-class-name 专题名称
 		.special-class-types 专题分类
 		.special-actions 操作
-	.special-class-lists-details
-		.class-lists-xuhao
-			span.class-lists-xuhao-span.disable 1
-		.special-class-name-content
-			input.special-class-name-input(type="text" value="专题1" readonly="readonly")
-		.special-class-types-container
-			select.select
-				option 第一期
-		.special-actions-container
-			span.common-actions-style.special-edit 编辑
-			span.common-actions-style.special-shop 商品
-			span.common-actions-style.special-delete 删除
-
+	- if(data.specialData.length>0)
+		- for(var i=0;i<data.specialData.length;i++)
+			.special-class-lists-details
+				.class-lists-xuhao
+					span.class-lists-xuhao-span.disable #{data.specialData[i].serial_number}
+				.special-class-name-content
+					input.special-class-name-input(type="text" value="#{data.specialData[i].special_name}" readonly="readonly")
+				.special-class-types-container
+					select.select
+						- for(var j=0;j<data.specialData[i].special_class.length;j++)
+							option #{data.specialData[i].special_class[j].special_class_name}
+				.special-actions-container
+					span.common-actions-style.special-edit(data-id="#{data.specialData[i]._id}") 编辑
+					span.common-actions-style.special-shop 商品
+					span.common-actions-style.special-delete(data-id="#{data.specialData[i]._id}") 删除
+	- else
+		div.no-data 暂无数据			
 	script(src="/javascripts/special_manage.js")

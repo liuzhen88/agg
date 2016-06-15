@@ -5,8 +5,7 @@ var specialManage = new mongoose.Schema({
 	special_name:String,	//专题名称
 	special_class:[
 		{
-			special_class_name:String,	//专题分类
-			special_class_id:String		//专题分类id
+			special_class_name:String	//专题分类
 		}
 	],
 	special_image:[
@@ -18,3 +17,7 @@ var specialManage = new mongoose.Schema({
 		}
 	]
 });
+
+var specialManageSchema = mongoose.model("specialmanages",specialManage);
+ 
+module.exports = specialManageSchema;

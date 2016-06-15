@@ -3,6 +3,7 @@ var config = {
 	dbUrl:"mongodb://121.43.57.75/yimaihui",
 	uploadUrl:"http://121.43.57.75/agg/server/public/images/upload",
 	annountUploadUrl:"http://121.43.57.75/agg/server/public/images/annount",
+	specialDataPath:"http://121.43.57.75/agg/server/public/images/special/",
 	data:{
 		success:{
 			code:"200",
@@ -39,6 +40,8 @@ var config = {
 	},
 	path:"public/images/upload/",
 	annountPath:"public/images/annount/",
+	specialPath:"public/images/special/",
+	delPath:"./public/images/special/",
 	dirname:""
 };
 

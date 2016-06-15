@@ -5,7 +5,7 @@ var service = require("../service/add");
 var serviceForCheck = require("../service/checkLogin");
 var classManage = require("../service/classManage");
 var annountManage = require("../service/annountManage");
-
+var specialManage = require("../service/specialManage");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -136,6 +136,34 @@ router.get("/deleteAnnounceDetails",function(req, res){
 //公告管理编辑
 router.post("/uploadNewFileForNotice",function(req, res){
 	annountManage.updateNoticeById(req, res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
+//专题管理添加
+router.post("/addSpecial",function(req, res){
+	specialManage.uploadSpecialData(req, res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
+//删除专题
+router.get("/deleteSpecialList",function(req, res){
+	var id = req.query.id;
+	specialManage.deleteSpecialListById(id).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
+//删除专题图片
+router.post("/delSpecialListData",function(req, res){
+	specialManage.delSpecialListDataById(req, res).then(function(data){
 		res.send(data);
 	}).fail(function(err){
 		res.send(err);

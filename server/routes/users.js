@@ -174,7 +174,7 @@ router.post("/delSpecialListData",function(req, res){
 router.post("/uploadNewFileForSpecial",function(req, res){
 	specialManage.uploadNewFileForSpecialById(req, res).then(function(data){
 		res.send(data);
-	});fail(function(err){
+	}).fail(function(err){
 		res.send(err);
 	});
 });

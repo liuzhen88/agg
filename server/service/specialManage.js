@@ -243,9 +243,108 @@ function updateNoticeSingleData(noticeObjectId, noticeImageArray){
 	return deferred.promise;
 }
 
+
+function uploadNewFileForSpecialById(req, res){
+	var deferred = q.defer();
+	var id = req.body.id;
+	saveNewAnnounceImage(req, res).then(function(data){
+		specialSchema.findOne({
+			"_id":id
+		},function(err,docs){
+			if(err){
+				console.log(err);
+				deferred.reject(err);
+			}
+			if(!docs){
+				console.log("no match data");
+				var context = config.data.notFound;
+				deferred.resolve(context);
+			}else{
+				var noticeImage = docs.special_image;
+				var newArray = noticeImage.concat(data.data);
+				console.log("data.data is " + data.data);
+				console.log("=================");
+				console.log(newArray);
+				console.log("======================");
+				specialSchema.update({
+					"_id":id
+				},{
+					$set:{
+						special_image:newArray
+					}
+				},function(err){
+					if(err){
+						console.log(err);
+						deferred.reject(err);
+					}
+					var content = config.data.success;
+					deferred.resolve(content);
+				});
+			}
+
+		});
+	}).fail(function(err){
+		res.send(err);
+	});
+
+	return deferred.promise;
+}
+
+function saveNewAnnounceImage(req, res){
+	var deferred = q.defer();
+	var announce = JSON.parse(req.body.announce);
+	var fileType = JSON.parse(req.body.fileType);
+	var fileName = JSON.parse(req.body.fileName);
+	var noticeArray = [];
+
+	announce.forEach(function(value,i){
+		var base64Data = value.replace(/^data:image\/\w+;base64,/, "");
+		//起开Node.js buffer缓冲
+		var dataBuffer = new Buffer(base64Data, 'base64');
+		var name = fileName[i];
+		var lastFileName = new Date().getTime()+"_"+i+"."+fileType[i];
+		var newFilePath = config.annountPath+ lastFileName;
+		//写入图片成功之后应该保存链接到Mongodb之中
+    	var noticeObj = {
+    		noticeImageUrl:config.specialDataPath+lastFileName,
+    		name:name,
+    		operator:req.session.user.username,
+    		lastFileName:lastFileName
+    	}
+    	noticeArray.push(noticeObj);
+		fs.writeFile(name, dataBuffer, function(err) {
+		    if(err){
+		    	var content = config.data.error;
+		    	content.message = err;
+		      	deferred.reject(content);
+		    }
+
+		    fs.rename(name,newFilePath,function(err){
+		    	if(err){
+		    		console.log("file rename is error:"+err);
+		    		var content = config.data.error;
+			    	content.message = err;
+			      	deferred.reject(content);
+		    	} 
+		    	
+	    		var context = {
+		    		data:noticeArray
+		    	};
+		    	deferred.resolve(context);	
+		    		
+		    	
+		    });
+		    
+		});
+	});
+
+	return deferred.promise;
+}
+
 module.exports = {
 	uploadSpecialData:uploadSpecialData,
 	deleteSpecialListById:deleteSpecialListById,
-	delSpecialListDataById:delSpecialListDataById
+	delSpecialListDataById:delSpecialListDataById,
+	uploadNewFileForSpecialById:uploadNewFileForSpecialById
 
 }

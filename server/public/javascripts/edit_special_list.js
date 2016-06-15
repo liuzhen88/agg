@@ -67,7 +67,7 @@ window.onload = function(){
 
 	function uploadNewFileImage(id, sendDataImage, sendFileName, sendFileType, cb){
 		$.ajax({
-			url:serverUrl+"/users/uploadNewFileForNotice",
+			url:serverUrl+"/users/uploadNewFileForSpecial",
 			type:"post",
 			dataType:"json",
 			data:{

@@ -170,4 +170,13 @@ router.post("/delSpecialListData",function(req, res){
 	});
 });
 
+//edit special upload files
+router.post("/uploadNewFileForSpecial",function(req, res){
+	specialManage.uploadNewFileForSpecialById(req, res).then(function(data){
+		res.send(data);
+	});fail(function(err){
+		res.send(err);
+	});
+});
+
 module.exports = router;

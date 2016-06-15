@@ -303,7 +303,7 @@ function saveNewAnnounceImage(req, res){
 		var dataBuffer = new Buffer(base64Data, 'base64');
 		var name = fileName[i];
 		var lastFileName = new Date().getTime()+"_"+i+"."+fileType[i];
-		var newFilePath = config.annountPath+ lastFileName;
+		var newFilePath = config.specialPath + lastFileName;
 		//写入图片成功之后应该保存链接到Mongodb之中
     	var noticeObj = {
     		noticeImageUrl:config.specialDataPath+lastFileName,

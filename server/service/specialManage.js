@@ -306,7 +306,7 @@ function saveNewAnnounceImage(req, res){
 		var newFilePath = config.specialPath + lastFileName;
 		//写入图片成功之后应该保存链接到Mongodb之中
     	var noticeObj = {
-    		noticeImageUrl:config.specialDataPath+lastFileName,
+    		special_image_url:config.specialDataPath+lastFileName,
     		name:name,
     		operator:req.session.user.username,
     		lastFileName:lastFileName

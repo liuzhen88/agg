@@ -44,6 +44,7 @@ var config = {
 	specialPath:"public/images/special/",
 	delPath:"./public/images/special/",
 	shopGoodsPath:"public/images/goods/",
+	delGoodsPath:"./public/images/goods/",
 	dirname:""
 };
 

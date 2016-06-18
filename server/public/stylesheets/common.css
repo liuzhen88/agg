@@ -429,7 +429,7 @@ body{
 	float: right;
 	margin-right: 10px;
 	margin-top: 10px;
-	border: solid #e9eeef 1px;
+	/*border: solid #e9eeef 1px;*/
 }
 .class-lists-xuhao,.announce-lists-xuhao{
 	width: 15%;
@@ -782,6 +782,8 @@ body{
 }
 .goods-details-container-ul{
 	list-style: none;
+	height: 150px;
+	overflow: hidden;
 }
 .goods-details-container-ul li{
 	float: left;

@@ -189,4 +189,13 @@ router.post("/addNewShopGoods",function(req, res){
 	});
 });
 
+//delete shop single goods
+router.get("/deleteSingleGoods",function(req, res){
+	shopGoodsManage.deleteSingleGoodsById(req, res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
 module.exports = router;

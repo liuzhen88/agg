@@ -63,10 +63,10 @@ function addNewShopGoods(req, res){
 function saveNewShopGoods(noticeArray, goodsName, className){
 	var deferred = q.defer();
 	getGoodsData(function(docs){
-		var index = 1;
-		if(docs.length>1){
-			index = docs.length+1;
-		}
+		var index = Number(docs.length+1);
+		// if(docs.length>1){
+		// 	index = docs.length+1;
+		// }
 		var shopGoodsData = new shopGoodsModel({
 			serial_number:index,
 			goods_name:goodsName,
@@ -93,6 +93,62 @@ function getGoodsData(cb){
 		}
 		cb(docs);
 	});
+}
+
+//delete
+function deleteSingleGoodsById(req, res){
+	var deferred = q.defer();
+	var id = req.query.id;
+	getSingleGoodsById(id,function(docs){
+		//get images
+		var basePath = config.delGoodsPath;
+		docs.goods_content.forEach(function(value,index){
+			var path = basePath + value.lastFileName;
+			fs.unlink(path,function(err){
+				if(err){
+					console.log(err);
+					deferred.reject(err);
+					return;
+				}
+				deleteSrcData(id).then(function(data){
+					deferred.resolve(data);
+				}).fail(function(err){
+					deferred.reject(err);
+				});
+			});
+		});
+	});
+
+	return deferred.promise;
+}
+
+function getSingleGoodsById(id, callback){
+	shopGoodsModel.findOne({
+		"_id":id
+	},function(err,docs){
+		if(err){
+			console.log(err);
+			return;
+		}
+		callback(docs);
+	});
+}
+
+function deleteSrcData(id){
+	var deferred = q.defer();
+	shopGoodsModel.remove({
+		"_id":id
+	},function(err){
+		if(err){
+			console.log(err);
+			deferred.reject(err);
+			return;
+		}
+		var context = config.data.success;
+		deferred.resolve(context);
+	});
+
+	return deferred.promise;
 }
 
 module.exports = {

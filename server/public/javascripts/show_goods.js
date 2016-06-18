@@ -4,4 +4,5 @@ window.onload = function(){
 	$(".add-new-goods").click(function(){
 		window.location.href = "/addNewGoods"
 	});
+	
 }

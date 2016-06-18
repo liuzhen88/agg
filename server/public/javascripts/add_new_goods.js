@@ -61,6 +61,7 @@ window.onload = function(){
 				alert("请添加图片");
 				return;
 			}
+			$(".loading").show();
 			$.ajax({
 				url:serverUrl+"/users/addNewShopGoods",
 				type:"post",
@@ -75,6 +76,7 @@ window.onload = function(){
 				json:"callback",
 				success:function(data){
 					if(data.code == 200){
+						$(".loading").hide();
 						alert("添加成功");
 						window.location.href="/showGoods";
 					}

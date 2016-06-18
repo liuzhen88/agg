@@ -29,7 +29,12 @@ router.get("/showGoods",function(req,res,next){
 	});
 });
 
-
+router.get("/addNewGoods",function(req, res, next){
+	pageRenderHelper.checkSessionForAddGoods(req,res,function(data){
+		data.this_position = "商品展示-新增商品";
+		res.render('addNewGoods',{data});
+	});
+});
 
 router.get("/classifyManage",function(req, res, next){
 	pageRenderHelper.checkSessionForClassManage(req,res,function(data){

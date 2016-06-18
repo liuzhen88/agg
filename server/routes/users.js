@@ -6,6 +6,7 @@ var serviceForCheck = require("../service/checkLogin");
 var classManage = require("../service/classManage");
 var annountManage = require("../service/annountManage");
 var specialManage = require("../service/specialManage");
+var shopGoodsManage = require("../service/shopGoodsManage");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -173,6 +174,15 @@ router.post("/delSpecialListData",function(req, res){
 //edit special upload files
 router.post("/uploadNewFileForSpecial",function(req, res){
 	specialManage.uploadNewFileForSpecialById(req, res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
+//add new shop goods
+router.post("/addNewShopGoods",function(req, res){
+	shopGoodsManage.addNewShopGoods(req, res).then(function(data){
 		res.send(data);
 	}).fail(function(err){
 		res.send(err);

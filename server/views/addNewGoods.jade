@@ -1,0 +1,22 @@
+extends index
+
+block sub_content
+	.add-new-announce-container
+		.add-new-announce-name-container
+			span 商品名称 :
+			input.add_new_announce-name(type='text' placeholder="请输入商品名称")
+		.add-new-announce-name-container
+			span 分类名称 :
+			select.add_new_announce-name.grey#className
+				- if(data.classData.length>0)
+					- for(var i=0;i<data.classData.length;i++)
+						option.grey #{data.classData[i].className}
+		.add-new-announce-img-container
+		.add-announce-btn
+			.add-announce-img-btn 添加图片
+			input.add-input-img(type="file")
+			.add-announce-submit#addNewGoods 提交
+	div.loading
+		div.loading-gif
+			img(src="/images/load.gif")
+	script(src="/javascripts/add_new_goods.js")

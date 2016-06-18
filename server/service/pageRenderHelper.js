@@ -47,6 +47,28 @@ helper.checkSessionForShowGoods = function(req , res, next){
 	next(data);
 }
 
+helper.checkSessionForAddGoods = function(req, res, next){
+	if(!req.session.user){
+		res.redirect("/login");
+		return;
+	}
+	getClassData(function(docs){
+		var data = {
+			logoUrl:"/images/logo.png",
+			this_position:"",
+			list:[
+				"首页广告图",
+				"商品展示",
+				"公告管理",
+				"分类管理",
+				"专题管理"
+			],
+			classData:docs
+		};
+		next(data);
+	});	
+}
+
 helper.checkSessionForClassManage = function(req, res, next){
 	if(!req.session.user){
 		res.redirect("/login");

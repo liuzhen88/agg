@@ -4,6 +4,7 @@ var config = {
 	uploadUrl:"http://121.43.57.75/agg/server/public/images/upload",
 	annountUploadUrl:"http://121.43.57.75/agg/server/public/images/annount",
 	specialDataPath:"http://121.43.57.75/agg/server/public/images/special/",
+	shopGoodsUploadUrl:"http://121.43.57.75/agg/server/public/images/goods",
 	data:{
 		success:{
 			code:"200",
@@ -42,6 +43,7 @@ var config = {
 	annountPath:"public/images/annount/",
 	specialPath:"public/images/special/",
 	delPath:"./public/images/special/",
+	shopGoodsPath:"public/images/goods/",
 	dirname:""
 };
 

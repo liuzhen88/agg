@@ -3,8 +3,8 @@ window.onload = function(){
 	$(".list").eq(1).addClass("has-select");
 	var id = request("id");
 	//delete
-	$(".edit_shop_goods").click(function(){
-		var index = $(".edit_shop_goods").index(this);
+	$(".deleteAnnounceForEdit").click(function(){
+		var index = $(".deleteAnnounceForEdit").index(this);
 		var delId = $(this).attr("data-del-id");
 		var state = confirm("确定要删除吗?");
 		if(state){

@@ -114,7 +114,7 @@ window.onload = function(){
 			json:"callback",
 			success:function(data){
 				if(data.code == 200){
-					$(".loading").show();
+					$(".loading").hide();
 					alert('删除成功');
 					callback();
 				}else{

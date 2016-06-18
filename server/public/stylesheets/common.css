@@ -525,7 +525,7 @@ body{
 	width: 100%;
 	height: 40px;
 }
-.add_new_announce-name,.add_special-class-name,.new-classes-input{
+.add_new_announce-name,.add_special-class-name,.new-classes-input,.add_new_announce-price{
 	width: 600px;
 	height: 30px;
 	border: solid #e9eeef 1px;

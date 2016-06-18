@@ -8,6 +8,7 @@ function addNewShopGoods(req, res){
 	var deferred = q.defer();
 	var goodsName = req.body.goodsName;
 	var className = req.body.className;
+	var price = req.body.price;
 	var announce = JSON.parse(req.body.announce);
 	var fileType = JSON.parse(req.body.fileType);
 	var fileName = JSON.parse(req.body.fileName);
@@ -45,7 +46,7 @@ function addNewShopGoods(req, res){
 
 		    	//持久化
 		    	if(i == announce.length-1){
-		    		saveNewShopGoods(noticeArray,goodsName,className).then(function(data){
+		    		saveNewShopGoods(noticeArray,goodsName,className,price).then(function(data){
 		    			var context = config.data.success;
 		    			deferred.resolve(context);
 		    		}).fail(function(err){
@@ -76,6 +77,7 @@ function saveNewShopGoods(noticeArray, goodsName, className){
 			serial_number:index,
 			goods_name:goodsName,
 			class_name:className,
+			price:price,
 			goods_content:noticeArray
 		});
 		shopGoodsData.save(function(err){
@@ -216,6 +218,7 @@ function updateShopGoodsById(req, res){
 	var id = req.body.id;
 	var goodsName = req.body.goodsName;
 	var className = req.body.className;
+	var price = req.body.price;
 	var announce = JSON.parse(req.body.announce);
 	var fileName = JSON.parse(req.body.fileName);
 	var fileType = JSON.parse(req.body.fileType);
@@ -253,7 +256,7 @@ function updateShopGoodsById(req, res){
 		    	 
 		    	//持久化
 		    	if(i == announce.length-1){
-		    		updateConcatGoods(id,noticeArray,goodsName,className).then(function(data){
+		    		updateConcatGoods(id,noticeArray,goodsName,className,price).then(function(data){
 		    			var context = config.data.success;
 		    			deferred.resolve(context);
 		    		}).fail(function(err){
@@ -268,7 +271,7 @@ function updateShopGoodsById(req, res){
 	return deferred.promise;
 }
 
-function updateConcatGoods(id, noticeArray, goodsName, className){
+function updateConcatGoods(id, noticeArray, goodsName, className, price){
 	var deferred = q.defer();
 	shopGoodsModel.findOne({
 		"_id":id
@@ -285,7 +288,8 @@ function updateConcatGoods(id, noticeArray, goodsName, className){
 			$set:{
 				goods_content:newImageArr,
 				goods_name:goodsName,
-				class_name:className
+				class_name:className,
+				price:price
 			}
 		},function(err){
 			if(err){

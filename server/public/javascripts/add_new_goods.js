@@ -49,6 +49,7 @@ window.onload = function(){
 		if(state){
 			var goodsName = $(".add_new_announce-name").val();
 			var className = $("#className").val();
+			var price = $(".add_new_announce-price").val();
 			if(!goodsName){
 				alert("请输入商品名称");
 				return;
@@ -61,6 +62,10 @@ window.onload = function(){
 				alert("请添加图片");
 				return;
 			}
+			if(!price){
+				alert("请输入商品价格");
+				return;
+			}
 			$(".loading").show();
 			$.ajax({
 				url:serverUrl+"/users/addNewShopGoods",
@@ -68,6 +73,7 @@ window.onload = function(){
 				data:{
 					goodsName:goodsName,
 					className:className,
+					price:price,
 					announce:JSON.stringify(Gobal.announce),
 					fileType:JSON.stringify(Gobal.fileType),
 					fileName:JSON.stringify(Gobal.fileName)

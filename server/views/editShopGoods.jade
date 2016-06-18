@@ -6,6 +6,9 @@ block sub_content
 			span 商品名称 :
 			input.add_new_announce-name(type='text' placeholder="请输入商品名称" value="#{data.singleShopGoods.goods_name}")
 		.add-new-announce-name-container
+			span 商品价格 :
+			input.add_new_announce-price(type='text' placeholder="请输入商品价格,格式如:￥15.2元" value="#{data.singleShopGoods.price}")
+		.add-new-announce-name-container
 			span 分类名称 :
 			select.add_new_announce-name.grey#className
 				- for(var j=0;j<data.classData.length;j++)

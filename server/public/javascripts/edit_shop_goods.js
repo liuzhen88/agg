@@ -62,16 +62,21 @@ window.onload = function(){
 				alert("请输入商品名称");
 				return;
 			}
+			if(!$(".add_new_announce-price").val()){
+				alert("请输入商品价格");
+				return;
+			}
 			var id = request("id");
 			var goods_name = $(".add_new_announce-name").val();
 			var class_name = $("#className").val();
-			uploadNewFileImage(id,goods_name,class_name,function(){
+			var price = $(".add_new_announce-price").val();
+			uploadNewFileImage(id,goods_name,class_name,price,function(){
 				window.location.href="/showGoods";
 			});
 		}
 	});
 
-	function uploadNewFileImage(id, goodsName, className, cb){
+	function uploadNewFileImage(id, goodsName, className, price, cb){
 		$(".loading").show();
 		$.ajax({
 			url:serverUrl+"/users/updateShopGoods",
@@ -80,6 +85,7 @@ window.onload = function(){
 				id:id,
 				goodsName:goodsName,
 				className:className,
+				price:price,
 				announce:JSON.stringify(AGG.sendDataImage),
 				fileName:JSON.stringify(AGG.sendFileName),
 				fileType:JSON.stringify(AGG.sendFileType)

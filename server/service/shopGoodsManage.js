@@ -152,5 +152,6 @@ function deleteSrcData(id){
 }
 
 module.exports = {
-	addNewShopGoods:addNewShopGoods
+	addNewShopGoods:addNewShopGoods,
+	deleteSingleGoodsById:deleteSingleGoodsById
 }

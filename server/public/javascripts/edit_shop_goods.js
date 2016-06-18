@@ -72,6 +72,7 @@ window.onload = function(){
 	});
 
 	function uploadNewFileImage(id, goodsName, className, cb){
+		$(".loading").show();
 		$.ajax({
 			url:serverUrl+"/users/updateShopGoods",
 			type:"post",
@@ -87,6 +88,7 @@ window.onload = function(){
 			json:"callback",
 			success:function(data){
 				if(data.code == 200){
+					$(".loading").hide();
 					alert("提交成功");
 					cb();
 				}else{

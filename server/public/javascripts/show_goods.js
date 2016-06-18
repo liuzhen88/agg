@@ -16,6 +16,12 @@ window.onload = function(){
 		}	
 	});
 
+	//编辑
+	$(".edit-goods").click(function(){
+		var id = $(this).attr("data-id");
+		window.location.href="/editShopGoods?id="+id;
+	});
+
 	function deleteGoodsData(id, callback){
 		$.ajax({
 			url:serverUrl+"/users/deleteSingleGoods?id="+id,

@@ -1,0 +1,30 @@
+extends index
+
+block sub_content
+	.add-new-announce-container
+		.add-new-announce-name-container
+			span 商品名称 :
+			input.add_new_announce-name(type='text' placeholder="请输入商品名称" value="#{data.singleShopGoods.goods_name}")
+		.add-new-announce-name-container
+			span 分类名称 :
+			select.add_new_announce-name.grey#className
+				- for(var j=0;j<data.classData.length;j++)
+					- if(data.classData[j].className == data.singleShopGoods.class_name)
+						option(selected="selected") #{data.classData[j].className}
+					- else
+						option #{data.classData[j].className}
+		.edit-new-announce-img-container
+			- if(data.singleShopGoods.goods_content)
+				- for(var i=0;i<data.singleShopGoods.goods_content.length;i++)
+					.previewAnnounce
+						img.previewAnnounceList(src="#{data.singleShopGoods.goods_content[i].shopGoodsUrl}")
+						.deleteAnnounceForEdit(data-del-id="#{data.singleShopGoods.goods_content[i]._id}") 删除
+		.add-announce-btn
+			.add-announce-img-btn 添加图片
+			input.add-input-img(type="file")
+			.add-announce-submit 提交
+	div.loading
+		div.loading-gif
+			img(src="/images/load.gif")
+
+	script(src="/javascripts/edit_shop_goods.js")

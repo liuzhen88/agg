@@ -156,7 +156,62 @@ function deleteSrcData(id){
 	return deferred.promise;
 }
 
+//delete single image data
+function deleteSingleImageData(req, res){
+	var deferred = q.defer();
+	var id = req.body.id;
+	var delId = req.body.delId;
+	shopGoodsModel.findOne({
+		"_id":id
+	},function(err,docs){
+		if(err){
+			console.log(err);
+			deferred.reject(err);
+		}
+		var imageArr = docs.goods_content;
+		var basePath = config.delGoodsPath;
+		var path = "";
+		imageArr.forEach(function(value,index){
+			if(value._id == delId){
+				path = basePath + value.lastFileName;
+				imageArr[index] = "";
+				return;
+			}
+		});
+		if(path == ""){
+			var context = config.data.notFindDeleteObj;
+			deferred.resolve(context);
+		}else{
+			fs.unlink(path,function(err){
+				if(err){
+					console.log(err);
+					deferred.reject(err);
+				}
+				//再删除db中对于的分支
+				imageArr = _.compact(imageArr);
+				shopGoodsModel.update({
+					"_id":id
+				},{
+					$set:{
+						goods_content:imageArr
+					}
+				},function(err){
+					if(err){
+						console.log(err);
+						deferred.reject(err);
+					}
+					var context = config.data.success;
+					deferred.resolve(context);
+				})
+			});
+		}
+	});
+
+	return deferred.promise;
+}
+
 module.exports = {
 	addNewShopGoods:addNewShopGoods,
-	deleteSingleGoodsById:deleteSingleGoodsById
+	deleteSingleGoodsById:deleteSingleGoodsById,
+	deleteSingleImageData:deleteSingleImageData
 }

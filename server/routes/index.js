@@ -100,12 +100,19 @@ router.get("/editSpecialList",function(req, res, next){
 	});
 });
 
+router.get("/editShopGoods",function(req, res, next){
+	pageRenderHelper.checkSessionForEidtGoods(req, res, function(data){
+		data.this_position = "商品展示-编辑商品";
+		res.render("editShopGoods",{data});
+	});
+});
+
 router.get('/staic/upload',function(req,res){
 	res.render('upload',{});
 });
 
 router.get("/login",function(req , res, next){
 	res.render('login',{});
-})
+});
 
 module.exports = router;

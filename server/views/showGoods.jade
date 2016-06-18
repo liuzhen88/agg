@@ -19,7 +19,7 @@ block sub_content
 						li.border-right 
 							div.content #{data.shopGoods[i].goods_name}
 						li
-							div.edit-goods 编辑
+							div.edit-goods(data-id="#{data.shopGoods[i]._id}") 编辑
 							div.delete-goods(data-id="#{data.shopGoods[i]._id}") 删除
 	- else
 		.no-data 暂无数据

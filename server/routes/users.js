@@ -198,4 +198,12 @@ router.get("/deleteSingleGoods",function(req, res){
 	});
 });
 
+router.post("/deleteSingleImageData",function(req, res){
+	shopGoodsManage.deleteSingleImageData(req, res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
 module.exports = router;

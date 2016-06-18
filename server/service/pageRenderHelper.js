@@ -212,6 +212,39 @@ helper.checkSessionForSpecialEdit = function(req, res, next){
 	});
 }
 
+helper.checkSessionForEidtGoods = function(req, res, next){
+	if(!req.session.user){
+		res.redirect("/login");
+		return;
+	}
+	var id = req.query.id;
+	shopGoodsModel.findOne({
+		"_id":id
+	},function(err,docs){
+		if(err){
+			console.log(err);
+			return;
+		}
+		getClassData(function(classList){
+			var data = {
+				logoUrl:"/images/logo.png",
+				this_position:"",
+				list:[
+					"首页广告图",
+					"商品展示",
+					"公告管理",
+					"分类管理",
+					"专题管理"
+				],
+				singleShopGoods:docs,
+				classData:classList
+			};
+			next(data);
+		});
+		
+	});
+}
+
 function getBannerData(cb){
 	bannerModel.findOne({
 		"type":"banner"

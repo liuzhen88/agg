@@ -62,7 +62,7 @@ function addNewShopGoods(req, res){
 	return deferred.promise;
 }
 
-function saveNewShopGoods(noticeArray, goodsName, className){
+function saveNewShopGoods(noticeArray, goodsName, className, price){
 	var deferred = q.defer();
 	getGoodsData(function(docs){
 		var arr = [];

@@ -206,4 +206,13 @@ router.post("/deleteSingleImageData",function(req, res){
 	});
 });
 
+//update goods for edit
+router.post("/updateShopGoods",function(req, res){
+	shopGoodsManage.updateShopGoodsById(req, res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
 module.exports = router;

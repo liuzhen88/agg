@@ -2,6 +2,7 @@ var q = require("q");
 var fs = require("fs");
 var config = require("../config/config");
 var shopGoodsModel = require("../schema/shopGoods");
+var _ = require("underscore");
 
 function addNewShopGoods(req, res){
 	var deferred = q.defer();
@@ -63,7 +64,11 @@ function addNewShopGoods(req, res){
 function saveNewShopGoods(noticeArray, goodsName, className){
 	var deferred = q.defer();
 	getGoodsData(function(docs){
-		var index = Number(docs.length+1);
+		var arr = [];
+		docs.map(function(d){
+			arr.push(d.serial_number);
+		});
+		var index = Number(_.max(arr))+Number(1);
 		// if(docs.length>1){
 		// 	index = docs.length+1;
 		// }

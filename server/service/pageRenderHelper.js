@@ -2,6 +2,7 @@ var bannerModel = require("../schema/staicUploadImg");
 var classModel = require("../schema/class");
 var noticeModel = require("../schema/announceSchema");
 var specialModel = require("../schema/specialManageSchema");
+var shopGoodsModel = require("../schema/shopGoods");
 var helper = {};
 
 helper.checkSession = function(req , res, next){
@@ -33,18 +34,21 @@ helper.checkSessionForShowGoods = function(req , res, next){
 		res.redirect("/login");
 		return;
 	}
-	var data = {
-		logoUrl:"/images/logo.png",
-		this_position:"",
-		list:[
-			"首页广告图",
-			"商品展示",
-			"公告管理",
-			"分类管理",
-			"专题管理"
-		]
-	};
-	next(data);
+	getShopGoods(function(docs){
+		var data = {
+			logoUrl:"/images/logo.png",
+			this_position:"",
+			list:[
+				"首页广告图",
+				"商品展示",
+				"公告管理",
+				"分类管理",
+				"专题管理"
+			],
+			shopGoods:docs
+		};
+		next(data);
+	});	
 }
 
 helper.checkSessionForAddGoods = function(req, res, next){
@@ -258,6 +262,17 @@ function getSpecialModel(cb){
 		if(err){
 			console.log(err);
 			return;
+		}
+		cb(docs);
+	});
+}
+
+//get shop goods data
+function getShopGoods(cb){
+	shopGoodsModel.find(function(err,docs){
+		if(err){
+			console.log(err);
+			return
 		}
 		cb(docs);
 	});

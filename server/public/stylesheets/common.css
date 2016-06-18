@@ -429,7 +429,6 @@ body{
 	float: right;
 	margin-right: 10px;
 	margin-top: 10px;
-	height: 150px;
 	border: solid #e9eeef 1px;
 }
 .class-lists-xuhao,.announce-lists-xuhao{
@@ -780,4 +779,47 @@ body{
 }
 #className{
 	margin-top: 20px;
+}
+.goods-details-container-ul{
+	list-style: none;
+}
+.goods-details-container-ul li{
+	float: left;
+	width: 33%;
+	text-align: center;
+	min-height: 150px;
+	overflow: hidden;
+}
+.content{
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	overflow: hidden;
+}
+.border-right{
+	border-right: solid #dcdcdc 1px;
+}
+.edit-goods{
+	margin: 0 auto;
+	margin-top: 40px;
+	background: #14ACFC;
+	color: #fff;
+	height: 25px;
+	line-height: 25px;
+	width: 100px;
+	text-align: center;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.delete-goods{
+	margin: 0 auto;
+	margin-top: 20px;
+	background: #ff0000;
+	color: #fff;
+	height: 25px;
+	line-height: 25px;
+	width: 100px;
+	text-align: center;
+	border-radius: 4px;
+	cursor: pointer;
 }

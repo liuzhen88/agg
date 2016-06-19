@@ -107,6 +107,13 @@ router.get("/editShopGoods",function(req, res, next){
 	});
 });
 
+router.get("/specialShopManage",function(req, res, next){
+	pageRenderHelper.checkSessionForSpecialShop(req, res, function(data){
+		data.this_position = "专题管理-商品管理";
+		res.render("specialShopManage",{data});
+	});
+});
+
 router.get('/staic/upload',function(req,res){
 	res.render('upload',{});
 });

@@ -1,0 +1,22 @@
+extends index
+
+block sub_content
+	.add-shop-module
+		.add-shop-title 搜索添加商品 :
+		.search-box
+			input#result(type="text" placeholder="请输入商品名查询")
+			.confimr-search 搜索
+		.result-shop-container
+			.load-ajax
+			.no-found 查询无此结果
+
+	.exit-shop-module
+		.exit-shop-title 现有商品模块 :
+		- if(data.specialData.shop_module.length>0)
+			- for(var i=0;i<data.specialData.shop_module.length;i++)
+				.shop-goods-module-lists
+					img(src="#{data.specialData.shop_module[i].goods_content[0].shopGoodsUrl}")
+					.del-shop-goods-module(data-id="#{data.specialData.shop_module[i]._id}") 删除
+		- else
+			.no-data 暂无模块,请在左侧添加模块
+	script(src="javascripts/special_shop_manage.js")

@@ -17,7 +17,8 @@ window.onload = function(){
 				success:function(data){
 					if(data.code==200){
 						alert("删除成功");
-						$(".special-class-lists-details").eq(index).remove();
+						//$(".special-class-lists-details").eq(index).remove();
+						window.location.reload();
 					}
 				},
 				error:function(err){
@@ -30,5 +31,11 @@ window.onload = function(){
 	$(".special-edit").click(function(){
 		var id = $(this).attr("data-id");
 		window.location.href="/editSpecialList?id="+id;
+	});
+
+	//商品
+	$(".special-shop").click(function(){
+		var id = $(this).attr("data-id");
+		window.location.href="/specialShopManage?id="+id;
 	});
 }

@@ -11,7 +11,7 @@ block sub_content
 		- for(var i=0;i<data.noticeList.length;i++)
 			.announce-lists-details(data-id="#{data.noticeList[i]._id}")
 				.announce-lists-xuhao 
-					span.announce-lists-xuhao-span.disable #{data.noticeList[i].serial_number}
+					span.announce-lists-xuhao-span.disable #{i+1}
 				.announce-lists-name
 					input.announce-lists-value.disable(type="text" value="#{data.noticeList[i].noticeName}" readonly="readonly")
 				.announce-lists-actions 

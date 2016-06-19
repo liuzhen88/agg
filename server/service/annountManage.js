@@ -68,7 +68,11 @@ function saveNewAnnounce(req, res){
 		searchNoticeDB().then(function(docs){
 			var index = 1;
 			if(docs.length>0){
-				index = docs.length+1;
+				var arr = [];
+				docs.map(function(d){
+					arr.push(d.serial_number);
+				});
+				index = Number(_.max(arr))+Number(1);
 			}
 			var noticeModelData = new noticeSchemaModel({
 				serial_number:index,

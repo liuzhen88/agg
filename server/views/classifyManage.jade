@@ -10,7 +10,7 @@ block sub_content
 	- for(var i=0;i<data.classLists.length;i++)
 		.class-lists-details(data-class-id="#{data.classLists[i].class_id}")
 			.class-lists-xuhao 
-				span.class-lists-xuhao-span.disable #{data.classLists[i].serial_number}
+				span.class-lists-xuhao-span.disable #{i+1}
 			.class-lists-name
 				input.class-lists-value.disable(type="text" value="#{data.classLists[i].className}" readonly="readonly")
 			.class-lists-actions 

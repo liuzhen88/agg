@@ -13,7 +13,7 @@ block sub_content
 		- for(var i=0;i<data.specialData.length;i++)
 			.special-class-lists-details
 				.class-lists-xuhao
-					span.class-lists-xuhao-span.disable #{data.specialData[i].serial_number}
+					span.class-lists-xuhao-span.disable #{i+1}
 				.special-class-name-content
 					input.special-class-name-input(type="text" value="#{data.specialData[i].special_name}" readonly="readonly")
 				.special-class-types-container
@@ -22,7 +22,7 @@ block sub_content
 							option #{data.specialData[i].special_class[j].special_class_name}
 				.special-actions-container
 					span.common-actions-style.special-edit(data-id="#{data.specialData[i]._id}") 编辑
-					span.common-actions-style.special-shop 商品
+					span.common-actions-style.special-shop(data-id="#{data.specialData[i]._id}") 商品
 					span.common-actions-style.special-delete(data-id="#{data.specialData[i]._id}") 删除
 	- else
 		div.no-data 暂无数据			

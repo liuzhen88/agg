@@ -215,4 +215,28 @@ router.post("/updateShopGoods",function(req, res){
 	});
 });
 
+router.post("/getShopGoods",function(req, res){
+	shopGoodsManage.getSearchShopGoodsByName(req, res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
+router.get("/addShopModule",function(req, res){
+	specialManage.addNewShopModuleById(req, res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
+router.get("/delShopModule",function(req, res){
+	specialManage.delShopModuleById(req, res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
 module.exports = router;

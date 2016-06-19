@@ -1,6 +1,7 @@
 var q = require("q");
 var config = require("../config/config");
 var classModel = require("../schema/class");
+var _ = require("underscore");
 
 function addNewClassByName(req, res){
 	var deferred = q.defer();
@@ -9,7 +10,11 @@ function addNewClassByName(req, res){
 	var flag = true;
 	getClassData().then(function(data){
 		if(data.length != 0){
-			index = data.length + 1;
+			var arr = [];
+			data.map(function(d){
+				arr.push(d.serial_number);
+			});
+			index = Number(_.max(arr))+Number(1);
 		}
 		data.forEach(function(value,i){
 			if(value.className == className){

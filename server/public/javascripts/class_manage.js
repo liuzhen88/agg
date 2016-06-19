@@ -35,7 +35,8 @@ window.onload = function(){
 			success:function(data){
 				if(data.code==200){
 					alert("删除成功");
-					$(".class-lists-details").eq(index).remove();
+					//$(".class-lists-details").eq(index).remove();
+					window.location.reload();
 				}
 			},
 			error:function(err){

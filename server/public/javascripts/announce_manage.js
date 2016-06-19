@@ -16,7 +16,8 @@ window.onload = function(){
 			var index = $(".announce-del").index(this);
 			var _id = $(".announce-lists-details").eq(index).attr("data-id");
 			deleteAnnounceAllData(_id,function(){
-				$(".announce-lists-details").eq(index).remove();
+				//$(".announce-lists-details").eq(index).remove();
+				window.location.reload();
 			});	
 		}
 	});

@@ -245,6 +245,35 @@ helper.checkSessionForEidtGoods = function(req, res, next){
 	});
 }
 
+helper.checkSessionForSpecialShop = function(req, res, next){
+	if(!req.session.user){
+		res.redirect("/login");
+		return;
+	}
+	var id = req.query.id;
+	specialModel.findOne({
+		"_id":id
+	},function(err,docs){
+		if(err){
+			console.log(err);
+			return;
+		}
+		var data = {
+			logoUrl:"/images/logo.png",
+			this_position:"",
+			list:[
+				"首页广告图",
+				"商品展示",
+				"公告管理",
+				"分类管理",
+				"专题管理"
+			],
+			specialData:docs
+		};
+		next(data);
+	});
+}
+
 function getBannerData(cb){
 	bannerModel.findOne({
 		"type":"banner"

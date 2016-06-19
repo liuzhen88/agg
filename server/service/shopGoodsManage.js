@@ -303,9 +303,33 @@ function updateConcatGoods(id, noticeArray, goodsName, className, price){
 	return deferred.promise;
 }
 
+function getSearchShopGoodsByName(req, res){
+	var deferred = q.defer();
+	var name = req.body.name;
+	shopGoodsModel.find({
+		"goods_name":name
+	},function(err,docs){
+		if(err){
+			console.log(err);
+			deferred.reject(err);
+		}
+		if(docs.length == 0){
+			var context = config.data.notFound;
+			deferred.resolve(context);
+		}else{
+			var context = config.data.success;
+			context.lists = docs;
+			deferred.resolve(context);
+		}
+	});
+
+	return deferred.promise;
+}
+
 module.exports = {
 	addNewShopGoods:addNewShopGoods,
 	deleteSingleGoodsById:deleteSingleGoodsById,
 	deleteSingleImageData:deleteSingleImageData,
-	updateShopGoodsById:updateShopGoodsById
+	updateShopGoodsById:updateShopGoodsById,
+	getSearchShopGoodsByName:getSearchShopGoodsByName
 }

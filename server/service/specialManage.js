@@ -3,6 +3,7 @@ var fs = require("fs");
 var config = require("../config/config");
 var _ = require("underscore");
 var specialSchema = require("../schema/specialManageSchema");
+var shopGoodsSchema = require("../schema/shopGoods");
 
 function uploadSpecialData(req, res){
 	var deferred = q.defer();
@@ -71,12 +72,20 @@ function saveSpecialData(specialName, classArray, special_image){
 		classNewArray.push(d);
 	});
 	findSpecialData().then(function(data){
-		var len = data.length;
+		var len = 1;
+		if(data.length>0){
+			var arr = [];
+			data.map(function(d){
+				arr.push(d.serial_number);
+			});
+			len = Number(_.max(arr))+Number(1);
+		}
 		var schemaModel = new specialSchema({
-			serial_number:Number(len+1),
+			serial_number:len,
 			special_name:specialName,
 			special_class:classNewArray,
-			special_image:special_image
+			special_image:special_image,
+			shop_module:[]
 		});
 		schemaModel.save(function(err){
 			if(err){
@@ -341,10 +350,102 @@ function saveNewAnnounceImage(req, res){
 	return deferred.promise;
 }
 
+//add new shop module
+function addNewShopModuleById(req, res){
+	var deferred =q.defer();
+	var id = req.query.id;	//商品管理的id
+	var mainId = req.query.mainId;	//自身专题id
+	shopGoodsSchema.findOne({
+		"_id":id
+	},function(err,docs){
+		if(err){
+			console.log(err);
+			deferred.reject(err);
+		}
+		var will_add_module = {
+			serial_number:docs.serial_number,
+			goods_name:docs.goods_name,
+			class_name:docs.class_name,
+			price:docs.price,
+			goods_content:docs.goods_content
+		}
+		specialSchema.findOne({
+			"_id":mainId
+		},function(err,data){
+			if(err){
+				console.log(err);
+				deferred.reject(err);
+			}
+			var old_module = data.shop_module;
+			var new_add_module = old_module.concat(will_add_module);
+			specialSchema.update({
+				"_id":mainId
+			},{
+				$set:{
+					shop_module:new_add_module
+				}
+			},function(err){
+				if(err){
+					console.log(err);
+					deferred.reject(err);
+				}
+				var context = config.data.success;
+				deferred.resolve(context);
+			});
+		})
+	});
+
+	return deferred.promise;
+}
+
+function delShopModuleById(req, res){
+	var deferred = q.defer();
+	var mainId = req.query.mainId;
+	var id = req.query.id;
+	specialSchema.findOne({
+		"_id":mainId
+	},function(err,docs){
+		if(err){
+			console.log(err);
+			deferred.reject(err);
+		}
+		if(!docs){
+			var context = config.data.notFindDeleteObj;
+			deferred.resolve(context);
+			return;
+		}
+		var shop_modules = docs.shop_module;
+		shop_modules.forEach(function(value,index){
+			if(value._id == id){
+				shop_modules[index] = "";
+			}
+		});
+		shop_modules = _.compact(shop_modules);
+		specialSchema.update({
+			"_id":mainId
+		},{
+			$set:{
+				shop_module:shop_modules
+			}
+		},function(err){
+			if(err){
+				console.log(err);
+				deferred.reject(err);
+			}
+			var context = config.data.success;
+			deferred.resolve(context);
+		})
+	});
+
+	return deferred.promise;
+}
+
 module.exports = {
 	uploadSpecialData:uploadSpecialData,
 	deleteSpecialListById:deleteSpecialListById,
 	delSpecialListDataById:delSpecialListDataById,
-	uploadNewFileForSpecialById:uploadNewFileForSpecialById
+	uploadNewFileForSpecialById:uploadNewFileForSpecialById,
+	addNewShopModuleById:addNewShopModuleById,
+	delShopModuleById:delShopModuleById
 
 }

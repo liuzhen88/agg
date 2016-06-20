@@ -8,19 +8,20 @@ block sub_content
 		.goods-shop-content-title 商品内容
 	- if(data.shopGoods.length>0)
 		- for(var i=0;i<data.shopGoods.length;i++)
-			.goods-lists-container
-				.goods-lists-xuhao
-					input.xuhao.disable(type="text" value="#{i+1}" readonly="readonly")
+			- if(data.shopGoods[i].goods_content.length>0)
+				.goods-lists-container
+					.goods-lists-xuhao
+						input.xuhao.disable(type="text" value="#{i+1}" readonly="readonly")
 
-				.goods-details-container
-					ul.goods-details-container-ul
-						li
-							img(src="#{data.shopGoods[i].goods_content[0].shopGoodsUrl}" width="100%")
-						li.border-right 
-							div.content #{data.shopGoods[i].goods_name}
-						li
-							div.edit-goods(data-id="#{data.shopGoods[i]._id}") 编辑
-							div.delete-goods(data-id="#{data.shopGoods[i]._id}") 删除
+					.goods-details-container
+						ul.goods-details-container-ul
+							li
+								img(src="#{data.shopGoods[i].goods_content[0].shopGoodsUrl}" width="100%")
+							li.border-right 
+								div.content #{data.shopGoods[i].goods_name}
+							li
+								div.edit-goods(data-id="#{data.shopGoods[i]._id}") 编辑
+								div.delete-goods(data-id="#{data.shopGoods[i]._id}") 删除
 	- else
 		.no-data 暂无数据
 	script(src="/javascripts/show_goods.js")

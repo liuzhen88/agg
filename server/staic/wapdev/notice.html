@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+	<title>易卖会</title>
+	<!-- build:css css/notice.min.css -->
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="css/notice.css"/>
+	<!-- endbuild -->
+</head>
+<body>
+<div class="notice-header">
+    <a class="go-back"></a>
+    公告
+</div>
+<div class="notice-details" id="noticeDetails">
+   
+</div>
+<div id="footer" class="footer">
+    <ul>
+        <li class="tab index">首页</li>
+        <li class="tab class">分类</li>
+        <li class="tab notice">公告</li>
+        <li class="tab join">加入我们</li>
+    </ul>
+</div>
+<script type="text/template" id="notice-tmpl">
+{{ if(it.length>0){ }}
+    {{ for(var i=0;i<it.length;i++){ }}
+         <div class="notice-list" id="{{=it[i]._id}}">{{=it[i].noticeName}}</div>
+    {{ } }}
+{{ } }}
+</script>
+<!-- build:js js/notice.min.js -->
+<script type="text/javascript" src="js/config.js"></script>  
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/doT.min.js"></script>
+<script type="text/javascript" src="js/notice.js"></script>
+<!-- endbuild -->
+</body>
+</html>

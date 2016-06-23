@@ -7,6 +7,7 @@ var classManage = require("../service/classManage");
 var annountManage = require("../service/annountManage");
 var specialManage = require("../service/specialManage");
 var shopGoodsManage = require("../service/shopGoodsManage");
+var weixin = require("../service/weixin");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -233,6 +234,36 @@ router.get("/addShopModule",function(req, res){
 
 router.get("/delShopModule",function(req, res){
 	specialManage.delShopModuleById(req, res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
+
+/*
+	微信端
+*/
+
+router.get("/getBannerInfo",function(req,res){
+	weixin.getBanner(req,res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
+//get notice
+router.get("/getNoticeFormApp",function(req,res){
+	weixin.getNotice(req,res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
+router.get("/getSingleDetails",function(req,res){
+	weixin.getNoticeDetailById(req,res).then(function(data){
 		res.send(data);
 	}).fail(function(err){
 		res.send(err);

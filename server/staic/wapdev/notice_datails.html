@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+	<title>易卖会</title>
+	<!-- build:css css/notice.detail.min.css -->
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="css/notice_details.css"/>
+	<!-- endbuild -->
+</head>
+<body>
+<div class="notice-header">
+    <a class="go-back"></a>
+    公告详情
+</div>
+<div class="notice-details-img" id="noticeDetails">
+   
+</div>
+
+<script type="text/template" id="notice-details-tmpl">
+{{for(var i=0;i<it.noticeImage.length;i++){ }}
+    <div class="detail-container">
+        <img src="{{=it.noticeImage[i].noticeImageUrl}}"/>
+    </div>
+{{ } }}
+</script>
+<!-- build:js js/notice.detail.min.js -->
+<script type="text/javascript" src="js/config.js"></script>  
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/doT.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/notice_detail.js"></script>
+<!-- endbuild -->  
+</body>
+</html>

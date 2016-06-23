@@ -1,0 +1,53 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+
+@charset "utf-8";
+html {
+	height: 100%;
+}
+.main {
+	max-width: 640px;
+	min-width: 320px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+.b-radius {
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.b-shadow {
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15)
+}
+.adv_list {
+	width: 100%;
+	overflow:hidden;
+}
+.item img {
+	width: 100%;
+	height:100%;
+	display: block
+}
+
+.swipe-wrap {
+	overflow: hidden;
+	position: relative
+}
+
+.swipe-wrap > div {
+	float: left;
+	width: 100%;
+	position: relative
+}
+
+.swipe-wrap img {
+	width: 100%;
+	max-height: 240px;
+	min-height: 120px
+}

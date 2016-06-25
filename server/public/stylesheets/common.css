@@ -688,6 +688,7 @@ body{
 	color: #999;
 	background: #eeeeee;
 	border:solid #e9eeef 1px;
+	cursor: not-allowed;
 }
 .special-actions-container{
 	width: 30%;

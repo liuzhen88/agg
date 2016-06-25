@@ -15,9 +15,7 @@ block sub_content
 				.class-lists-xuhao
 					span.class-lists-xuhao-span.disable #{i+1}
 				.special-class-types-container
-					select.select
-						- for(var j=0;j<data.specialData[i].special_class.length;j++)
-							option #{data.specialData[i].special_class[j].special_class_name}
+					input.select(type="text" value="#{data.specialData[i].special_class}" readonly="readonly" style="text-indent:10px;")		 
 				.special-class-name-content
 					input.special-class-name-input(type="text" value="#{data.specialData[i].special_name}" readonly="readonly")
 				

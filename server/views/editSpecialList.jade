@@ -4,10 +4,15 @@ block sub_content
 
 	.add-new-announce-container
 		.add-new-announce-name-container
-			span 专题名称 :
-			input.add_new_announce-name(type='text' placeholder="请输入专题名称" value="#{data.specialList.special_name}")
+			- if(data.specialList)
+				span 专题名称 :
+				input.add_new_announce-name(type='text' placeholder="请输入专题名称" value="#{data.specialList.special_name}")
+			- else
+				span 专题名称 :
+				input.add_new_announce-name(type='text' placeholder="请输入专题名称" value="")
 		.edit-new-announce-img-container
-			- if(data.specialList.special_image.length>0)
+			- if(data.specialList)
+				- if(data.specialList.special_image.length>0)
 				- for(var i=0;i<data.specialList.special_image.length;i++)
 					.previewAnnounce
 						img.previewAnnounceList(src="#{data.specialList.special_image[i].special_image_url}")

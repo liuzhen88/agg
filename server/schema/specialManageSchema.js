@@ -3,11 +3,12 @@ var mongoose = require("mongoose");
 var specialManage = new mongoose.Schema({
 	serial_number:Number,	//序号
 	special_name:String,	//专题名称
-	special_class:[
-		{
-			special_class_name:String	//专题分类
-		}
-	],
+	// special_class:[
+	// 	{
+	// 		special_class_name:String	//专题分类
+	// 	}
+	// ],
+	special_class:String,	//专题分类
 	special_image:[
 		{
 			special_image_url:String,	//专题图片url

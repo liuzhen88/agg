@@ -6,20 +6,21 @@ block sub_content
 		//- .add-new-special-class 新增专题分类
 	.class-actions-title-container
 		.class-xuhao 排序
-		.special-class-name 专题名称
 		.special-class-types 专题分类
+		.special-class-name 专题名称
 		.special-actions 操作
 	- if(data.specialData.length>0)
 		- for(var i=0;i<data.specialData.length;i++)
 			.special-class-lists-details
 				.class-lists-xuhao
 					span.class-lists-xuhao-span.disable #{i+1}
-				.special-class-name-content
-					input.special-class-name-input(type="text" value="#{data.specialData[i].special_name}" readonly="readonly")
 				.special-class-types-container
 					select.select
 						- for(var j=0;j<data.specialData[i].special_class.length;j++)
 							option #{data.specialData[i].special_class[j].special_class_name}
+				.special-class-name-content
+					input.special-class-name-input(type="text" value="#{data.specialData[i].special_name}" readonly="readonly")
+				
 				.special-actions-container
 					span.common-actions-style.special-edit(data-id="#{data.specialData[i]._id}") 编辑
 					span.common-actions-style.special-shop(data-id="#{data.specialData[i]._id}") 商品

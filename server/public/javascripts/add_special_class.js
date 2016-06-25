@@ -39,22 +39,23 @@ window.onload = function(){
 	});
 
 	//新增分类
-	$(".add-new-classes").click(function(){
-		var subdiv = "<div class='subdiv'>"
-					+	"<span>新增分类	:</span>"
-					+	"<input type='text' class='new-classes-input' placeholder='请输入新增专题分类名'/>"
-					+"</div>";
-		$(".new-classes-container").append(subdiv);
-	});
+	// $(".add-new-classes").click(function(){
+	// 	var subdiv = "<div class='subdiv'>"
+	// 				+	"<span>新增分类	:</span>"
+	// 				+	"<input type='text' class='new-classes-input' placeholder='请输入新增专题分类名'/>"
+	// 				+"</div>";
+	// 	$(".new-classes-container").append(subdiv);
+	// });
 
 	//提交
 	$(".submit-data").click(function(){
 		var state = confirm("确定要提交吗?");
 		if(state){
-			$(".new-classes-input").each(function(index,value){
-				var text = $(this).val();
-				classArray.push(text);
-			});
+			// $(".new-classes-input").each(function(index,value){
+			// 	var text = $(this).val();
+			// 	classArray.push(text);
+			// });
+			var className = $(".new-classes-input").val();
 			var specialName = $(".add_special-class-name").val();
 			
 			if(!specialName){
@@ -65,8 +66,16 @@ window.onload = function(){
 				alert("请上传专题图片");
 				return;
 			}
-			if(classArray.length == 0){
-				alert("请添加分类名称");
+			if(Gobal.announce.length != 1){
+				alert("专题图片只能是1张");
+				return;
+			}
+			// if(classArray.length == 0){
+			// 	alert("请添加分类名称");
+			// 	return;
+			// }
+			if(!className){
+				alert("分类名不能为空");
 				return;
 			}
 			//上传
@@ -79,12 +88,12 @@ window.onload = function(){
 					announce:JSON.stringify(Gobal.announce),
 					fileType:JSON.stringify(Gobal.fileType),
 					fileName:JSON.stringify(Gobal.fileName),
-					classArray:JSON.stringify(classArray)
+					className:JSON.stringify(className)
 				},
 				json:"callback",
 				success:function(data){
 					if(data.code == 200){
-						classArray = [];
+						//classArray = [];
 						alert("提交成功");
 						window.location.href="/specialManage";
 					}

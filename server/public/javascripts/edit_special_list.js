@@ -58,6 +58,12 @@ window.onload = function(){
 			alert("您暂未添加新图片");
 		}else{
 			var id = request("id");
+			var len = $(".previewAnnounce").length;
+			var newLen = $(".previewListContainer").length;
+			if(Number(len)+Number(newLen)!=1){
+				alert("专题图片只能为1张");
+				return;
+			}
 			uploadNewFileImage(id,sendDataImage,sendFileName,sendFileType,function(){
 				window.location.href="/specialManage";
 			});

@@ -9,34 +9,35 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-	<title>易卖会</title>
-	<!-- build:css css/notice.detail.min.css -->
+	<title>易卖会-加入我们</title>
+	<!-- build:css css/notice.min.css -->
     <link rel="stylesheet" type="text/css" href="css/common.css"/>
-	<link rel="stylesheet" type="text/css" href="css/notice_details.css"/>
+	<link rel="stylesheet" type="text/css" href="css/join.css"/>
 	<!-- endbuild -->
 </head>
 <body>
 <div class="notice-header">
     <a class="go-back" href="javascript:history.back();"></a>
-    公告详情
+    加入我们
+</div>  
+<div class="tel">
+    <span>tel:</span>
+    <a href="tel:13771839259">13771839259</a>
+</div>  
+<div class="wx">
+    微信公众号 : <span>易卖会2015</span>
 </div>
-<div class="notice-details-img" id="noticeDetails">
-   
+<div class="img-container">
+    <img src="images/code.png"/>
 </div>
 
-<script type="text/template" id="notice-details-tmpl">
-{{for(var i=0;i<it.noticeImage.length;i++){ }}
-    <div class="detail-container">
-        <img src="{{=it.noticeImage[i].noticeImageUrl}}"/>
-    </div>
-{{ } }}
-</script>
-<!-- build:js js/notice.detail.min.js -->
-<script type="text/javascript" src="js/config.js"></script>  
-<script type="text/javascript" src="js/zepto.min.js"></script>
-<script type="text/javascript" src="js/doT.min.js"></script>
-<script type="text/javascript" src="js/common.js"></script>
-<script type="text/javascript" src="js/notice_detail.js"></script>
-<!-- endbuild -->  
+<div id="footer" class="footer">
+    <ul>
+        <li class="tab index"><a class="font" href="index.html">首页</a></li>
+        <li class="tab class"><a class="font" href="class.html">分类</a></li>
+        <li class="tab notice"><a class="font" href="notice.html">公告</a></li>
+        <li class="tab join-has"><a class="font" href="join.html">加入我们</a></li>
+    </ul>
+</div>
 </body>
 </html>

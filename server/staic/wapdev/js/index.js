@@ -10,7 +10,7 @@ $(document).ready(function(){
         json:"callback",
         success: function (result) {
         	if (result.code == 200) {
-        		console.log(result);
+        		// console.log(result);
         		//banner广告位渲染
                 var swipeDoTmpl = doT.template($("#swipe-tmpl").html());
                 $("#swipeBox").html(swipeDoTmpl(result.data.banner));
@@ -37,4 +37,26 @@ $(document).ready(function(){
 	$(".notice").click(function(){
 		window.location.href = "notice.html";
 	});
+
+    $.ajax({
+        url:serverUrl+"/users/getSpecialClassData",
+        type:"get",
+        dataType:"json",
+        json:"callback",
+        success:function(data){
+           if(data.code == "200"){
+
+                var specialDoTmpl = doT.template($("#special-tmpl").html());
+                $("#special").html(specialDoTmpl(data.data));
+                $(".special-container").click(function(){
+                    var dataId = $(this).attr("data-id");
+                    window.location.href="special.html?dataId="+dataId;
+                });
+           }
+             
+        },
+        error:function(err){
+
+        }    
+    });
 });

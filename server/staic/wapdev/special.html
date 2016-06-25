@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+	<title>易卖会-专题详情</title>
+	<!-- build:css css/special.min.css -->
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="css/special.css"/>
+	<!-- endbuild -->
+</head>
+<body>
+<div id="special"></div>
+<script type="text/template" id="special-tmpl">
+{{ if(it.special_name){ }}
+    <div class="notice-header">
+        <a class="go-back" href="javascript:history.back();"></a>
+        {{=it.special_name}}
+    </div>
+    {{ if(it.shop_module.length>0){ }}
+        {{ for(var i=0;i<it.shop_module.length;i++){ }}
+            <div class='details-container'>
+                 {{ if(it.shop_module[i].goods_content.length>0){ }}
+                    
+                        <div class='details-list-container'>
+                            <img src="{{=it.shop_module[i].goods_content[0].shopGoodsUrl}}"/>
+                            <span class='goodsName' style="display:none">{{=it.shop_module[i].goods_name}}</span>
+                            <span class='className' style="display:none">{{=it.shop_module[i].class_name}}</span>
+                        </div>
+                    
+                 {{ } }}
+            </div>
+        {{ } }}
+    {{ }else{ }}
+        <div class='no-data'>~暂无数据~</div>
+    {{ } }}
+{{ }else{ }}
+    <div class='no-data'>~暂无数据~</div>
+{{ } }}    
+</script>
+<!-- build:js js/special.min.js -->   
+<script type="text/javascript" src="js/config.js"></script>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/doT.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/special.js"></script>
+<!-- endbuild -->   
+</body>
+</html>

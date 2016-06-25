@@ -20,6 +20,12 @@
     <div class="swipe-wrap border5" id="swipeBox"></div>
 </div>
 
+<div class="jx"></div>
+
+<div class="hot-active">热门活动</div>
+<div id="special"></div>
+
+<div class="none"></div>
 <div id="footer" class="footer">
     <ul>
         <li class="tab index-has"><a class="font" href="index.html">首页</a></li>
@@ -31,13 +37,26 @@
 
 
 <script type="text/template" id="swipe-tmpl">
-{{ for(var i =0;i<it.length;i++){ }} 
-    <div class="item">       
-        <a href="{{=it[i].href}}" target="_blank">
-            <img src="{{=it[i].bannerUrl}}">
-        </a>
-    </div>
+{{ if(it.length>0){ }}
+    {{ for(var i =0;i<it.length;i++){ }} 
+        <div class="item">       
+            <a href="{{=it[i].href}}" target="_blank">
+                <img src="{{=it[i].bannerUrl}}">
+            </a>
+        </div>
+    {{ } }}
 {{ } }}
+</script>
+
+<script type="text/template" id="special-tmpl">
+    {{ for(var i=0;i<it.length;i++){ }}
+        <div class='titles'>{{=it[i].special_class}}</div>
+        {{ for(var j=0;j<it[i].image.length;j++){ }}
+            <div class='special-container' data-id="{{=it[i].image[j]._id}}">
+                <img src="{{=it[i].image[j].special_image_url}}"/>
+            </div>
+        {{ } }}
+    {{ } }}
 </script>
 <!-- build:js js/index.min.js -->   
 <script type="text/javascript" src="js/config.js"></script>

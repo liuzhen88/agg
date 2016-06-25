@@ -270,4 +270,28 @@ router.get("/getSingleDetails",function(req,res){
 	});
 });
 
+router.get("/getSpecialClassData",function(req, res){
+	weixin.getSpecialClassData(req,res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
+router.get("/getSpecialDetail",function(req,res){
+	weixin.getSpecialDetailById(req,res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
+router.post("/getShopDetails",function(req,res){
+	weixin.getShopDetails(req,res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
 module.exports = router;

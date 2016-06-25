@@ -37,6 +37,10 @@ var config = {
 		notFindDeleteObj:{
 			code:"80001",
 			message:"删除失败,无此记录"
+		},
+		notCreat:{
+			code:"80001",
+			message:"添加失败,该分类已存在!"
 		}
 	},
 	path:"public/images/upload/",

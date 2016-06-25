@@ -5,60 +5,87 @@ var _ = require("underscore");
 var specialSchema = require("../schema/specialManageSchema");
 var shopGoodsSchema = require("../schema/shopGoods");
 
+
+//判断分类是否存在
+function middleWare(req, res, cb){
+	var specialName = req.body.specialName;	//专题名称
+	var className = JSON.parse(req.body.className); //分类名称
+
+	specialSchema.find({
+		"special_name":specialName,
+		"special_class":className
+	},function(err,docs){
+		if(err){
+			console.log(err);
+			return;
+		}
+		if(docs.length>0){
+			var context = config.data.notCreat;
+			res.send(context);
+		}else{
+			cb();
+		}
+	});
+}
+
+
 function uploadSpecialData(req, res){
 	var deferred = q.defer();
-	var specialName = req.body.specialName;	//专题名称
-	var announce = JSON.parse(req.body.announce); //图片base64
-	var fileType = JSON.parse(req.body.fileType); //图片格式
-	var fileName = JSON.parse(req.body.fileName); //图片名字
-	var className = JSON.parse(req.body.className); //分类名称
-	var special_image = [];
+	middleWare(req, res, function(){
 
-	announce.forEach(function(value,i){
-		var base64Data = value.replace(/^data:image\/\w+;base64,/, "");
-		//起开Node.js buffer缓冲
-		var dataBuffer = new Buffer(base64Data, 'base64');
-		var name = fileName[i];
-		var lastFileName = new Date().getTime()+"_"+i+"."+fileType[i];
-		var newFilePath = config.specialPath + lastFileName;
 
-		var noticeObj = {
-    		special_image_url:config.specialDataPath+lastFileName,
-    		name:name,
-    		operator:req.session.user.username,
-    		lastFileName:lastFileName
-    	};
-    	special_image.push(noticeObj);
-		fs.writeFile(name, dataBuffer, function(err) {
-		    if(err){
-		    	var content = config.data.error;
-		    	content.message = err;
-		      	deferred.reject(content);
-		    }
+		var specialName = req.body.specialName;	//专题名称
+		var announce = JSON.parse(req.body.announce); //图片base64
+		var fileType = JSON.parse(req.body.fileType); //图片格式
+		var fileName = JSON.parse(req.body.fileName); //图片名字
+		var className = JSON.parse(req.body.className); //分类名称
+		var special_image = [];
 
-		    fs.rename(name,newFilePath,function(err){
-		    	if(err){
-		    		console.log("file rename is error:"+err);
-		    		var content = config.data.error;
+		announce.forEach(function(value,i){
+			var base64Data = value.replace(/^data:image\/\w+;base64,/, "");
+			//起开Node.js buffer缓冲
+			var dataBuffer = new Buffer(base64Data, 'base64');
+			var name = fileName[i];
+			var lastFileName = new Date().getTime()+"_"+i+"."+fileType[i];
+			var newFilePath = config.specialPath + lastFileName;
+
+			var noticeObj = {
+	    		special_image_url:config.specialDataPath+lastFileName,
+	    		name:name,
+	    		operator:req.session.user.username,
+	    		lastFileName:lastFileName
+	    	};
+	    	special_image.push(noticeObj);
+			fs.writeFile(name, dataBuffer, function(err) {
+			    if(err){
+			    	var content = config.data.error;
 			    	content.message = err;
 			      	deferred.reject(content);
-		    	} 
-		    	
-		    	if(i == announce.length-1){
-		    		console.log("=====================");
-			    	//二进制流保存之后,同步数据持久化
-			    	saveSpecialData(specialName,className,special_image).then(function(data){
-			    		var context = config.data.success;
-			    		deferred.resolve(context);
-			    	}).fail(function(err){	
-			    		deferred.reject(err);
-			    	});	
-		    	}
-		    });
-		    
+			    }
+
+			    fs.rename(name,newFilePath,function(err){
+			    	if(err){
+			    		console.log("file rename is error:"+err);
+			    		var content = config.data.error;
+				    	content.message = err;
+				      	deferred.reject(content);
+			    	} 
+			    	
+			    	if(i == announce.length-1){
+			    		 
+				    	//二进制流保存之后,同步数据持久化
+				    	saveSpecialData(specialName,className,special_image).then(function(data){
+				    		var context = config.data.success;
+				    		deferred.resolve(context);
+				    	}).fail(function(err){	
+				    		deferred.reject(err);
+				    	});	
+			    	}
+			    });
+			    
+			});
 		});
 	});
-
 	return deferred.promise;
 }
 

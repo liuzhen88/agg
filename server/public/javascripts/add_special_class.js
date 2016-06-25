@@ -96,6 +96,8 @@ window.onload = function(){
 						//classArray = [];
 						alert("提交成功");
 						window.location.href="/specialManage";
+					}else{
+						alert(data.message);
 					}
 				},
 				error:function(err){

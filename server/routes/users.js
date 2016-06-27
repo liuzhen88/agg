@@ -294,4 +294,23 @@ router.post("/getShopDetails",function(req,res){
 	});
 });
 
+router.get("/getClassData",function(req,res){
+	weixin.getClassData(req,res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
+
+router.post("/getClassListData",function(req, res){
+	weixin.getClassListData(req,res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+	 
+ 
+
 module.exports = router;

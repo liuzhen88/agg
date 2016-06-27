@@ -4,6 +4,7 @@ var bannerSchema = require("../schema/staicUploadImg");
 var noticeSchema = require("../schema/announceSchema");
 var specialSchema = require("../schema/specialManageSchema");
 var shopGoodsSchema = require("../schema/shopGoods");
+var classSchema = require("../schema/class");
 var config = require("../config/config");
 var fs = require("fs");
 
@@ -187,11 +188,62 @@ function getShopDetails(req, res){
 	return deferred.promise;
 }
 
+
+function getClassData(){
+	var deferred = q.defer();
+	classSchema.find(function(err,docs){
+		if(err){
+			console.log(err);
+			deferred.reject(err);
+		}
+		if(!docs){
+			var context = config.data.success;
+			context.data = [];
+			deferred.resolve(context);
+		}else{
+			var context = config.data.success;
+			context.data = docs;
+			deferred.resolve(context);
+		}
+	});
+
+	return deferred.promise;
+}
+
+
+function getClassListData(req, res){
+	var deferred = q.defer();
+	var className = req.body.text;
+
+	shopGoodsSchema.find({
+		"class_name":className
+	},function(err,docs){
+		if(err){
+			console.log(err);
+			deferred.reject(err);
+		}
+
+		if(!docs){
+			var context = config.data.success;
+			context.data = [];
+			deferred.resolve(context);
+		}else{
+			var context = config.data.success;
+			context.data = docs;
+			deferred.resolve(context);
+		}
+	});
+
+	return deferred.promise;
+}
+
 module.exports = {
 	getBanner:getBanner,
 	getNotice:getNotice,
 	getNoticeDetailById:getNoticeDetailById,
 	getSpecialClassData:getSpecialClassData,
 	getSpecialDetailById:getSpecialDetailById,
-	getShopDetails:getShopDetails
+	getShopDetails:getShopDetails,
+	getClassData:getClassData,
+	getClassListData:getClassListData
 }

@@ -12,57 +12,34 @@
 	<title>易卖会-分类</title>
 	<!-- build:css css/class.min.css -->
     <link rel="stylesheet" type="text/css" href="css/common.css"/>
-	<link rel="stylesheet" type="text/css" href="css/class.css"/>
+	<link rel="stylesheet" type="text/css" href="css/class_detail.css"/>
 	<!-- endbuild -->
 </head>
+<body>
 <div class="notice-header" style="position:relative">
     <a class="go-back" href="javascript:history.back();"></a>
-    分类
-    <div class="more">全部</div>
+    商品详情
 </div>
-<div class="all" id="classBox"></div>
-
+<div class='jx'></div>
+<div class='describe'>如需订购,请致客服热线:13771839259</div>
+<div class='jx'></div>
 <div id="goodsBox"></div>
-<body>
-<div id="footer" class="footer">
-    <ul>
-        <li class="tab index"><a class="font" href="index.html">首页</a></li>
-        <li class="tab class-has"><a class="font" href="class.html">分类</a></li>
-        <li class="tab notice"><a class="font" href="notice.html">公告</a></li>
-        <li class="tab join"><a class="font" href="join.html">加入我们</a></li>
-    </ul>
-</div>
-
-<script type="text/template" id="class-tmpl">
-{{ if(it.length>0){ }}
-    <ul>
-        {{ for(var i=0;i<it.length;i++){ }}
-            <li class='classList'>{{=it[i].className}}</li>
-        {{ } }}
-        <div class='clear'></div>
-    </ul>
-{{ }else{ }}
-    <div class='no-data'>暂无分类</div>
-{{ } }}
-</script>
 <script type="text/template" id="goods-tmpl">
 {{ if(it.length>0){ }}
     {{ for(var i=0;i<it.length;i++){ }}
-        <div class='good-list-container'>
-            <img src="{{=it[i].goods_content[0].shopGoodsUrl}}"/>
-            <span style="display:none">{{=JSON.stringify(it[i].goods_content)}}</span>
-        <div>
+        <div class='shop-container'>
+            <img src="{{=it[i].shopGoodsUrl}}"/>
+        </div>
     {{ } }}
 {{ }else{ }}
     <div class='no-data'>暂无数据</div>
-{{ } }}
+{{ } }}    
 </script>
-<!-- build:js js/class.min.js -->
+<!-- build:js js/class_detail.min.js -->
 <script type="text/javascript" src="js/config.js"></script>  
 <script type="text/javascript" src="js/zepto.min.js"></script>
 <script type="text/javascript" src="js/doT.min.js"></script>
-<script type="text/javascript" src="js/swipe.js"></script>
-<script type="text/javascript" src="js/class.js"></script>
-<!-- endbuild -->  
+<script type="text/javascript" src="js/class_detail.js"></script>
+<!-- endbuild -->     
 </body>
 </html>

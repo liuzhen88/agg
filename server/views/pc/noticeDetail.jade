@@ -1,0 +1,7 @@
+extends common
+
+block content
+	.notice-details-container
+		- if(data.noticeImage.length>0)
+			- for(var i=0;i<data.noticeImage.length;i++)
+				img(src="#{data.noticeImage[i].noticeImageUrl}")

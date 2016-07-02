@@ -1,0 +1,54 @@
+extends common
+
+block content
+	.banner
+		ul#bannerUl
+			- if(data.banner.banner.length>0)
+				- for(var i=0;i<data.banner.banner.length;i++)
+					li.banner-lists
+						a(href="#{data.banner.banner[i].href}" target="_blank")
+							img(src="#{data.banner.banner[i].bannerUrl}")
+	.all-class
+		.con
+			.all-name 全部商品分类
+			- if(data.classData.length>0)
+				- for(var i=0;i<data.classData.length;i++)
+					.class-lists #{data.classData[i].className}
+		.right
+			.notice
+				.notice-title 公告
+				.notice-container
+					- for(var i=0;i<data.notice.length;i++)
+						.notice-list(data-id="#{data.notice[i]._id}")
+							.notice-content #{data.notice[i].noticeName}
+							.notice-time #{data.notice[i].notice_id}
+							.mores 
+								img(src="/images/gonggao.png")
+				.notice-page
+					.notice-page-container
+						span.pages.prev 上一页
+						span.pages.next 下一页
+			.zzh
+				img(src="/images/ymh.png")
+				.dec 易卖会唯一公众号
+		.jx
+		.specials
+			- if(data.special.data.length>0)
+				- for(var i=0;i<data.special.data.length;i++)
+					.specials-title #{data.special.data[i].special_class}
+					- for(var j=0;j<data.special.data[i].image.length;j++)
+						.special-images-container(data-id="#{data.special.data[i].image[j]._id}")
+							img(src="#{data.special.data[i].image[j].special_image_url}")
+		.clear
+	.bot 
+		.gz
+			img(src="/images/weixin.png")
+		.gz-content
+			.span 关注官方微信号
+			.span yimaihui2015
+		.lx-content
+			.span 联系电话
+			.span 13771839259
+		.lx 
+			img(src="/images/tel.png")
+	script(src='/javascripts/index.js')

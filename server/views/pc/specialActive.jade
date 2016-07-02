@@ -1,0 +1,13 @@
+extends common
+
+block content
+	.special-container
+		- if(data.data.length>0)
+			- for(var i=0;i<data.data.length;i++)
+				.special-container-title #{data.data[i].special_class}
+				- for(var j=0;j<data.data[i].image.length;j++)
+					.special-container-images-container(data-id="#{data.data[i].image[j]._id}")
+						img(src="#{data.data[i].image[j].special_image_url}")
+		- else
+			.no-data 暂无数据
+	script(src="/javascripts/special_active.js")

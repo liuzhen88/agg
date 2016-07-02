@@ -122,4 +122,57 @@ router.get("/login",function(req , res, next){
 	res.render('login',{});
 });
 
+router.get("/pc/index",function(req,res,next){
+	pageRenderHelper.pcIndex(req,res,function(data){
+		res.render("./pc/index",{data});
+	});
+	
+});
+
+//pc 公告
+router.get("/pc/noticeDetail",function(req,res,next){
+	pageRenderHelper.pcNotice(req,res,function(data){
+		res.render("./pc/noticeDetail",{data});
+	});
+});
+
+//pc 专题商品
+router.get("/pc/specialShop",function(req,res,next){
+	pageRenderHelper.pcSpecialShop(req,res,function(data){
+		res.render("./pc/specialShop",{data});
+	});
+});
+//分类详情
+router.get("/pc/classDetail",function(req,res,next){
+	pageRenderHelper.pcClassDetail(req,res,function(data){
+		res.render("./pc/classDetail",{data});
+	});
+});
+
+router.get("/pc/classShopDetail",function(req,res,next){
+	pageRenderHelper.pcClassShopDetail(req,res,function(data){
+		console.log(data);
+		res.render("./pc/classShopDetail",{data});
+	});
+});
+
+//专题商品详情
+router.get("/pc/specialShopDetail",function(req,res,next){
+	pageRenderHelper.pcSpecialShopDetail(req,res,function(data){
+		res.render("./pc/specialShopDetail",{data});
+	});
+});
+
+//加入我们
+router.get("/pc/join",function(req,res){
+	res.render("./pc/join",{});
+});
+
+//专题活动
+router.get("/pc/specialActive",function(req,res){
+	pageRenderHelper.pcSpecialActive(req,res,function(data){
+		res.render("./pc/specialActive",{data});
+	});
+});
+
 module.exports = router;

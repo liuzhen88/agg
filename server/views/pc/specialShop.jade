@@ -1,0 +1,15 @@
+extends common
+
+block content
+	.shop-title #{data.data.special_name}
+	- if(data.data.shop_module.length>0)
+		- for(var i=0;i<data.data.shop_module.length;i++)
+			.shop-images-containers
+				- if(data.data.shop_module[i].goods_content.length>0)
+					img(src="#{data.data.shop_module[i].goods_content[0].shopGoodsUrl}")
+					span.special-name(style="display:none") #{data.data.special_name}
+					span.special-class(style="display:none") #{data.data.special_class}
+					span.module-id(style="display:none") #{data.data.shop_module[i]._id}
+	- else
+		.no-data 暂无数据
+	script(src="/javascripts/special_shop.js")

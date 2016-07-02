@@ -1,0 +1,13 @@
+extends common
+
+block content
+	- if(!data)
+		.no-data 暂无数据
+	- else
+		.shop-title 商品详情-#{data.goods_name}
+		- if(data.goods_content.length>0)
+			- for(var i=0;i<data.goods_content.length;i++)
+				.shop-images-containers
+					img(src="#{data.goods_content[i].shopGoodsUrl}")
+		- else
+			.none 暂无图片

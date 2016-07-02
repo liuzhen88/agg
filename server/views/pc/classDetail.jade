@@ -1,0 +1,14 @@
+extends common
+
+block content
+	- if(data.length>0)
+		- for(var i=0;i<data.length;i++)
+			.shop-title #{data[i].goods_name}
+			- if(data[i].goods_content.length>0)
+				.shop-images-containers(data-id="#{data[i]._id}")
+					img(src="#{data[i].goods_content[0].shopGoodsUrl}")
+			- else
+				.none 暂无图片
+	-else
+		.no-data 暂无数据
+	script(src="/javascripts/class_detail.js")

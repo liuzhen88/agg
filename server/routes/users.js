@@ -311,6 +311,13 @@ router.post("/getClassListData",function(req, res){
 	});
 });
 	 
- 
+//分页
+router.get("/getNoticeByPage",function(req,res){
+	weixin.getNoticeByPage(req,res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
 
 module.exports = router;

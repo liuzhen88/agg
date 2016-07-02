@@ -1,5 +1,5 @@
 window.onload = function(){ 
-	var serverUrl = "http://localhost:3000/users";
+	var serverUrl = "http://121.43.57.75:3000/users";
 	var page = 1;
 	var app = {
 		init:function(){

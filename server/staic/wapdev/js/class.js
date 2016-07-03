@@ -1,3 +1,4 @@
+var flag = 0;
 $(document).ready(function(){
 	$.ajax({
 		url:serverUrl+"/users/getClassData",
@@ -51,7 +52,7 @@ $(document).ready(function(){
 });
 
 function getDetail(obj){
-	var flag = 0;
+	
 	
 	if(flag == 0){
 		var id = $(obj).attr("data-id");

@@ -446,7 +446,7 @@ helper.pcClassDetail = function(req, res, next){
 	var className = req.query.className;
 	shopGoodsModel.find({
 		"class_name":className
-	},function(err,docs){
+	}).sort({"qz":-1}).exec(function(err,docs){
 		if(err){
 			console.log(err);
 			return;

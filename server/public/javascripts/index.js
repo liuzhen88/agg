@@ -64,8 +64,9 @@ window.onload = function(){
 					if(data.code == 200){
 						if(data.data.length>0){
 							$(".notice-list").remove();
-							data.data.forEach(function(value,index){
-
+							var datas = data.data;
+							for(var i=0;i<datas.length;i++){
+								var value = datas[i];
 								var subdiv = "<div class='notice-list' data-id="+value._id+">"
 											+"	<div class='notice-content'>"+value.noticeName+"</div>"
 											+"  <div class='notice-time'>"+app.get_time(value.notice_id)+"</div>"
@@ -74,7 +75,7 @@ window.onload = function(){
 											+"	</div>"
 											+"</div>";
 								$(".notice-container").append(subdiv);
-							});
+							}
 							//公告
 							$(".notice-list").click(function(){
 								var id = $(this).attr("data-id");

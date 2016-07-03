@@ -61,7 +61,9 @@ function getNoticeDetailById(req, res){
 //获取分类
 function getSpecialClassData(req, res){
 	var deferred = q.defer();
-	specialSchema.find(function(err,docs){
+	specialSchema.find().sort({
+		"qz":-1
+	}).exec(function(err,docs){
 		if(err){
 			console.log(err);
 			deferred.reject(err);
@@ -73,7 +75,6 @@ function getSpecialClassData(req, res){
 			context.data = [];
 			deferred.resolve(context);
 		}else{
-
 			//有数据的情况
 			var sendData = [];
 			var className = [];
@@ -95,7 +96,6 @@ function getSpecialClassData(req, res){
 				var obj = value.special_class;
 				className.push(obj);
 			});
-			console.log(className);
 			className = _.uniq(className);
 
 			className.forEach(function(value,index){
@@ -108,9 +108,9 @@ function getSpecialClassData(req, res){
 						list.image.push(obj);
 					}
 				});
-
 				sendData.push(list);
 			});
+			 
 			var context = config.data.success;
 			context.data = sendData;
 			 

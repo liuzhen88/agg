@@ -77,19 +77,27 @@ function getSpecialClassData(req, res){
 			//有数据的情况
 			var sendData = [];
 			var className = [];
-			for(var i=0;i<docs.length;i++){
+			// for(var i=0;i<docs.length;i++){
 				 
-				for(var j=1;j<docs.length;j++){
-					if(i<j){
-						if(docs[i].special_class == docs[j].special_class){
-							 className.push(docs[i].special_class);
+			// 	for(var j=1;j<docs.length;j++){
+			// 		if(i<j){
+			// 			if(docs[i].special_class == docs[j].special_class){
+			// 				 className.push(docs[i].special_class);
 
-						} 
+			// 			}else{
+			// 				className.push(docs[i].special_class);
+			// 			} 
 						
-					} 
-				}	 
-			}
+			// 		} 
+			// 	}	 
+			// }
+			docs.forEach(function(value,index){
+				var obj = value.special_class;
+				className.push(obj);
+			});
+			console.log(className);
 			className = _.uniq(className);
+
 			className.forEach(function(value,index){
 				var list = {};
 				list.special_class = value;

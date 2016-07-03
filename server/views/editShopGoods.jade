@@ -16,7 +16,7 @@ block sub_content
 						option(selected="selected") #{data.classData[j].className}
 					- else
 						option #{data.classData[j].className}
-		.add-new-announce-name-container
+		.add-new-announce-name-container(style="margin-top:30px;")
 			span 权重数值 :
 			- if(data.singleShopGoods.qz)
 				input.qz(type='text' placeholder="权重值为数字,值越大同种分类商品显示越在前,非必填,默认按添加顺序展示" value="#{data.singleShopGoods.qz}")

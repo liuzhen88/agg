@@ -42,6 +42,7 @@ $(document).ready(function(){
 
                 	$(".good-list-container").click(function(){
                 		var id = $(this).attr("data-id");
+                		console.log(id);
                 		window.location.href="class_detail.html?id="+id;
                 	});
 				}

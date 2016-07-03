@@ -113,7 +113,7 @@ function saveSpecialData(specialName, className, special_image, qz){
 		}
 		var schemaModel = new specialSchema({
 			serial_number:len,
-			qz:qz,
+			qz:Number(qz),
 			special_name:specialName,
 			special_class:className,
 			special_image:special_image,

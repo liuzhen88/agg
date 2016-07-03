@@ -3,6 +3,7 @@ var mongoose = require("mongoose");
 var specialManage = new mongoose.Schema({
 	serial_number:Number,	//序号
 	special_name:String,	//专题名称
+	qz:Number,	//权重
 	// special_class:[
 	// 	{
 	// 		special_class_name:String	//专题分类

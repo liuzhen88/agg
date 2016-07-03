@@ -79,6 +79,7 @@ window.onload = function(){
 				alert("分类名不能为空");
 				return;
 			}
+			$(".loading").show();
 			//上传
 			$.ajax({
 				url:serverUrl+"/users/addSpecial",
@@ -95,6 +96,7 @@ window.onload = function(){
 				json:"callback",
 				success:function(data){
 					if(data.code == 200){
+						$(".loading").hide();
 						//classArray = [];
 						alert("提交成功");
 						window.location.href="/specialManage";

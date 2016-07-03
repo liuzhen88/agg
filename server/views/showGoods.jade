@@ -19,6 +19,7 @@ block sub_content
 								img(src="#{data.shopGoods[i].goods_content[0].shopGoodsUrl}" width="100%")
 							li.border-right 
 								div.content #{data.shopGoods[i].goods_name}
+								.id(style="margin-top:30px;") id是:#{data.shopGoods[i]._id}
 							li
 								div.edit-goods(data-id="#{data.shopGoods[i]._id}") 编辑
 								div.delete-goods(data-id="#{data.shopGoods[i]._id}") 删除

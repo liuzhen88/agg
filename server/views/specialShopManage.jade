@@ -17,6 +17,7 @@ block sub_content
 				.shop-goods-module-lists
 					img(src="#{data.specialData.shop_module[i].goods_content[0].shopGoodsUrl}")
 					.del-shop-goods-module(data-id="#{data.specialData.shop_module[i]._id}") 删除
+					.id id:#{data.specialData.shop_module[i]._id}
 		- else
 			.no-data 暂无模块,请在左侧添加模块
 	script(src="javascripts/special_shop_manage.js")

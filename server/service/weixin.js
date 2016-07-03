@@ -275,7 +275,7 @@ function getClassDetailsByWeixin(req, res){
 			deferred.reject(err);
 			return;
 		}
-		deferred.resolve(data);
+		deferred.resolve(docs);
 	});
 
 	return deferred.promise;

@@ -243,7 +243,7 @@ function getNoticeByPage(req, res){
 	var page = req.query.page;
 	page = Number(page)-1;
 	var skips = page * 3;
-	noticeSchema.find().skip(skips).limit(3).exec(function(err,data){
+	noticeSchema.find().sort({"serial_number":-1}).skip(skips).limit(3).exec(function(err,data){
 		if(err){
 			console.log(err);
 			deferred.reject(err);

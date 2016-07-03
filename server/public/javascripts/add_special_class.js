@@ -114,6 +114,30 @@ window.onload = function(){
 			}
 		});
 	}
+
+	//删除分类
+	$(".delete-class").click(function(){
+		var id = $(this).attr("data-id");
+		var index = $(".delete-class").index(this);
+		var state = confirm("确定要删除吗?");
+		if(state){
+			$.ajax({
+				url:serverUrl+"/users/deleteSpecialList?id="+id,
+				type:"get",
+				dataType:"json",
+				json:"callback",
+				success:function(data){
+					if(data.code==200){
+						alert("删除成功");
+						$(".delete-class").eq(index).remove();
+					}
+				},
+				error:function(err){
+					console.log(err);
+				}
+			});
+		}
+	});
 }
 function del(obj){
 	var sendDataImage = Gobal.announce;

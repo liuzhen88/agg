@@ -89,6 +89,7 @@ router.get("/specialManage", function(req, res, next){
 router.get("/addSpecialClass",function(req, res, next){
 	pageRenderHelper.checkSessionForSpecialManage(req, res , function(data){
 		data.this_position = "专题管理--新增专题";
+		console.log(data);
 		res.render("addSpecialClass",{data});
 	});
 });

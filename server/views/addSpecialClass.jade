@@ -21,11 +21,12 @@ block sub_content
 
 	.null 三. 已有分类	(	可以不做修改	)
 	- if(data.specialData.length>0)
-		.ul
-			.li.zt-name	我是专题分类1
-			.li 
-				span 删除
-		.none-div
+		- for(var i=0;i<data.specialData.length;i++)
+			.ul
+				.li.zt-name	#{data.specialData[i].special_class}
+				.li 
+					span.delete-class(data-id="#{data.specialData[i]._id}") 删除
+			.none-div
 	- else
 		.no-data 暂无分类
 	

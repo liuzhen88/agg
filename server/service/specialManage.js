@@ -39,6 +39,7 @@ function uploadSpecialData(req, res){
 		var fileType = JSON.parse(req.body.fileType); //图片格式
 		var fileName = JSON.parse(req.body.fileName); //图片名字
 		var className = JSON.parse(req.body.className); //分类名称
+		var qz = req.body.qz;	//权重
 		var special_image = [];
 
 		announce.forEach(function(value,i){
@@ -74,7 +75,7 @@ function uploadSpecialData(req, res){
 			    	if(i == announce.length-1){
 			    		 
 				    	//二进制流保存之后,同步数据持久化
-				    	saveSpecialData(specialName,className,special_image).then(function(data){
+				    	saveSpecialData(specialName,className,special_image,qz).then(function(data){
 				    		var context = config.data.success;
 				    		deferred.resolve(context);
 				    	}).fail(function(err){	
@@ -89,7 +90,7 @@ function uploadSpecialData(req, res){
 	return deferred.promise;
 }
 
-function saveSpecialData(specialName, className, special_image){
+function saveSpecialData(specialName, className, special_image, qz){
 	var deferred = q.defer();
 	// var classNewArray = [];
 	// classArray.forEach(function(v,i){
@@ -98,6 +99,9 @@ function saveSpecialData(specialName, className, special_image){
 	// 	};
 	// 	classNewArray.push(d);
 	// });
+	if(qz == "" || qz=="undefined"){
+		qz = 0;
+	}
 	findSpecialData().then(function(data){
 		var len = 1;
 		if(data.length>0){
@@ -109,6 +113,7 @@ function saveSpecialData(specialName, className, special_image){
 		}
 		var schemaModel = new specialSchema({
 			serial_number:len,
+			qz:qz,
 			special_name:specialName,
 			special_class:className,
 			special_image:special_image,

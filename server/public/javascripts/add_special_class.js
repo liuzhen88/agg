@@ -57,7 +57,8 @@ window.onload = function(){
 			// });
 			var className = $(".new-classes-input").val();
 			var specialName = $(".add_special-class-name").val();
-			
+			var qz = $(".qz").val();
+
 			if(!specialName){
 				alert("专题名称不能为空");
 				return;
@@ -88,7 +89,8 @@ window.onload = function(){
 					announce:JSON.stringify(Gobal.announce),
 					fileType:JSON.stringify(Gobal.fileType),
 					fileName:JSON.stringify(Gobal.fileName),
-					className:JSON.stringify(className)
+					className:JSON.stringify(className),
+					qz:qz
 				},
 				json:"callback",
 				success:function(data){

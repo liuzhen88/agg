@@ -52,5 +52,6 @@ $(document).ready(function(){
 
 function getDetail(obj){
 	var id = $(obj).attr("data-id");
+	alert(id);
     window.location.href="class_detail.html?id="+id;
 }

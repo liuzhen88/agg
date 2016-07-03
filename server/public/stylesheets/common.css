@@ -614,6 +614,12 @@ body{
 .previewAnnounce img{
 	width: 100%;
 }
+.previewListContainer{
+	width: 100%;
+}
+.previewListContainer img{
+	width: 100%;
+}
 .no-data{
 	width:100%;
 	height: 40px;

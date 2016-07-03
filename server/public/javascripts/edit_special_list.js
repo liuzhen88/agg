@@ -74,6 +74,7 @@ window.onload = function(){
 
 
 	function uploadNewFileImage(id, sendDataImage, sendFileName, sendFileType, qz, classListName, cb){
+		$(".loading").show();
 		$.ajax({
 			url:serverUrl+"/users/uploadNewFileForSpecial",
 			type:"post",
@@ -89,6 +90,7 @@ window.onload = function(){
 			json:"callback",
 			success:function(data){
 				if(data.code==200){
+					$(".loading").hide();
 					alert("提交成功");
 					cb();
 				}else{

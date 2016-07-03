@@ -343,8 +343,8 @@ body{
 }
 .loading{
 	display: none;
-	background: #000;
-	opacity: 0.7;
+	background: #fff;
+	opacity: 0.8;
 	position: fixed;
 	left: 0;
 	top: 0;

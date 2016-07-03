@@ -97,7 +97,6 @@ router.get("/addSpecialClass",function(req, res, next){
 router.get("/editSpecialList",function(req, res, next){
 	pageRenderHelper.checkSessionForSpecialEdit(req, res, function(data){
 		data.this_position = "专题管理--编辑专题";
-		console.log(data);
 		res.render("editSpecialList",{data});
 	});
 });

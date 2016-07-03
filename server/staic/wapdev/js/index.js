@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	var width = $(window).width();
 	$("#swipeBox").css({
-		"height":width/2
+		"height":width/3
 	});
 	 $.ajax({
         url: serverUrl+"/users/getBannerInfo",

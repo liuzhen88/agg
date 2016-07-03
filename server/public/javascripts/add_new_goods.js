@@ -62,10 +62,11 @@ window.onload = function(){
 				alert("请添加图片");
 				return;
 			}
-			if(!price){
-				alert("请输入商品价格");
-				return;
-			}
+			//去除商品价格验证
+			// if(!price){
+			// 	alert("请输入商品价格");
+			// 	return;
+			// }
 			$(".loading").show();
 			$.ajax({
 				url:serverUrl+"/users/addNewShopGoods",

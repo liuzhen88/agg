@@ -224,56 +224,77 @@ function updateShopGoodsById(req, res){
 	var announce = JSON.parse(req.body.announce);
 	var fileName = JSON.parse(req.body.fileName);
 	var fileType = JSON.parse(req.body.fileType);
+	var qz = req.body.qz;
 	var noticeArray = [];
-
-	announce.forEach(function(value,i){
-		var base64Data = value.replace(/^data:image\/\w+;base64,/, "");
-		//起开Node.js buffer缓冲
-		var dataBuffer = new Buffer(base64Data, 'base64');
-		var name = fileName[i];
-		var lastFileName = new Date().getTime()+"_"+i+"."+fileType[i];
-		var newFilePath = config.shopGoodsPath+ lastFileName;
-		//写入图片成功之后应该保存链接到Mongodb之中
-    	var noticeObj = {
-    		shopGoodsUrl:config.shopGoodsUploadUrl+"/"+lastFileName,
-    		name:name,
-    		operator:req.session.user.username,
-    		lastFileName:lastFileName
-    	}
-    	noticeArray.push(noticeObj);
-		fs.writeFile(name, dataBuffer, function(err) {
-		    if(err){
-		    	var content = config.data.error;
-		    	content.message = err;
-		      	deferred.reject(content);
-		    }
-
-		    fs.rename(name,newFilePath,function(err){
-		    	if(err){
-		    		console.log("file rename is error:"+err);
-		    		var content = config.data.error;
+	if(announce.length>0){
+		announce.forEach(function(value,i){
+			var base64Data = value.replace(/^data:image\/\w+;base64,/, "");
+			//起开Node.js buffer缓冲
+			var dataBuffer = new Buffer(base64Data, 'base64');
+			var name = fileName[i];
+			var lastFileName = new Date().getTime()+"_"+i+"."+fileType[i];
+			var newFilePath = config.shopGoodsPath+ lastFileName;
+			//写入图片成功之后应该保存链接到Mongodb之中
+	    	var noticeObj = {
+	    		shopGoodsUrl:config.shopGoodsUploadUrl+"/"+lastFileName,
+	    		name:name,
+	    		operator:req.session.user.username,
+	    		lastFileName:lastFileName
+	    	}
+	    	noticeArray.push(noticeObj);
+			fs.writeFile(name, dataBuffer, function(err) {
+			    if(err){
+			    	var content = config.data.error;
 			    	content.message = err;
 			      	deferred.reject(content);
-		    	} 
-		    	 
-		    	//持久化
-		    	if(i == announce.length-1){
-		    		updateConcatGoods(id,noticeArray,goodsName,className,price).then(function(data){
-		    			var context = config.data.success;
-		    			deferred.resolve(context);
-		    		}).fail(function(err){
-		    			deferred.reject(err);
-		    		});
-		    	}
-		    });
-		    
+			    }
+
+			    fs.rename(name,newFilePath,function(err){
+			    	if(err){
+			    		console.log("file rename is error:"+err);
+			    		var content = config.data.error;
+				    	content.message = err;
+				      	deferred.reject(content);
+			    	} 
+			    	 
+			    	//持久化
+			    	if(i == announce.length-1){
+			    		updateConcatGoods(id,noticeArray,goodsName,className,price,qz).then(function(data){
+			    			var context = config.data.success;
+			    			deferred.resolve(context);
+			    		}).fail(function(err){
+			    			deferred.reject(err);
+			    		});
+			    	}
+			    });
+			    
+			});
+		});	
+	}else{
+		//直接更新商品名，价格，分类名称，权重
+		shopGoodsModel.update({
+			"_id":id
+		},{
+			$set:{
+				goods_name:goodsName,
+				class_name:className,
+				price:price,
+				qz:Number(qz)
+			}
+		},function(err,docs){
+			if(err){
+				console.log(err);
+				deferred.reject(err);
+			}
+			var context = config.data.success;
+			deferred.resolve(context);
 		});
-	});
+	}
 
 	return deferred.promise;
 }
 
-function updateConcatGoods(id, noticeArray, goodsName, className, price){
+function updateConcatGoods(id, noticeArray, goodsName, className, price, qz){
 	var deferred = q.defer();
 	shopGoodsModel.findOne({
 		"_id":id
@@ -291,7 +312,8 @@ function updateConcatGoods(id, noticeArray, goodsName, className, price){
 				goods_content:newImageArr,
 				goods_name:goodsName,
 				class_name:className,
-				price:price
+				price:price,
+				qz:Number(qz)
 			}
 		},function(err){
 			if(err){

@@ -55,28 +55,29 @@ window.onload = function(){
 		var sendDataImage = AGG.sendDataImage;
 		var sendFileName = AGG.sendFileName;
 		var sendFileType = AGG.sendFileType;
-		if(sendDataImage.length == 0){
-			alert("您暂未添加新图片");
-		}else{
+		var qz = $(".qz").val();//权重
+		// if(sendDataImage.length == 0){
+		// 	alert("您暂未添加新图片");
+		// }else{
 			if(!$(".add_new_announce-name").val()){
 				alert("请输入商品名称");
 				return;
 			}
-			if(!$(".add_new_announce-price").val()){
-				alert("请输入商品价格");
-				return;
-			}
+			// if(!$(".add_new_announce-price").val()){
+			// 	alert("请输入商品价格");
+			// 	return;
+			// }
 			var id = request("id");
 			var goods_name = $(".add_new_announce-name").val();
 			var class_name = $("#className").val();
 			var price = $(".add_new_announce-price").val();
-			uploadNewFileImage(id,goods_name,class_name,price,function(){
+			uploadNewFileImage(id,goods_name,class_name,price,qz,function(){
 				window.location.href="/showGoods";
 			});
-		}
+		// }
 	});
 
-	function uploadNewFileImage(id, goodsName, className, price, cb){
+	function uploadNewFileImage(id, goodsName, className, price, qz, cb){
 		$(".loading").show();
 		$.ajax({
 			url:serverUrl+"/users/updateShopGoods",
@@ -88,7 +89,8 @@ window.onload = function(){
 				price:price,
 				announce:JSON.stringify(AGG.sendDataImage),
 				fileName:JSON.stringify(AGG.sendFileName),
-				fileType:JSON.stringify(AGG.sendFileType)
+				fileType:JSON.stringify(AGG.sendFileType),
+				qz:qz
 			},
 			dataType:"json",
 			json:"callback",

@@ -14,7 +14,9 @@ function addNewShopGoods(req, res){
 	var fileName = JSON.parse(req.body.fileName);
 	var qz = req.body.qz;//权重
 	var noticeArray = [];
-
+	if(qz == "" || qz == "undefined"){
+		qz = 0;
+	}
 	announce.forEach(function(value,i){
 		var base64Data = value.replace(/^data:image\/\w+;base64,/, "");
 		//起开Node.js buffer缓冲
@@ -225,6 +227,9 @@ function updateShopGoodsById(req, res){
 	var fileName = JSON.parse(req.body.fileName);
 	var fileType = JSON.parse(req.body.fileType);
 	var qz = req.body.qz;
+	if(qz==""||qz=="undefined"){
+		qz = 0;
+	}
 	var noticeArray = [];
 	if(announce.length>0){
 		announce.forEach(function(value,i){

@@ -45,7 +45,7 @@ $(document).ready(function(){
                 		if(localStorage.getItem("classData")){
                 			localStorage.removeItem("classData");
                 		}
-                		localStorage.setItem("classData",data);
+                		//localStorage.setItem("classData",data);
                 		console.log(localStorage.getItem("classData"));
                 		//window.location.href="class_detail.html";
                 	});

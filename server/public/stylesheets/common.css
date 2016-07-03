@@ -606,9 +606,13 @@ body{
 	cursor: pointer;
 }
 .previewAnnounce{
+	width: 100%;
 	position: relative;
 	border: dashed #e9eeef 1px;
 	margin-bottom: 15px;
+}
+.previewAnnounce img{
+	width: 100%;
 }
 .no-data{
 	width:100%;

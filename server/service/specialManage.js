@@ -289,46 +289,67 @@ function uploadNewFileForSpecialById(req, res){
 	var deferred = q.defer();
 	var id = req.body.id;
 	var qz = req.body.qz;
-	saveNewAnnounceImage(req, res).then(function(data){
-		specialSchema.findOne({
+	var classListName = req.body.classListName;
+	var announce = JSON.parse(req.body.announce);
+	if(announce.length>0){
+		saveNewAnnounceImage(req, res).then(function(data){
+			specialSchema.findOne({
+				"_id":id
+			},function(err,docs){
+				if(err){
+					console.log(err);
+					deferred.reject(err);
+				}
+				if(!docs){
+					console.log("no match data");
+					var context = config.data.notFound;
+					deferred.resolve(context);
+				}else{
+					var noticeImage = docs.special_image;
+					var newArray = noticeImage.concat(data.data);
+					console.log("data.data is " + data.data);
+					console.log("=================");
+					console.log(newArray);
+					console.log("======================");
+					specialSchema.update({
+						"_id":id
+					},{
+						$set:{
+							special_image:newArray,
+							qz:qz,
+							special_name:classListName
+						}
+					},function(err){
+						if(err){
+							console.log(err);
+							deferred.reject(err);
+						}
+						var content = config.data.success;
+						deferred.resolve(content);
+					});
+				}
+
+			});
+		}).fail(function(err){
+			res.send(err);
+		});
+	}else{
+		specialSchema.update({
 			"_id":id
-		},function(err,docs){
+		},{
+			$set:{
+				special_name:classListName,
+				qz:qz
+			}
+		},function(err){
 			if(err){
 				console.log(err);
 				deferred.reject(err);
 			}
-			if(!docs){
-				console.log("no match data");
-				var context = config.data.notFound;
-				deferred.resolve(context);
-			}else{
-				var noticeImage = docs.special_image;
-				var newArray = noticeImage.concat(data.data);
-				console.log("data.data is " + data.data);
-				console.log("=================");
-				console.log(newArray);
-				console.log("======================");
-				specialSchema.update({
-					"_id":id
-				},{
-					$set:{
-						special_image:newArray,
-						qz:qz
-					}
-				},function(err){
-					if(err){
-						console.log(err);
-						deferred.reject(err);
-					}
-					var content = config.data.success;
-					deferred.resolve(content);
-				});
-			}
-
-		});
-	}).fail(function(err){
-		res.send(err);
-	});
+			var content = config.data.success;
+			deferred.resolve(content);
+		})
+	}
 
 	return deferred.promise;
 }

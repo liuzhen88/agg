@@ -54,25 +54,26 @@ window.onload = function(){
 		var sendDataImage = AGG.sendDataImage;
 		var sendFileName = AGG.sendFileName;
 		var sendFileType = AGG.sendFileType;
-		if(sendDataImage.length == 0){
-			alert("您暂未添加新图片");
-		}else{
+		// if(sendDataImage.length == 0){
+		// 	alert("您暂未添加新图片");
+		// }else{
 			var id = request("id");
 			var len = $(".previewAnnounce").length;
 			var newLen = $(".previewListContainer").length;
 			var qz = $(".qz").val();
+			var classListName = $(".add_new_announce-name").val();
 			if(Number(len)+Number(newLen)!=1){
 				alert("专题图片只能为1张");
 				return;
 			}
-			uploadNewFileImage(id,sendDataImage,sendFileName,sendFileType,qz,function(){
+			uploadNewFileImage(id,sendDataImage,sendFileName,sendFileType,qz,classListName,function(){
 				window.location.href="/specialManage";
 			});
-		}
+		// }
 	});
 
 
-	function uploadNewFileImage(id, sendDataImage, sendFileName, sendFileType, qz, cb){
+	function uploadNewFileImage(id, sendDataImage, sendFileName, sendFileType, qz, classListName, cb){
 		$.ajax({
 			url:serverUrl+"/users/uploadNewFileForSpecial",
 			type:"post",
@@ -82,7 +83,8 @@ window.onload = function(){
 				fileName:JSON.stringify(sendFileName),
 				fileType:JSON.stringify(sendFileType),
 				id:id,
-				qz:qz
+				qz:qz,
+				classListName:classListName
 			},
 			json:"callback",
 			success:function(data){

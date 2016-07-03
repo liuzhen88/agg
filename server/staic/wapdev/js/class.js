@@ -53,10 +53,8 @@ $(document).ready(function(){
 
 function getDetail(obj){
 	
-	
 	if(flag == 0){
 		var id = $(obj).attr("data-id");
-		alert(id);
 		window.location.href="class_detail.html?id="+id;
 	}
 	flag ++;

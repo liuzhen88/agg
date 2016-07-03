@@ -265,6 +265,7 @@ function getNoticeByPage(req, res){
 }
 
 function getClassDetailsByWeixin(req, res){
+	var deferred = q.defer();
 	var id = req.query.id;
 	shopGoodsSchema.findOne({
 		"_id":id

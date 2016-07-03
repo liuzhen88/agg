@@ -113,6 +113,6 @@ gulp.task('usemin', function() {
     console.log("注解完成,css,js,压缩,合并,混淆完毕.....................");
 });
 
-gulp.task("default",["htmlmin","imagemin","usemin"],function(){
+gulp.task("default",["htmlmin","usemin"],function(){
 	console.log("执行完成");
 });

@@ -58,12 +58,12 @@
 	background-position: center 30%;
 }
 .join{
-	background-image: url("../images/index-false.png");
+	background-image: url("../images/join-false.png");
 	background-repeat: no-repeat;
 	background-position: center 30%;
 }
 .join-has{
-	background-image: url("../images/index-true.png");
+	background-image: url("../images/join-true.png");
 	background-repeat: no-repeat;
 	background-position: center 30%;
 }

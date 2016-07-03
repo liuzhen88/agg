@@ -50,6 +50,7 @@ window.onload = function(){
 			var goodsName = $(".add_new_announce-name").val();
 			var className = $("#className").val();
 			var price = $(".add_new_announce-price").val();
+			var qz = $(".qz").val();//权重
 			if(!goodsName){
 				alert("请输入商品名称");
 				return;
@@ -77,7 +78,8 @@ window.onload = function(){
 					price:price,
 					announce:JSON.stringify(Gobal.announce),
 					fileType:JSON.stringify(Gobal.fileType),
-					fileName:JSON.stringify(Gobal.fileName)
+					fileName:JSON.stringify(Gobal.fileName),
+					qz:qz
 				},
 				dataType:"json",
 				json:"callback",

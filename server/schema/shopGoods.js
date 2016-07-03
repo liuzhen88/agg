@@ -5,6 +5,7 @@ var shopGoodsSchema = new mongoose.Schema({
 	goods_name:String,	//商品名称
 	class_name:String,	//分类名
 	price:String,	//商品价格
+	qz:Number,	//权重
 	goods_content:[
 		{
 			shopGoodsUrl:String,	//商品图片

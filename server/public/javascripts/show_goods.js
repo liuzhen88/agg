@@ -11,7 +11,8 @@ window.onload = function(){
 		var state = confirm("确定要删除吗?");
 		if(state){
 			deleteGoodsData(id,function(){
-				$(".goods-lists-container").eq(index).remove();
+				//$(".goods-lists-container").eq(index).remove();
+				window.location.reload();
 			});
 		}	
 	});

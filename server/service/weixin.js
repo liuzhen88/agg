@@ -225,7 +225,7 @@ function getClassListData(req, res){
 
 	shopGoodsSchema.find({
 		"class_name":className
-	},function(err,docs){
+	}).sort({"qz":-1}).exec(function(err,docs){
 		if(err){
 			console.log(err);
 			deferred.reject(err);

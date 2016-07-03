@@ -12,6 +12,7 @@ function addNewShopGoods(req, res){
 	var announce = JSON.parse(req.body.announce);
 	var fileType = JSON.parse(req.body.fileType);
 	var fileName = JSON.parse(req.body.fileName);
+	var qz = req.body.qz;//权重
 	var noticeArray = [];
 
 	announce.forEach(function(value,i){
@@ -46,7 +47,7 @@ function addNewShopGoods(req, res){
 
 		    	//持久化
 		    	if(i == announce.length-1){
-		    		saveNewShopGoods(noticeArray,goodsName,className,price).then(function(data){
+		    		saveNewShopGoods(noticeArray,goodsName,className,price,qz).then(function(data){
 		    			var context = config.data.success;
 		    			deferred.resolve(context);
 		    		}).fail(function(err){
@@ -62,7 +63,7 @@ function addNewShopGoods(req, res){
 	return deferred.promise;
 }
 
-function saveNewShopGoods(noticeArray, goodsName, className, price){
+function saveNewShopGoods(noticeArray, goodsName, className, price, qz){
 	var deferred = q.defer();
 	getGoodsData(function(docs){
 		var arr = [];
@@ -78,7 +79,8 @@ function saveNewShopGoods(noticeArray, goodsName, className, price){
 			goods_name:goodsName,
 			class_name:className,
 			price:price,
-			goods_content:noticeArray
+			goods_content:noticeArray,
+			qz:Number(qz)
 		});
 		shopGoodsData.save(function(err){
 			if(err){

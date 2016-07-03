@@ -14,6 +14,9 @@ block sub_content
 				- if(data.classData.length>0)
 					- for(var i=0;i<data.classData.length;i++)
 						option.grey #{data.classData[i].className}
+		.add-new-announce-name-container(style="margin-top:30px;")
+			span 权重数值 :
+			input.qz(type='text' placeholder="权重值为数字,值越大同种分类商品显示越在前,非必填,默认按添加顺序展示" value="")
 		.ts
 			span.ts-title *温馨提示:
 				span.ts-span 离开编辑页面所编辑的内容即不保存

@@ -43,6 +43,7 @@ $(document).ready(function(){
                 	$(".good-list-container").click(function(){
                 		var data = $(this).find("span").text();
                 		localStorage.setItem("classData",data);
+                		console.log(localStorage.getItem("classData"));
                 		window.location.href="class_detail.html";
                 	});
 				}

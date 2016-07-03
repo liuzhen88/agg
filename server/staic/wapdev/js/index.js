@@ -3,6 +3,9 @@ $(document).ready(function(){
 	$("#swipeBox").css({
 		"height":width/3
 	});
+    $(".item").css({
+        "height":width/3
+    });
 	 $.ajax({
         url: serverUrl+"/users/getBannerInfo",
         type: 'get',

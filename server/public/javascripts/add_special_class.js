@@ -129,7 +129,7 @@ window.onload = function(){
 				success:function(data){
 					if(data.code==200){
 						alert("删除成功");
-						$(".delete-class").eq(index).remove();
+						$(".delete-ul").eq(index).remove();
 					}
 				},
 				error:function(err){

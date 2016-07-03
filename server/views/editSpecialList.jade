@@ -10,6 +10,13 @@ block sub_content
 			- else
 				span 专题名称 :
 				input.add_new_announce-name(type='text' placeholder="请输入专题名称" value="")
+		.add-new-announce-name-container
+			- if(data.specialList)
+				span 权重数值 :
+				input.qz(type='text' placeholder="权重值为数字,值越大显示越在前,非必填,默认按添加顺序展示" value="#{data.specialList.qz}")
+			-else
+				span 权重数值 :
+				input.qz(type='text' placeholder="权重值为数字,值越大显示越在前,非必填,默认按添加顺序展示" value="")
 		.edit-new-announce-img-container
 			- if(data.specialList)
 				- if(data.specialList.special_image.length>0)

@@ -288,6 +288,7 @@ function updateNoticeSingleData(noticeObjectId, noticeImageArray){
 function uploadNewFileForSpecialById(req, res){
 	var deferred = q.defer();
 	var id = req.body.id;
+	var qz = req.body.qz;
 	saveNewAnnounceImage(req, res).then(function(data){
 		specialSchema.findOne({
 			"_id":id
@@ -311,7 +312,8 @@ function uploadNewFileForSpecialById(req, res){
 					"_id":id
 				},{
 					$set:{
-						special_image:newArray
+						special_image:newArray,
+						qz:qz
 					}
 				},function(err){
 					if(err){

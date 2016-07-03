@@ -60,18 +60,19 @@ window.onload = function(){
 			var id = request("id");
 			var len = $(".previewAnnounce").length;
 			var newLen = $(".previewListContainer").length;
+			var qz = $(".qz").val();
 			if(Number(len)+Number(newLen)!=1){
 				alert("专题图片只能为1张");
 				return;
 			}
-			uploadNewFileImage(id,sendDataImage,sendFileName,sendFileType,function(){
+			uploadNewFileImage(id,sendDataImage,sendFileName,sendFileType,qz,function(){
 				window.location.href="/specialManage";
 			});
 		}
 	});
 
 
-	function uploadNewFileImage(id, sendDataImage, sendFileName, sendFileType, cb){
+	function uploadNewFileImage(id, sendDataImage, sendFileName, sendFileType, qz, cb){
 		$.ajax({
 			url:serverUrl+"/users/uploadNewFileForSpecial",
 			type:"post",
@@ -80,7 +81,8 @@ window.onload = function(){
 				announce:JSON.stringify(sendDataImage),
 				fileName:JSON.stringify(sendFileName),
 				fileType:JSON.stringify(sendFileType),
-				id:id
+				id:id,
+				qz:qz
 			},
 			json:"callback",
 			success:function(data){

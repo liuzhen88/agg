@@ -298,7 +298,17 @@ function getClassData(cb){
 }
 
 function getNoticeData(cb){
-	noticeModel.find(function(err,docs){
+	// noticeModel.find(function(err,docs){
+	// 	if(err){
+	// 		console.log(err);
+	// 		return;
+	// 	}
+	// 	cb(docs);
+	// });
+	//倒序
+	noticeModel.find().sort({
+		"serial_number":-1
+	}).exec(function(err,docs){
 		if(err){
 			console.log(err);
 			return;
@@ -359,7 +369,7 @@ helper.pcIndex = function(req, res, next){
 			}
 			weixin.getSpecialClassData(req,res).then(function(data){
 				/*分页service*/
-				noticeModel.find().limit(3).exec(function(err,notice){
+				noticeModel.find().sort({"serial_number":-1}).limit(3).exec(function(err,notice){
 					if(notice.length>0){
 						notice.forEach(function(value,index){
 							var time = value.notice_id;

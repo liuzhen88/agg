@@ -27,7 +27,7 @@ function getBanner(req, res){
 
 function getNotice(req, res){
 	var deferred = q.defer();
-	noticeSchema.find(function(err,docs){
+	noticeSchema.find().sort("serial_number":-1).exec(function(err,docs){
 		if(err){
 			console.log(err);
 			deferred.reject(err);

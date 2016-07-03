@@ -946,3 +946,10 @@ body{
 	margin-top: 40px;
 	display: none;
 }
+.ts{
+	margin-top: 30px;
+	color: #ff0000;
+}
+.ts-span{
+	margin-left: 20px;
+}

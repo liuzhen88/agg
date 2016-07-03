@@ -14,6 +14,9 @@ block sub_content
 				- if(data.classData.length>0)
 					- for(var i=0;i<data.classData.length;i++)
 						option.grey #{data.classData[i].className}
+		.ts
+			span.ts-title *温馨提示:
+				span.ts-span 离开编辑页面所编辑的内容即不保存
 		.add-new-announce-img-container
 		.add-announce-btn
 			.add-announce-img-btn 添加图片

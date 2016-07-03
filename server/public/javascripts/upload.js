@@ -66,6 +66,7 @@ window.onload = function(){
 			success:function(data){
 				$(".loading").hide();
 				alert(data.message);
+				window.location.href="/indexBanner";
 			},
 			error:function(err){
 				console.log(err);

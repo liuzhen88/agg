@@ -320,4 +320,12 @@ router.get("/getNoticeByPage",function(req,res){
 	});
 });
 
+router.get("/getClassDetailsByWeixin",function(req,res){
+	weixin.getClassDetailsByWeixin(req,res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
 module.exports = router;

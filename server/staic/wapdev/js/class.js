@@ -41,14 +41,8 @@ $(document).ready(function(){
                 	$("#goodsBox").html(goodsDoTmpl(data.data));
 
                 	$(".good-list-container").click(function(){
-                		var data = $(this).find("span").text();
-                		if(localStorage.getItem("classData")){
-                			localStorage.removeItem("classData");
-                		}
-                		console.log(data);
-                		localStorage.setItem("classData",data);
-                		console.log(localStorage.getItem("classData"));
-                		//window.location.href="class_detail.html";
+                		var id = $(this).attr("data-id");
+                		window.location.href="class_detail.html?id="+id;
                 	});
 				}
 			},

@@ -47,7 +47,7 @@
 <script type="text/template" id="goods-tmpl">
 {{ if(it.length>0){ }}
     {{ for(var i=0;i<it.length;i++){ }}
-        <div class='good-list-container'>
+        <div class='good-list-container' data-id="{{=it[i]._id}}">
             <img src="{{=it[i].goods_content[0].shopGoodsUrl}}"/>
             <span style="display:none">{{=JSON.stringify(it[i].goods_content)}}</span>
         <div>

@@ -264,6 +264,22 @@ function getNoticeByPage(req, res){
 	return deferred.promise;
 }
 
+function getClassDetailsByWeixin(req, res){
+	var id = req.query.id;
+	shopGoodsSchema.findOne({
+		"_id":id
+	},function(err,docs){
+		if(err){
+			console.log(err);
+			deferred.reject(err);
+			return;
+		}
+		deferred.resolve(data);
+	});
+
+	return deferred.promise;
+}
+
 module.exports = {
 	getBanner:getBanner,
 	getNotice:getNotice,
@@ -273,5 +289,6 @@ module.exports = {
 	getShopDetails:getShopDetails,
 	getClassData:getClassData,
 	getClassListData:getClassListData,
-	getNoticeByPage:getNoticeByPage
+	getNoticeByPage:getNoticeByPage,
+	getClassDetailsByWeixin:getClassDetailsByWeixin
 }

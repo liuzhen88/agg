@@ -11,6 +11,41 @@ window.onload = function(){
 		getSearchShopGoods(result);
 	});
 
+	/*模糊查询*/
+	$("#result").keyup(function(){
+		var keyWords = $(this).val();
+		if(keyWords!=""){
+			$.ajax({
+				url:serverUrl+"/users/getVagueData",
+				type:"post",
+				data:{
+					keyWords:keyWords
+				},
+				dataType:"json",
+				json:"callback",
+				success:function(data){
+					$(".vague-container").show();
+					$(".vague-list").remove();
+					for(var i=0;i<data.length;i++){
+						var vagueList = "<div class='vague-list'>"+data[i].goods_name+"</div>"
+						$(".vague-container").append(vagueList);
+					}
+					$(".vague-list").click(function(){
+						var v = $(this).text();
+						$("#result").val(v);
+						$(".vague-container").hide();
+					});
+				},
+				error:function(err){
+					console.log(err);
+				}
+			});
+		}else{
+			$(".vague-container").hide();
+		}
+		
+	});
+
 	$(".del-shop-goods-module").click(function(){
 		var state = confirm("确定要删除吗?");
 		if(state){

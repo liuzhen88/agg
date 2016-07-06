@@ -964,3 +964,18 @@ body{
 .ts-span{
 	margin-left: 20px;
 }
+.vague-container{
+	width: 270px;
+	min-height: 100px;
+	border: solid #ddd 1px;
+	margin-left: 10px;
+	display: none;
+}
+.vague-list{
+	width: 100%;
+	text-indent: 10px;
+	line-height: 25px;
+	color: #999;
+	cursor: pointer;
+	padding-bottom: 5px;
+}

@@ -495,12 +495,35 @@ function delShopModuleById(req, res){
 	return deferred.promise;
 }
 
+
+/*模糊查询*/
+function getVagueData(req, res){
+	var deferred = q.defer();
+	var keyword = req.body.keyWords;
+	shopGoodsSchema.find({
+		"goods_name":{
+			$regex:keyword
+		}
+	},{
+		"goods_name":1,
+		"_id":0
+	},function(err,docs){
+		if(err){
+			console.log(err);
+			deferred.reject(err);
+		}
+		deferred.resolve(docs);
+	})
+
+	return deferred.promise;
+}
+
 module.exports = {
 	uploadSpecialData:uploadSpecialData,
 	deleteSpecialListById:deleteSpecialListById,
 	delSpecialListDataById:delSpecialListDataById,
 	uploadNewFileForSpecialById:uploadNewFileForSpecialById,
 	addNewShopModuleById:addNewShopModuleById,
-	delShopModuleById:delShopModuleById
-
+	delShopModuleById:delShopModuleById,
+	getVagueData:getVagueData
 }

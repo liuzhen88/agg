@@ -328,4 +328,13 @@ router.get("/getClassDetailsByWeixin",function(req,res){
 	});
 });
 
+/*模糊查询*/
+router.post("/getVagueData",function(req,res){
+	specialManage.getVagueData(req,res).then(function(data){
+		res.send(data);
+	}).fail(function(err){
+		res.send(err);
+	});
+});
+
 module.exports = router;

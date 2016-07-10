@@ -20,12 +20,14 @@ block sub_content
 		.ts
 			span.ts-title *温馨提示:
 				span.ts-span 离开编辑页面所编辑的内容即不保存
-		.add-announce-btn
-			.add-announce-img-btn 添加图片
-			input.add-input-img(type="file")
-			.add-announce-submit#addNewGoods 提交
 		.add-new-announce-img-container
 	div.loading
 		div.loading-gif
 			img(src="/images/load.gif")
+	.footer-add-announce-btn
+	.rel-container
+		.add-announce-btn
+			.add-announce-img-btn 添加图片
+			input.add-input-img(type="file")
+			.add-announce-submit#addNewGoods 提交
 	script(src="/javascripts/add_new_goods.js")

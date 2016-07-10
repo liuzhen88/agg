@@ -15,51 +15,38 @@
 	height: 25px;
 	background: url("../images/back.png") no-repeat center;
 }
-.more{
-	position: absolute;
-	right: 10px;
-	top: 8px;
-	background: #FF9122;
-	color: #fff;
-	width: 50px;
-	height: 25px;
-	line-height: 25px;
-	text-align: center;
-	border-radius: 4px;
-}
-.all{
-	width: 100%;
-	padding-bottom: 15px;
-	border-bottom: solid #ddd 1px;
-}
-.all ul{
-	list-style: none;
-	width: 100%;
-}
-.all ul li{
+.class-list{
+	width: 24%;
 	float: left;
-	padding: 0 15px;
-	height: 25px;
-	border: solid #ddd 1px;
+	background: #f7f7f7;
+	min-height: 300px;
+	overflow-y:scroll; 
+} 
+.class-detail{
+	width: 75%;
+	float: right;
+	height: 100%;
+}
+#categoryWrap{
+	list-style: none;
+}
+.class-list-name{
+	height: 44px;
+	line-height: 44px;
+	font-size: 14px;
 	text-align: center;
-	line-height: 25px;
-	margin-left: 2%;
-	margin-top: 15px;
-	border-radius: 10px;
-
+	color: #333;
+	border-bottom: 1px solid #e6e6e6;
 }
-.clear{
-	clear: both;
+.active{
+	background-color: #fff;
+	color: #47B34F;
+	border-left: 4px solid #47B34F;
 }
-
-.has-select{
-	background: #FF9122;
-	color: #fff;
-}
-
-.good-list-container{
+.class-detail-container{
 	width: 100%;
+	margin-bottom: 3px;
 }
-.good-list-container img{
+.class-detail-container img{
 	width: 100%;
 }

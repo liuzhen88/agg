@@ -53,7 +53,7 @@ a{
 	width: 1100px;
 	height: 200px;
 	margin: 0 auto;
-	background: url("../../images/bannerbeijing.png") 100% 100%;
+	background: url("../../images/bannerbeijing.jpg") 100% 100%;
 }
 .banner ul{
 	width: 600px;
@@ -326,3 +326,14 @@ a{
 .special-container-images-container img{
 	width: 100%;
 }
+#divSmallBox{overflow:hidden;*display:inline;*zoom:1;width:10px;height:10px;margin:0 5px;border-radius:10px;background:#ffffff;}
+#playBox{ width:1100px; height:366px; margin:20px auto; position:relative; overflow:hidden;background: url("../images/bannerbeijing.jpg") 100% 100%;}
+#playBox .oUlplay {position:absolute; left:0; top:0;}
+#playBox .oUlplay li{ float:left;}
+#playBox .pre{ cursor:pointer; width:45px; height:45px; background:url(../images/l.png) no-repeat; position:absolute; top:190px; left:10px; z-index:10;}
+#playBox .next{ cursor:pointer; width:45px; height:45px; background:url(../images/r.png) no-repeat; position:absolute; top:190px; right:10px; z-index:10;}
+#playBox .smalltitle {width:1100px; height:10px; position:absolute; bottom:15px; z-index:10}
+#playBox .smalltitle ul{ width:120px; margin:0 auto;}
+#playBox .smalltitle ul li{ width:10px; height:10px; margin:0 5px; border-radius:10px; background:#ffffff; float:left; overflow:hidden;*display:inline;*zoom:1;cursor: pointer;}
+#playBox .smalltitle .thistitle{ background:#69aaec;}
+.oUlplay img{width: 1100px;}

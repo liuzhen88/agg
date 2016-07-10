@@ -1,13 +1,28 @@
 extends common
 
 block content
-	.banner
-		ul#bannerUl
+	div#playBox
+		.pre
+		.next
+		.smalltitle
+			ul
+				- if(data.banner.banner.length>0)
+					- for(var i=0;i<data.banner.banner.length;i++)
+						- if(i==0)
+							li.thistitle
+						- else
+							li
+		ul.oUlplay
 			- if(data.banner.banner.length>0)
 				- for(var i=0;i<data.banner.banner.length;i++)
-					li.banner-lists
-						a(href="#{data.banner.banner[i].href}" target="_blank")
-							img(src="#{data.banner.banner[i].bannerUrl}")
+					- if(data.banner.banner[i].href=="")
+						li
+							a
+								img(src="#{data.banner.banner[i].bannerUrl}")
+					- else
+						li
+							a(href="#{data.banner.banner[i].href}")
+								img(src="#{data.banner.banner[i].bannerUrl}")
 	.all-class
 		.con
 			.all-name 全部商品分类

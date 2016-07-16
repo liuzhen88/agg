@@ -3,6 +3,9 @@ window.onload = function(){
 	Gobal.announce = [];
 	Gobal.fileType = [];
 	Gobal.fileName = [];
+	Gobal.count = [];
+	Gobal.h = [];
+	Gobal.index = 0;
 	var doc_w = $(document).width();
 	var doc_h = $(window).height();
 	$(".loading").css({
@@ -29,11 +32,18 @@ window.onload = function(){
 						+	"<img src="+source+" class='previewAnnounceList'/>"
 						+	"<div class='deleteAnnounce' onclick='del(this)'>删除"
 						+ 	"</div>"
+						+	"<div class='move-up' onclick='moveUp(this)' data-index="+Gobal.index+">上移</div>"
+						+	"<div class='move-down' onclick='moveDown(this)' data-index="+Gobal.index+">下移</div>"
 						+"</div>";
 			$(".add-new-announce-img-container").append(imgTag);
 			setImgAttr();
+			Gobal.count.push(Gobal.index);
+			 
+			Gobal.h.push($(".previewAnnounceList").eq(Gobal.index).height());
+			Gobal.index++;
+
 		}
-		console.log(Gobal);
+		
 	});
 
 	function setImgAttr(){
@@ -68,6 +78,16 @@ window.onload = function(){
 			// 	alert("请输入商品价格");
 			// 	return;
 			// }
+			//变换
+			var announces = [];
+			var fileTypes = [];
+			var fileNames = [];
+			Gobal.count.forEach(function(value,index){
+				announces.push(Gobal.announce[value]);
+				fileTypes.push(Gobal.fileType[value]);
+				fileNames.push(Gobal.fileName[value]);
+			});
+
 			$(".loading").show();
 			$.ajax({
 				url:serverUrl+"/users/addNewShopGoods",
@@ -76,9 +96,9 @@ window.onload = function(){
 					goodsName:goodsName,
 					className:className,
 					price:price,
-					announce:JSON.stringify(Gobal.announce),
-					fileType:JSON.stringify(Gobal.fileType),
-					fileName:JSON.stringify(Gobal.fileName),
+					announce:JSON.stringify(announces),
+					fileType:JSON.stringify(fileTypes),
+					fileName:JSON.stringify(fileNames),
 					qz:qz
 				},
 				dataType:"json",
@@ -106,5 +126,100 @@ function del(obj){
 	sendDataImage.splice(index,1);
 	fileName.splice(index,1);
 	fileType.splice(index,1);
-	console.log(Gobal);
+	Gobal.h.splice(index,1);
+	Gobal.index --;
+	Gobal.count.splice(index,1);
+}
+
+function moveUp(obj){
+
+	var dataIndex = $(obj).attr("data-index");
+	dataIndex = Number(dataIndex);
+
+	var index = $.inArray(dataIndex,Gobal.count);	//重新排列之后在队列里面的位置
+	var net = Gobal.count[index-1];
+	if(index!=0){
+		var arr = exchange(Gobal.count,index,index-1);
+		Gobal.count = arr;
+		var pdd = Gobal.count[index-1];
+
+		index = $.inArray(dataIndex,Gobal.count);
+
+		var nextIndex = $.inArray(net,Gobal.count);
+		
+		animation(dataIndex,index,net,nextIndex);
+	}
+}
+
+function moveDown(obj){
+
+	var allLength = $(".previewAnnounce").length;
+	var dataIndex = $(obj).attr("data-index");
+	dataIndex = Number(dataIndex);
+	var index = $.inArray(dataIndex,Gobal.count);	//重新排列之后在队列里面的位置
+	var net = Gobal.count[index+1];
+	if(index!=allLength-1){
+		var arr = exchange(Gobal.count,index,index+1);
+		Gobal.count = arr;
+		var pdd = Gobal.count[index+1];
+
+		index = $.inArray(dataIndex,Gobal.count);
+
+		var nextIndex = $.inArray(net,Gobal.count);
+		
+		animation(dataIndex,index,net,nextIndex);
+		
+	}
+}
+
+function exchange(arr, index1, index2){
+	arr[index1] = arr.splice(index2, 1, arr[index1])[0];
+    return arr;
+}
+
+function animation(oldIndex, newIndex, nextOldIndex,nextNewIndex){
+
+	if(oldIndex<=newIndex){
+		//下移,top为正
+		var downDistance = 0;
+		for(var i=oldIndex+1;i<=newIndex;i++){
+			downDistance = downDistance + Gobal.h[i] + 15;
+		}
+		$(".previewAnnounce").eq(oldIndex).animate({
+			"top":downDistance
+		},1000);
+	}
+	if(nextOldIndex<=nextNewIndex){
+		//下移,top为正
+		var downDistance = 0;
+		for(var i=nextOldIndex+1;i<=nextNewIndex;i++){
+			downDistance = downDistance + Gobal.h[i] + 15;
+		}
+		$(".previewAnnounce").eq(nextOldIndex).animate({
+			"top":downDistance
+		},1000);
+	}
+	if(oldIndex>newIndex){
+		//上移,top为负
+		var upDistance = 0;
+		for(var i=newIndex;i<oldIndex;i++){
+			upDistance = upDistance + Gobal.h[i] + 15;
+		}
+		$(".previewAnnounce").eq(oldIndex).animate({
+			"top":-upDistance
+		},1000);
+	}
+	if(nextOldIndex>nextNewIndex){
+		//上移,top为负
+		var upDistance = 0;
+		for(var i=nextNewIndex;i<nextOldIndex;i++){
+			upDistance = upDistance + Gobal.h[i] + 15;
+		}
+		$(".previewAnnounce").eq(nextOldIndex).animate({
+			"top":-upDistance
+		},1000);
+	}
+	if(oldIndex == newIndex){
+		//不动,不需做任何处理
+	}
 }

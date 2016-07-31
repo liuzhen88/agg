@@ -20,7 +20,7 @@
 	float: left;
 	background: #f7f7f7;
 	min-height: 300px;
-	overflow-y:scroll; 
+	/*overflow-y:scroll; */
 } 
 .class-detail{
 	width: 75%;
